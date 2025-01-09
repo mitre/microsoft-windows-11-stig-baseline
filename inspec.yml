@@ -1,0 +1,34 @@
+name: microsoft-windows-11-stig-baseline
+title: "Microsoft Windows 11 Security Technical Implementation Guide :: Version
+  2, Release 2 :: Benchmark Date:  15 Nov 2024"
+maintainer: MITRE SAF Team
+copyright: MITRE
+copyright_email: saf@groups.mitre.org
+license: Apache-2.0
+summary: InSpec profile aligned to STIG Guidance for Microsoft Windows 11
+  Security Technical Implementation Guide
+description: null
+version: 2.2.0
+supports: []
+depends: []
+inspec_version: |
+  "~>6.0"
+
+
+### INPUTS ###
+# Inputs are variables that can be referenced by any control in the profile,
+# and are defined and given a default value in this file.
+
+# By default, each parameter is set to exactly comply with the profile baseline
+# wherever possible. Some profile controls will require a unique value reflecting
+# the necessary context for the supporting system.
+
+# Values provided here can be overridden using an input file or a CLI flag at
+# execution time. See InSpec's Inputs docs at https://docs.chef.io/inspec/profiles/inputs/
+# for details.
+
+# NOTE: DO NOT directly change the default values by editing this file. Use
+# overrides instead.
+###
+
+inputs:
