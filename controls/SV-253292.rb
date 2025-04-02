@@ -19,14 +19,14 @@ Verify the organization has a policy to turn off Bluetooth when not in use and p
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
 
-  if sys_info.manufacturer != 'VMware, Inc.'
-    describe 'Turn off Bluetooth radios when not in use. Establish an organizational policy for the use of Bluetooth to include training of personnel' do
-      skip 'This is NA if the system does not have Bluetooth'
-    end
-  else
+  if sys_info.manufacturer == 'VMware, Inc.'
     impact 0.0
     describe 'This is a VDI System; This Control is NA.' do
       skip 'This is a VDI System; This Control is NA'
+    end
+  else
+    describe 'Turn off Bluetooth radios when not in use. Establish an organizational policy for the use of Bluetooth to include training of personnel' do
+      skip 'This is NA if the system does not have Bluetooth'
     end
   end
 end

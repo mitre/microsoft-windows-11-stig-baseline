@@ -1,12 +1,12 @@
 control 'SV-253470' do
   title 'Windows 11 must use multifactor authentication for local and network access to privileged and nonprivileged accounts.'
-  desc 'Without the use of multifactor authentication, the ease of access to privileged and nonprivileged functions is greatly increased. 
+  desc 'Without the use of multifactor authentication, the ease of access to privileged and nonprivileged functions is greatly increased.
 
-All domain accounts must be enabled for multifactor authentication with the exception of local emergency accounts. 
+All domain accounts must be enabled for multifactor authentication with the exception of local emergency accounts.
 
 Multifactor authentication requires using two or more factors to achieve authentication.
 
-Factors include: 
+Factors include:
 
 1) Something a user knows (e.g., password/PIN);
 2) Something a user has (e.g., cryptographic identification device, token); and
@@ -21,7 +21,7 @@ Local access is defined as access to an organizational information system by a u
 The DoD CAC with DoD-approved PKI is an example of multifactor authentication.'
   desc 'check', 'If the system is not a member of a domain, this is Not Applicable.
 
-If one of the following settings does not exist and is not populated, this is a finding: 
+If one of the following settings does not exist and is not populated, this is a finding:
 
 \\HKLM\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\Readers
 \\HKLM\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\SmartCards'

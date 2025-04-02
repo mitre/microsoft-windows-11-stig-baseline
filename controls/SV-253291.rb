@@ -21,13 +21,13 @@ Approval must be documented with the ISSO.'
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
 
-if(sys_info).manufacturer != "VMware, Inc."
-  describe "Turn off Bluetooth radios when not in use. Establish an organizational policy for the use of Bluetooth to include training of personnel" do
-    skip 'This is NA if the system does not have Bluetooth'
-  end
-else
-  describe "This is a VDI System this control is NA." do
-    skip 'This is a VDI System this control is NA.'
-   end
+  if sys_info.manufacturer == 'VMware, Inc.'
+    describe 'This is a VDI System this control is NA.' do
+      skip 'This is a VDI System this control is NA.'
+    end
+  else
+    describe 'Turn off Bluetooth radios when not in use. Establish an organizational policy for the use of Bluetooth to include training of personnel' do
+      skip 'This is NA if the system does not have Bluetooth'
+    end
   end
 end

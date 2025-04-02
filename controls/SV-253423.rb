@@ -9,7 +9,7 @@ Registry Path: \\Software\\Policies\\Microsoft\\Windows\\System
 Value Name: AllowDomainPINLogon
 Value Type: REG_DWORD
 Value data: 0'
-  desc 'fix', 'Disable the convenience PIN sign-in. 
+  desc 'fix', 'Disable the convenience PIN sign-in.
 
 To correct this, configure the policy value for Computer Configuration >> Administrative Templates >> System >> Logon >> Set "Turn on convenience PIN sign-in" to "Disabled".'
   impact 0.5
@@ -26,8 +26,8 @@ To correct this, configure the policy value for Computer Configuration >> Admini
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
 
-   describe registry_key('HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System') do
-      it { should have_property 'AllowDomainPINLogon' }
-      its('AllowDomainPINLogon') { should cmp 0 }
-   end
+  describe registry_key('HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System') do
+    it { should have_property 'AllowDomainPINLogon' }
+    its('AllowDomainPINLogon') { should cmp 0 }
+  end
 end

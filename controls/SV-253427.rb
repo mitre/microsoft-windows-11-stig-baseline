@@ -11,7 +11,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\\root | Where Subject -Like "*DoD*" | FL Subject, Thumbprint, NotAfter
 
-If the following certificate "Subject" and "Thumbprint" information is not displayed, this is a finding. 
+If the following certificate "Subject" and "Thumbprint" information is not displayed, this is a finding.
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Thumbprint: D73CA91102A2204A36459ED32213B467D7CE97FB
@@ -73,7 +73,7 @@ Valid to: Friday, January 24, 2053'
   desc 'fix', 'Install the DoD Root CA certificates.
 DoD Root CA 3
 DoD Root CA 4
-DoD Root CA 5                                               
+DoD Root CA 5
 DoD Root CA 6
 
 The InstallRoot tool is available on Cyber Exchange at https://cyber.mil/pki-pke/tools-configuration-files. PKI can be found at https://crl.gds.disa.mil/.'

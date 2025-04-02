@@ -45,14 +45,14 @@ De-select "SMB 1.0/CIFS File Sharing Support".'
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
 
-  if registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\mrxsmb10').has_property_value?('Start', :dword, 4) 
+  if registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\mrxsmb10').has_property_value?('Start', :dword, 4)
     impact 0.0
     desc 'This control is not applicable, as controls V-74725 is configured'
   else
-    smb1protocol = json( command: 'Get-WindowsOptionalFeature -Online | Where FeatureName -eq SMB1Protocol | ConvertTo-Csv | ConvertFrom-Csv | ConvertTo-Json').params
-     describe 'Feature Name SMB1Protocol should not be Enabled' do
+    smb1protocol = json(command: 'Get-WindowsOptionalFeature -Online | Where FeatureName -eq SMB1Protocol | ConvertTo-Csv | ConvertFrom-Csv | ConvertTo-Json').params
+    describe 'Feature Name SMB1Protocol should not be Enabled' do
       subject { smb1protocol }
-      its(['State']) { should_not eq "Enabled" }
-     end
+      its(['State']) { should_not eq 'Enabled' }
+    end
   end
 end

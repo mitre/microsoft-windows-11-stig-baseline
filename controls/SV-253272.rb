@@ -4,7 +4,7 @@ control 'SV-253272' do
   desc 'check', 'Run "Computer Management".
 Navigate to System Tools >> Local Users and Groups >> Users.
 
-If local users other than the accounts listed below exist on a workstation in a domain, this is a finding. 
+If local users other than the accounts listed below exist on a workstation in a domain, this is a finding.
 
 For standalone or nondomain-joined systems, this is Not Applicable.
 

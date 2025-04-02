@@ -9,7 +9,7 @@ Registry Path: \\Software\\Policies\\Microsoft\\WindowsInkWorkspace
 Value Name: AllowWindowsInkWorkspace
 Value Type: REG_DWORD
 Value data: 1'
-  desc 'fix', 'Disable the convenience PIN sign-in. 
+  desc 'fix', 'Disable the convenience PIN sign-in.
 
 To correct this, configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Windows Ink Workspace >> Set "Allow Windows Ink Workspace" to "Enabled and set Options "On, but disallow access above lock".'
   impact 0.5
@@ -26,8 +26,8 @@ To correct this, configure the policy value for Computer Configuration >> Admini
   tag cci: ['CCI-000381', 'CCI-000060']
   tag nist: ['CM-7 a', 'AC-11 (1)']
 
-   describe registry_key('HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsInkWorkspace') do
-      it { should have_property 'AllowWindowsInkWorkspace' }
-      its('AllowWindowsInkWorkspace') { should cmp 1 }
-   end
+  describe registry_key('HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsInkWorkspace') do
+    it { should have_property 'AllowWindowsInkWorkspace' }
+    its('AllowWindowsInkWorkspace') { should cmp 1 }
+  end
 end

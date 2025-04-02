@@ -45,15 +45,15 @@ De-select "Windows PowerShell 2.0".'
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
 
-  powershellv2 = json( command: 'Get-WindowsOptionalFeature -Online | Where FeatureName -eq MicrosoftWindowsPowerShellV2 | ConvertTo-Csv | ConvertFrom-Csv | ConvertTo-Json').params
-  powershellv2root = json( command: 'Get-WindowsOptionalFeature -Online | Where FeatureName -eq MicrosoftWindowsPowerShellV2Root | ConvertTo-Csv | ConvertFrom-Csv | ConvertTo-Json').params  
+  powershellv2 = json(command: 'Get-WindowsOptionalFeature -Online | Where FeatureName -eq MicrosoftWindowsPowerShellV2 | ConvertTo-Csv | ConvertFrom-Csv | ConvertTo-Json').params
+  powershellv2root = json(command: 'Get-WindowsOptionalFeature -Online | Where FeatureName -eq MicrosoftWindowsPowerShellV2Root | ConvertTo-Csv | ConvertFrom-Csv | ConvertTo-Json').params
 
-    describe 'Feature Name MicrosoftWindowsPowerShellV2 should not be Enabled' do
-      subject { powershellv2 }
-      its(['State']) { should_not eq "Enabled" }
-    end
-    describe 'Feature Name MicrosoftWindowsPowerShellV2Root should not be Enabled' do
-      subject { powershellv2root }
-      its(['State']) { should_not eq "Enabled" }
-    end
+  describe 'Feature Name MicrosoftWindowsPowerShellV2 should not be Enabled' do
+    subject { powershellv2 }
+    its(['State']) { should_not eq 'Enabled' }
+  end
+  describe 'Feature Name MicrosoftWindowsPowerShellV2Root should not be Enabled' do
+    subject { powershellv2root }
+    its(['State']) { should_not eq 'Enabled' }
+  end
 end

@@ -12,11 +12,11 @@ Value Type: REG_DWORD
 Value: 0'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Windows Remote Management (WinRM) >> WinRM Service >> "Allow Basic authentication" to "Disabled".
 
-Severity Override Guidance: The AO can allow the severity override if they have reviewed the overall protection. This would only be allowed temporarily for implementation as documented and approved. 
+Severity Override Guidance: The AO can allow the severity override if they have reviewed the overall protection. This would only be allowed temporarily for implementation as documented and approved.
 ....
 Allowing Basic authentication to be used for the sole creation of Office 365 DoD tenants.
 ....
-A documented mechanism and or script that can disable Basic authentication once administration completes. 
+A documented mechanism and or script that can disable Basic authentication once administration completes.
 ....
 Use of a Privileged Access Workstation (PAW) and adherence to the Clean Source principle for administration.'
   impact 0.7

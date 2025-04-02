@@ -24,16 +24,16 @@ Ensure "Alert me when a new Bluetooth device wants to connect" is checked.'
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
 
-  if sys_info.manufacturer != 'VMware, Inc.'
-    describe 'Configure Bluetooth to notify users if devices attempt to connect.
-              View Bluetooth Settings. Ensure "Alert me when a new Bluetooth device 
-              wants to connect" is checked' do
-      skip 'This is NA if the system does not have Bluetooth'
-    end
-  else
+  if sys_info.manufacturer == 'VMware, Inc.'
     impact 0.0
     describe 'This is a VDI System; This System is NA for Control V-72769.' do
       skip 'This is a VDI System; This System is NA for Control V-72769.'
+    end
+  else
+    describe 'Configure Bluetooth to notify users if devices attempt to connect.
+              View Bluetooth Settings. Ensure "Alert me when a new Bluetooth device
+              wants to connect" is checked' do
+      skip 'This is NA if the system does not have Bluetooth'
     end
   end
 end

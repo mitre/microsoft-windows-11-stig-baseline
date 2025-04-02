@@ -55,25 +55,25 @@ https://docs.microsoft.com/en-us/windows/security/information-protection/bitlock
   tag cci: ['CCI-001199', 'CCI-002475', 'CCI-002476']
   tag nist: ['SC-28', 'SC-28 (1)']
 
-  if sys_info.manufacturer == "VMware, Inc."
+  if sys_info.manufacturer == 'VMware, Inc.'
     impact 0.0
     describe 'This is a VDI System; This System is NA for Control V-94859' do
-     skip 'This is a VDI System; This System is NA for Control V-94859'
+      skip 'This is a VDI System; This System is NA for Control V-94859'
     end
   else
-  describe.one do
-    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE') do
-      it { should have_property 'UseAdvancedStartup' }
-      its('UseAdvancedStartup') { should cmp 1 }
-    end
-    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE') do
-      it { should have_property 'UseTPMPIN' }
-      its('UseTPMPIN') { should cmp 1 }
-    end
-    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE') do
-      it { should have_property 'UseTPMKeyPIN' }
-      its('UseTPMKeyPIN') { should cmp 1 }
+    describe.one do
+      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE') do
+        it { should have_property 'UseAdvancedStartup' }
+        its('UseAdvancedStartup') { should cmp 1 }
+      end
+      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE') do
+        it { should have_property 'UseTPMPIN' }
+        its('UseTPMPIN') { should cmp 1 }
+      end
+      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE') do
+        it { should have_property 'UseTPMKeyPIN' }
+        its('UseTPMKeyPIN') { should cmp 1 }
+      end
     end
   end
- end
 end

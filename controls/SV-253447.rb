@@ -5,7 +5,7 @@ control 'SV-253447' do
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive:  HKEY_LOCAL_MACHINE 
+Registry Hive:  HKEY_LOCAL_MACHINE
 Registry Path:  \\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\
 
 Value Name:  CachedLogonsCount

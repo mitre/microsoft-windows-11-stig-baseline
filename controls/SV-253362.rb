@@ -47,14 +47,13 @@ Value: RequireMutualAuthentication=1, RequireIntegrity=1'
     describe 'The system is not a member of a domain, control is NA' do
       skip 'The system is not a member of a domain, control is NA'
     end
-  elsif
-    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths') do
-      it { should have_property keyvalue_sysvol.gsub('\\', '\\\\\\\\') }
-      its (keyvalue_sysvol.gsub('\\', '\\\\\\\\')) { should cmp 'RequireMutualAuthentication=1, RequireIntegrity=1'}
-    end
+  elsif describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths') do
+          it { should have_property keyvalue_sysvol.gsub('\\', '\\\\\\\\') }
+          its(keyvalue_sysvol.gsub('\\', '\\\\\\\\')) { should cmp 'RequireMutualAuthentication=1, RequireIntegrity=1' }
+        end
     describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths') do
       it { should have_property keyvalue_netlogon.gsub('\\', '\\\\\\\\') }
-      its (keyvalue_netlogon.gsub('\\', '\\\\\\\\')) { should cmp 'RequireMutualAuthentication=1, RequireIntegrity=1'}
+      its(keyvalue_netlogon.gsub('\\', '\\\\\\\\')) { should cmp 'RequireMutualAuthentication=1, RequireIntegrity=1' }
     end
   end
 end

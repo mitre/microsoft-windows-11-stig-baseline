@@ -31,14 +31,14 @@ Administrators'
   tag cci: ['CCI-002235']
   tag nist: ['AC-6 (10)']
 
-      desc "fix", "Configure the policy value for Computer Configuration >> Windows
+  desc 'fix', "Configure the policy value for Computer Configuration >> Windows
       Settings >> Security Settings >> Local Policies >> User Rights Assignment >>
       \"Load and unload device drivers\" to only include the following groups or
       accounts:
 
       Administrators"
 
-    describe security_policy do
-      its('SeLoadDriverPrivilege') { should eq ['S-1-5-32-544'] }
-    end
+  describe security_policy do
+    its('SeLoadDriverPrivilege') { should eq ['S-1-5-32-544'] }
+  end
 end

@@ -22,7 +22,7 @@ This does not apply to system partitions such the Recovery and EFI System Partit
   tag cci: ['CCI-000213']
   tag nist: ['AC-3']
 
-get_volumes = command("wmic logicaldisk get FileSystem | findstr /r /v '^$' |Findstr /v 'FileSystem'").stdout.strip.split("\r\n")
+  get_volumes = command("wmic logicaldisk get FileSystem | findstr /r /v '^$' |Findstr /v 'FileSystem'").stdout.strip.split("\r\n")
 
   if get_volumes.empty?
     impact 0.0

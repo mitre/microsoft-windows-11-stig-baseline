@@ -30,10 +30,10 @@ NistP256'
 
   describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002') do
     it { should have_property 'EccCurves' }
-   end
-  
-    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002') do
-      its('EccCurves') { should include 'NistP384' }
-      its('EccCurves') { should include 'NistP256' }
-    end
+  end
+
+  describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002') do
+    its('EccCurves') { should include 'NistP384' }
+    its('EccCurves') { should include 'NistP256' }
+  end
 end

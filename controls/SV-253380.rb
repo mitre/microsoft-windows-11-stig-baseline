@@ -25,15 +25,15 @@ Value: 1'
   tag cci: ['CCI-004895', 'CCI-002038']
   tag nist: ['SC-11 b', 'IA-11']
 
-    if sys_info.manufacturer == 'VMware, Inc.'
+  if sys_info.manufacturer == 'VMware, Inc.'
     impact 0.0
     describe 'This is a VDI System; This System is NA for Control V-63645.' do
       skip 'This is a VDI System; This System is NA for Control V-63645.'
     end
   else
     describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51') do
-     it { should have_property 'DCSettingIndex' }
-     its('DCSettingIndex') { should cmp 1 }
-   end
- end
+      it { should have_property 'DCSettingIndex' }
+      its('DCSettingIndex') { should cmp 1 }
+    end
+  end
 end

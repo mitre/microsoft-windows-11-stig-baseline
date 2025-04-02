@@ -9,7 +9,7 @@ Registry Path: \\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\
 Value Name: LegalNoticeText
 
 Value Type: REG_SZ
-Value: 
+Value:
 You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
 By using this IS (which includes any device attached to this IS), you consent to the following conditions:

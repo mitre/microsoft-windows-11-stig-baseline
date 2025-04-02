@@ -25,8 +25,8 @@ Value: 0x00000001 (1)'
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
 
-   describe registry_key('HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CloudContent') do
-      it { should have_property 'DisableThirdPartySuggestions' }
-      its('DisableThirdPartySuggestions') { should cmp 1 }
-   end
+  describe registry_key('HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CloudContent') do
+    it { should have_property 'DisableThirdPartySuggestions' }
+    its('DisableThirdPartySuggestions') { should cmp 1 }
+  end
 end

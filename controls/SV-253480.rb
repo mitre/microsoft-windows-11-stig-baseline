@@ -22,7 +22,7 @@ The requirement must be documented with the ISSO.
 The application account, managed at the domain level, must meet requirements for application account passwords, such as length and frequency of changes as defined in the Windows Server STIGs.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> User Rights Assignment >> "Access this computer from the network" to only include the following groups or accounts:
 
-Administrators   
+Administrators
 Remote Desktop Users'
   impact 0.5
   ref 'DPMS Target Microsoft Windows 11'
@@ -38,7 +38,7 @@ Remote Desktop Users'
   tag cci: ['CCI-000213']
   tag nist: ['AC-3']
 
-    describe security_policy do
-      its('SeNetworkLogonRight') { should be_in ['S-1-5-32-544', 'S-1-5-32-555'] }
-    end
+  describe security_policy do
+    its('SeNetworkLogonRight') { should be_in ['S-1-5-32-544', 'S-1-5-32-555'] }
+  end
 end

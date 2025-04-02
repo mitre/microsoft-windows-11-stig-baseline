@@ -10,7 +10,7 @@ Value Name: RequireStrongKey
 
 Value Type: REG_DWORD
 Value: 1
- 
+
 Warning: This setting may prevent a system from being joined to a domain if not configured consistently between systems.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Domain member: Require strong (Windows 2000 or Later) session key" to "Enabled".'
   impact 0.5

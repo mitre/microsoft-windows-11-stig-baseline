@@ -62,23 +62,23 @@ Note: "Local account" is a built-in security group used to assign user rights an
       its('SeDenyNetworkLogonRight') { should include 'S-1-5-32-546' }
     end
   else
-     domain_query = <<-EOH
+    domain_query = <<-EOH
               $group = New-Object System.Security.Principal.NTAccount('Domain Admins')
               $sid = ($group.Translate([security.principal.securityidentifier])).value
               $sid | ConvertTo-Json
-              EOH
+    EOH
 
-      domain_admin_sid = json(command: domain_query).params
-      enterprise_admin_query = <<-EOH
+    domain_admin_sid = json(command: domain_query).params
+    enterprise_admin_query = <<-EOH
               $group = New-Object System.Security.Principal.NTAccount('Enterprise Admins')
               $sid = ($group.Translate([security.principal.securityidentifier])).value
               $sid | ConvertTo-Json
-              EOH
+    EOH
 
-      enterprise_admin_sid = json(command: enterprise_admin_query).params
+    enterprise_admin_sid = json(command: enterprise_admin_query).params
 
     describe security_policy do
-      its('SeDenyNetworkLogonRight') { should be_in ["#{enterprise_admin_sid}", "#{domain_admin_sid}", 'S-1-5-32-546'] }
+      its('SeDenyNetworkLogonRight') { should be_in [enterprise_admin_sid.to_s, domain_admin_sid.to_s, 'S-1-5-32-546'] }
     end
   end
 end

@@ -35,7 +35,7 @@ Applications that are opted out are configured in the window below the selection
   tag cci: ['CCI-002824']
   tag nist: ['SI-16']
 
- bcdedit = json(command: 'bcdedit /enum "{current}" | FindStr "nx" | ConvertTo-Json').params
+  bcdedit = json(command: 'bcdedit /enum "{current}" | FindStr "nx" | ConvertTo-Json').params
   describe 'Verify the DEP configuration' do
     subject { bcdedit }
     it { should eq 'nx                      OptOut' }
