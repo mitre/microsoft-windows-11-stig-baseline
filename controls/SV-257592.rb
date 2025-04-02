@@ -2,11 +2,11 @@ control 'SV-257592' do
   title 'Windows 11 must not have portproxy enabled or in use.'
   desc 'Having portproxy enabled or configured in Windows 10 could allow a man-in-the-middle attack.'
   desc 'check', 'Check the registry key for existence of proxied ports:
-HKLM\\SYSTEM\\CurrentControlSet\\Services\\PortProxy\\. 
+HKLM\\SYSTEM\\CurrentControlSet\\Services\\PortProxy\\.
 
-If the key contains v4tov4\\tcp\\ or is populated v4tov4\\tcp\\, this is a finding. 
+If the key contains v4tov4\\tcp\\ or is populated v4tov4\\tcp\\, this is a finding.
 
-Run "netsh interface portproxy show all". 
+Run "netsh interface portproxy show all".
 
 If the command displays any results, this is a finding.'
   desc 'fix', 'Contact the Administrator to run "netsh interface portproxy delete" with elevation. Remove any enabled portproxies that may be configured.'

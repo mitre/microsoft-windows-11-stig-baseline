@@ -35,10 +35,10 @@ System >> IPsec Driver - Failure'
       its('IPsec Driver') { should eq 'Success and Failure' }
     end
     describe command("AuditPol /get /category:* | Findstr /c:'IPsec Driver'") do
-      its('stdout') { should match /IPsec Driver                    Failure/ }
+      its('stdout') { should match(/IPsec Driver                    Failure/) }
     end
     describe command("AuditPol /get /category:* | Findstr /c:'IPsec Driver'") do
-      its('stdout') { should match /IPsec Driver                    Success and Failure/ }
+      its('stdout') { should match(/IPsec Driver                    Success and Failure/) }
     end
   end
 end

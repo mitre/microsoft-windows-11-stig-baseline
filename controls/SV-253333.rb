@@ -27,12 +27,12 @@ System >> Security State Change - Success'
   tag cci: ['CCI-000172', 'CCI-002234']
   tag nist: ['AU-12 c', 'AC-6 (9)']
 
-   describe.one do
+  describe.one do
     describe audit_policy do
       its('Security State Change') { should eq 'Success' }
     end
     describe audit_policy do
       its('Security State Change') { should eq 'Success and Failure' }
     end
-  end  
+  end
 end

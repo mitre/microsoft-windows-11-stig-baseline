@@ -93,21 +93,21 @@ S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4
 
   # Adding Read permission for Security for Administrators to allow for read of key permissions
 
-   hklm_software = powershell("(Get-Acl -Path HKLM:Software).AccessToString").stdout.lines.collect(&:strip)
-    describe "Registry Key Software permissions are set correctly on folder structure" do
-      subject { hklm_software.eql? input('reg_software_perms')}
-      it { should eq true }
-    end
+  hklm_software = powershell('(Get-Acl -Path HKLM:Software).AccessToString').stdout.lines.collect(&:strip)
+  describe 'Registry Key Software permissions are set correctly on folder structure' do
+    subject { hklm_software.eql? input('reg_software_perms') }
+    it { should eq true }
+  end
 
-   hklm_security = powershell("(Get-Acl -Path HKLM:Security).AccessToString").stdout.lines.collect(&:strip)
-    describe "Registry Key Security are set correctly on folder structure" do
-      subject { hklm_security.eql? input('reg_security_perms')}
-      it { should eq true }
-    end
+  hklm_security = powershell('(Get-Acl -Path HKLM:Security).AccessToString').stdout.lines.collect(&:strip)
+  describe 'Registry Key Security are set correctly on folder structure' do
+    subject { hklm_security.eql? input('reg_security_perms') }
+    it { should eq true }
+  end
 
-   hklm_system = powershell("(Get-Acl -Path HKLM:System).AccessToString").stdout.lines.collect(&:strip)
-    describe "Registry Key Security are set correctly on folder structure" do
-      subject { hklm_system.eql? input('reg_system_perms')}
-      it { should eq true }
-    end
+  hklm_system = powershell('(Get-Acl -Path HKLM:System).AccessToString').stdout.lines.collect(&:strip)
+  describe 'Registry Key Security are set correctly on folder structure' do
+    subject { hklm_system.eql? input('reg_system_perms') }
+    it { should eq true }
+  end
 end

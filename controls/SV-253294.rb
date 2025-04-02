@@ -11,7 +11,7 @@ Technical means such as application allowlisting can be used to enforce the poli
 
 The organization must have a policy that prohibits administrative accounts from using applications that access the internet, such as web browsers, or with potential internet sources, such as email, except as necessary for local service administration. The policy must define specific exceptions for local service administration. These exceptions may include HTTP(S)-based tools that are used for the administration of the local system, services, or attached devices.
 
-Technical measures such as the removal of applications or application allowlisting must be used where feasible to prevent the use of applications that access the internet. 
+Technical measures such as the removal of applications or application allowlisting must be used where feasible to prevent the use of applications that access the internet.
 
 If accounts with administrative privileges are not prevented from using applications that access the internet or with potential internet sources, this is a finding.'
   desc 'fix', 'Establish and enforce a policy that prohibits administrative accounts from using applications that access the internet, such as web browsers, or with potential internet sources, such as email. Define specific exceptions for local service administration. These exceptions may include HTTP(S)-based tools that are used for the administration of the local system, services, or attached devices.

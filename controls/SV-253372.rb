@@ -13,7 +13,7 @@ Registry Path: \\SYSTEM\\CurrentControlSet\\Policies\\EarlyLaunch\\
 Value Name: DriverLoadPolicy
 
 Value Type: REG_DWORD
-Value: 1, 3, or 8 
+Value: 1, 3, or 8
 
 Possible values for this setting are:
 8 - Good only

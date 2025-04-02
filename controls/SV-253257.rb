@@ -23,7 +23,7 @@ Under "System Summary", if "Secure Boot State" does not display "On", this is a 
   tag cci: ['CCI-000366', 'CCI-002421']
   tag nist: ['CM-6 b', 'SC-8 (1)']
 
-  uefi_boot = json( command: 'Confirm-SecureBootUEFI | ConvertTo-Json').params
+  uefi_boot = json(command: 'Confirm-SecureBootUEFI | ConvertTo-Json').params
   if sys_info.manufacturer != 'VMware, Inc.' || nil
     describe 'Confirm-Secure Boot UEFI is required to be enabled on System' do
       subject { uefi_boot }

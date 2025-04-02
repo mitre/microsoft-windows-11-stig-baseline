@@ -30,7 +30,7 @@ Administrators'
   tag cci: ['CCI-000162', 'CCI-000163', 'CCI-000164', 'CCI-000171', 'CCI-001914']
   tag nist: ['AU-9 a', 'AU-12 b', 'AU-12 (3)']
 
-    describe security_policy do
-      its('SeSecurityPrivilege') { should eq ['S-1-5-32-544'] }
-    end
+  describe security_policy do
+    its('SeSecurityPrivilege') { should eq ['S-1-5-32-544'] }
+  end
 end

@@ -7,7 +7,7 @@ Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \\SOFTWARE\\Policies\\Microsoft\\Windows NT\\Terminal Services\\
 
 Value Name: fAllowToGetHelp
- 
+
 Value Type: REG_DWORD
 Value: 0'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> System >> Remote Assistance >> "Configure Solicited Remote Assistance" to "Disabled".'

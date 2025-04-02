@@ -11,7 +11,7 @@ Copy the lines below to the PowerShell window and enter.
    if ($lastLogin -eq $null) {
       $lastLogin = 'Never'
    }
-   Write-Host $user.Name $lastLogin $enabled 
+   Write-Host $user.Name $lastLogin $enabled
 }"
 
 This will return a list of local accounts with the account name, last logon, and if the account is enabled (True/False).
@@ -47,7 +47,7 @@ Inactive accounts that have been reviewed and deemed to be required must be docu
   # PR submitted to return the last logon property via users.
   # https://github.com/inspec/inspec/issues/4723
 
-  users = command("Get-CimInstance -Class Win32_Useraccount -Filter 'LocalAccount=True and Disabled=False' | FT Name | Findstr /V 'Name --'").stdout.strip.split(' ')
+  users = command("Get-CimInstance -Class Win32_Useraccount -Filter 'LocalAccount=True and Disabled=False' | FT Name | Findstr /V 'Name --'").stdout.strip.split
 
   get_sids = []
   get_names = []
@@ -61,9 +61,7 @@ Inactive accounts that have been reviewed and deemed to be required must be docu
 
       loc_space = get_sids.index(' ')
       names = get_sids[0, loc_space]
-      if get_last != '500' && get_last != '501' && get_last != '503'
-        get_names.push(names)
-      end
+      get_names.push(names) if get_last != '500' && get_last != '501' && get_last != '503'
     end
   end
 
@@ -81,12 +79,10 @@ Inactive accounts that have been reviewed and deemed to be required must be docu
           day = get_last_logon[31]
           year = get_last_logon[33..37]
         end
-        date = day + '/' + month + '/' + year
+        date = "#{day}/#{month}/#{year}"
 
         date_last_logged_on = DateTime.now.mjd - DateTime.parse(date).mjd
-        if date_last_logged_on > input('max_inactive_days')
-          inactive_accounts.push(user)
-        end
+        inactive_accounts.push(user) if date_last_logged_on > input('max_inactive_days')
 
         unless inactive_accounts.empty?
           describe "#{user}'s last logon" do

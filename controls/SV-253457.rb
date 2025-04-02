@@ -37,15 +37,15 @@ The "Security descriptor:" must be populated with "O:BAG:BAD:(A;;RC;;;BA) for th
   tag cci: ['CCI-002235']
   tag nist: ['AC-6 (10)']
 
-  if registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion').ReleaseId != '1507'
-    describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa') do
-      it { should have_property 'RestrictRemoteSAM' }
-      its('RestrictRemoteSAM') { should cmp 'O:BAG:BAD:(A;;RC;;;BA)' }
-    end
-  else
+  if registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion').ReleaseId == '1507'
     impact 0.0
     describe 'Windows 10 v1507 LTSB version does not include this setting, it is NA for those systems.' do
       skip 'Windows 10 v1507 LTSB version does not include this setting, it is NA for those systems.'
+    end
+  else
+    describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa') do
+      it { should have_property 'RestrictRemoteSAM' }
+      its('RestrictRemoteSAM') { should cmp 'O:BAG:BAD:(A;;RC;;;BA)' }
     end
   end
 end

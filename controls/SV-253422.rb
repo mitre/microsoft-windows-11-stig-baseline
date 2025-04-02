@@ -12,7 +12,7 @@ Value Name: LetAppsActivateWithVoiceAboveLock
 Type: REG_DWORD
 Value: 0x00000002 (2)
 
-If the following registry value exists and is configured as specified, requirement is NA: 
+If the following registry value exists and is configured as specified, requirement is NA:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \\SOFTWARE\\Policies\\Microsoft\\Windows\\AppPrivacy\\
@@ -21,7 +21,7 @@ Value Name: LetAppsActivateWithVoice
 
 Type: REG_DWORD
 Value: 0x00000002 (2)'
-  desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> App Privacy >> "Let Windows apps activate with voice while the system is locked" to "Enabled" with Default for all Apps: set to Force Deny. 
+  desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> App Privacy >> "Let Windows apps activate with voice while the system is locked" to "Enabled" with Default for all Apps: set to Force Deny.
 
 The requirement is NA if the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> App Privacy >> "Let Windows apps activate with voice" is configured to "Enabled" with Default for all Apps: set to Force Deny.'
   impact 0.5

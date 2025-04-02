@@ -46,23 +46,23 @@ Domain Admin Group'
       skip 'This requirement is applicable to domain-joined systems, for standalone systems this is NA'
     end
   else
-     domain_query = <<-EOH
+    domain_query = <<-EOH
               $group = New-Object System.Security.Principal.NTAccount('Domain Admins')
               $sid = ($group.Translate([security.principal.securityidentifier])).value
               $sid | ConvertTo-Json
-              EOH
+    EOH
 
-      domain_admin_sid = json(command: domain_query).params
-      enterprise_admin_query = <<-EOH
+    domain_admin_sid = json(command: domain_query).params
+    enterprise_admin_query = <<-EOH
               $group = New-Object System.Security.Principal.NTAccount('Enterprise Admins')
               $sid = ($group.Translate([security.principal.securityidentifier])).value
               $sid | ConvertTo-Json
-              EOH
+    EOH
 
-      enterprise_admin_sid = json(command: enterprise_admin_query).params
+    enterprise_admin_sid = json(command: enterprise_admin_query).params
 
     describe security_policy do
-      its('SeDenyBatchLogonRight') { should be_in ["#{domain_admin_sid}", "#{enterprise_admin_sid}"] }
+      its('SeDenyBatchLogonRight') { should be_in [domain_admin_sid.to_s, enterprise_admin_sid.to_s] }
     end
   end
 end

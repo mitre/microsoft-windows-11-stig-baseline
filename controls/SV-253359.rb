@@ -5,7 +5,7 @@ control 'SV-253359' do
 The policy configures the same Value Name, Type and Value under four different registry paths.
 
 Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Paths:  
+Registry Paths:
 \\SOFTWARE\\Classes\\batfile\\shell\\runasuser\\
 \\SOFTWARE\\Classes\\cmdfile\\shell\\runasuser\\
 \\SOFTWARE\\Classes\\exefile\\shell\\runasuser\\

@@ -24,7 +24,7 @@ Value: 0'
   tag cci: ['CCI-001090', 'CCI-000172']
   tag nist: ['SC-4', 'AU-12 c']
 
- if registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion').ReleaseId >= '1803'
+  if registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion').ReleaseId >= '1803'
     impact 0.0
     describe 'This setting requires v1507 does not include this setting; it is NA for version.' do
       skip 'This setting requires v1507 does not include this setting; it is NA for version.'

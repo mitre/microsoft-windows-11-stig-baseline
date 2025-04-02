@@ -14,12 +14,12 @@ If the following certificate "Subject", "Issuer", and "Thumbprint" information i
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Thumbprint: 49CBE933151872E17C8EAE7F0ABA97FB610F6477
-NotAfter: 11/16/2024 
-           
+NotAfter: 11/16/2024
+
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Thumbprint: AC06108CA348CC03B53795C64BF84403C1DBD341
-NotAfter: 1/22/2022 
+NotAfter: 1/22/2022
 
 Alternately, use the Certificates MMC snap-in:
 
@@ -51,8 +51,8 @@ Issued To: DoD Root CA 3
 Issued By: Interoperability Root CA 2
 Thumbprint : 49CBE933151872E17C8EAE7F0ABA97FB610F6477
 Valid to: Saturday, November 16, 2024'
-  desc 'fix', 'Install the DoD Interoperability Root CA cross-certificates on unclassified systems.  
-                                           
+  desc 'fix', 'Install the DoD Interoperability Root CA cross-certificates on unclassified systems.
+
 Issued To - Issued By - Thumbprint
 DoD Root CA 3 - DoD Interoperability Root CA 2 - 49CBE933151872E17C8EAE7F0ABA97FB610F6477
 

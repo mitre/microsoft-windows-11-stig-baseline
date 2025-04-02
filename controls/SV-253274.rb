@@ -68,7 +68,7 @@ NT AUTHORITY\\Authenticated Users:(AD)
 Mandatory Label\\High Mandatory Level:(OI)(NP)(IO)(NW)
 Successfully processed 1 files; Failed processing 0 files
 
-c:\\program files 
+c:\\program files
 NT SERVICE\\TrustedInstaller:(F)
 NT SERVICE\\TrustedInstaller:(CI)(IO)(F)
 NT AUTHORITY\\SYSTEM:(M)
@@ -118,9 +118,9 @@ Successfully processed 1 files; Failed processing 0 files'
   c_permission = JSON.parse(input('c_folder_permissions').to_json)
   c_program_files_permissions = JSON.parse(input('c_program_files_folder_permissions').to_json)
 
-  query_c_windows = json({ command: 'icacls "c:\\windows" | ConvertTo-Json' }).params.map { |e| e.strip }[0..-3].map{ |e| e.gsub("c:\\windows ", '') }
-  query_c = json( command: "icacls 'C:\\' | ConvertTo-Json").params.map { |e| e.strip }[0..-3].map{ |e| e.gsub("C:\\ ", '') }
-  query_c_program_files = json({ command: 'icacls "c:\\Program Files" | ConvertTo-Json' }).params.map { |e| e.strip }[0..-3].map{ |e| e.gsub("c:\\Program Files ", '') }
+  query_c_windows = json({ command: 'icacls "c:\\windows" | ConvertTo-Json' }).params.map(&:strip)[0..-3].map { |e| e.gsub('c:\\windows ', '') }
+  query_c = json(command: "icacls 'C:\\' | ConvertTo-Json").params.map(&:strip)[0..-3].map { |e| e.gsub('C:\\ ', '') }
+  query_c_program_files = json({ command: 'icacls "c:\\Program Files" | ConvertTo-Json' }).params.map(&:strip)[0..-3].map { |e| e.gsub('c:\\Program Files ', '') }
 
   describe 'The ACL on C:\Windows are set to the right permissions' do
     subject { query_c_windows }

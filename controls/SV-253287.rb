@@ -16,7 +16,7 @@ Type: REG_DWORD
 Value: 0x00000000 (0)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> MS Security Guide >> "Configure SMBv1 Server" to "Disabled".
 
-This policy setting requires the installation of the SecGuide custom templates included with the STIG package. "SecGuide.admx" and "SecGuide.adml" must be copied to the \\Windows\\PolicyDefinitions and \\Windows\\PolicyDefinitions\\en-US directories, respectively.  
+This policy setting requires the installation of the SecGuide custom templates included with the STIG package. "SecGuide.admx" and "SecGuide.adml" must be copied to the \\Windows\\PolicyDefinitions and \\Windows\\PolicyDefinitions\\en-US directories, respectively.
 
 The system must be restarted for the change to take effect.'
   impact 0.5
@@ -33,10 +33,10 @@ The system must be restarted for the change to take effect.'
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
 
-  smb1protocol = json( command: 'Get-WindowsOptionalFeature -Online | Where FeatureName -eq SMB1Protocol | ConvertTo-Csv | ConvertFrom-Csv | ConvertTo-Json').params
+  smb1protocol = json(command: 'Get-WindowsOptionalFeature -Online | Where FeatureName -eq SMB1Protocol | ConvertTo-Csv | ConvertFrom-Csv | ConvertTo-Json').params
   state = smb1protocol['State']
 
-  if state == "Disabled"
+  if state == 'Disabled'
     impact 0.0
     describe 'V-70639 is configured, this control is NA' do
       skip 'V-70639 is configured, this control is NA'

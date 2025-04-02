@@ -29,12 +29,12 @@ To correct this, configure the policy value for Computer Configuration >> Admini
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
 
-    describe.one do
-      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer') do
-        it { should_not have_property 'SafeForScripting' }
-      end
-      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer') do
-        its('SafeForScripting') { should_not cmp 1 }
-      end
+  describe.one do
+    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer') do
+      it { should_not have_property 'SafeForScripting' }
     end
+    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer') do
+      its('SafeForScripting') { should_not cmp 1 }
+    end
+  end
 end

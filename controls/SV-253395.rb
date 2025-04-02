@@ -22,7 +22,7 @@ Value Name: ShellSmartScreenLevel
 
 Value Type: REG_SZ
 Value: Block'
-  desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> File Explorer >> "Configure Windows Defender SmartScreen" to "Enabled" with "Warn and prevent bypass" selected. 
+  desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> File Explorer >> "Configure Windows Defender SmartScreen" to "Enabled" with "Warn and prevent bypass" selected.
 
 Windows 11 includes duplicate policies for this setting. It can also be configured under Computer Configuration >> Administrative Templates >> Windows Components >> Windows Defender SmartScreen >> Explorer.'
   impact 0.5

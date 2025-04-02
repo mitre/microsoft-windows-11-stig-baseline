@@ -28,15 +28,15 @@ Value: 0x00000006 (6) or greater'
   tag cci: ['CCI-001199', 'CCI-002475', 'CCI-002476', 'CCI-000804']
   tag nist: ['SC-28', 'SC-28 (1)', 'IA-8']
 
-   if sys_info.manufacturer == "VMware, Inc."
-      impact 0.0
-      describe 'This is a VDI System; This System is NA for Control V-94861.' do
-       skip 'This is a VDI System; This System is NA for Control V-94861'
-      end
-   else
-      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Bitlocker') do
-       it { should have_property 'MinimumPIN' }
-       its('MinimumPIN') { should be >= input('bitlocker_pin_len') }
+  if sys_info.manufacturer == 'VMware, Inc.'
+    impact 0.0
+    describe 'This is a VDI System; This System is NA for Control V-94861.' do
+      skip 'This is a VDI System; This System is NA for Control V-94861'
+    end
+  else
+    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Bitlocker') do
+      it { should have_property 'MinimumPIN' }
+      its('MinimumPIN') { should be >= input('bitlocker_pin_len') }
+    end
   end
- end
 end

@@ -23,7 +23,7 @@ Value Name: Deny
 
 If "Value Name" is set to a value other than "Deny" and the collaborative computing device has not been authorized for use, this is a finding.'
   desc 'fix', 'If the camera is not disconnected or covered, the following registry entry is required.
- 
+
 Registry Hive: HKEY_LOCAL_MACHINE
 RegistryPath\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\webcam
 

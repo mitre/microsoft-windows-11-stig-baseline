@@ -23,14 +23,14 @@ Under "System Summary", if "BIOS Mode" does not display "UEFI", this is a findin
   tag cci: ['CCI-000366', 'CCI-002421']
   tag nist: ['CM-6 b', 'SC-8 (1)']
 
-  if sys_info.manufacturer != 'VMware, Inc.'
-    describe 'Configure UEFI firmware to run in UEFI mode, not Legacy BIOS mode' do
-      skip 'Configure UEFI firmware to run in UEFI mode, not Legacy BIOS mode'
-    end
-  else
+  if sys_info.manufacturer == 'VMware, Inc.'
     impact 0.0
     describe 'This is a VDI System; This System is NA for Control V-77083.' do
       skip 'This is a VDI System; This System is NA for Control V-77083.'
     end
- end
+  else
+    describe 'Configure UEFI firmware to run in UEFI mode, not Legacy BIOS mode' do
+      skip 'Configure UEFI firmware to run in UEFI mode, not Legacy BIOS mode'
+    end
+  end
 end

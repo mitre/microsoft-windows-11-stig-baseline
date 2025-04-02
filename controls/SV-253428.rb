@@ -9,7 +9,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\\root | Where Subject -Like "*ECA*" | FL Subject, Thumbprint, NotAfter
 
-If the following certificate "Subject" and "Thumbprint" information is not displayed, this is a finding. 
+If the following certificate "Subject" and "Thumbprint" information is not displayed, this is a finding.
 
 Subject: CN=ECA Root CA 4, OU=ECA, O=U.S. Government, C=US
 Thumbprint: 73E8BB08E337D6A5A6AEF90CFFDD97D9176CB582
@@ -75,5 +75,5 @@ The InstallRoot tool is available on Cyber Exchange at https://cyber.mil/pki-pke
       subject { query.params }
       it { should be_in dod_eca_certificates }
     end
-   end
+  end
 end

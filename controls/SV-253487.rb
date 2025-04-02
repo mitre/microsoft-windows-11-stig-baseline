@@ -34,7 +34,7 @@ SERVICE'
   tag cci: ['CCI-002235']
   tag nist: ['AC-6 (10)']
 
-     describe security_policy do
-      its('SeCreateGlobalPrivilege') { should be_in ['S-1-5-32-544', 'S-1-5-19', 'S-1-5-20', 'S-1-5-6'] }
-    end
+  describe security_policy do
+    its('SeCreateGlobalPrivilege') { should be_in ['S-1-5-32-544', 'S-1-5-19', 'S-1-5-20', 'S-1-5-6'] }
+  end
 end

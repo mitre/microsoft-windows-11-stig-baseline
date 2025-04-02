@@ -30,7 +30,7 @@ Administrators'
   tag cci: ['CCI-002235']
   tag nist: ['AC-6 (10)']
 
-    describe security_policy do
-      its('SeCreateSymbolicLinkPrivilege') { should eq ['S-1-5-32-544'] }
-    end
+  describe security_policy do
+    its('SeCreateSymbolicLinkPrivilege') { should eq ['S-1-5-32-544'] }
+  end
 end

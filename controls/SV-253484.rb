@@ -30,7 +30,7 @@ LOCAL SERVICE'
   tag cci: ['CCI-002235']
   tag nist: ['AC-6 (10)']
 
-    describe security_policy do
-      its('SeSystemtimePrivilege') { should be_in ['S-1-5-32-544', 'S-1-5-19'] }
-    end
+  describe security_policy do
+    its('SeSystemtimePrivilege') { should be_in ['S-1-5-32-544', 'S-1-5-19'] }
+  end
 end

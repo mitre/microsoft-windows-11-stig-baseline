@@ -8,7 +8,7 @@ If IE11 is installed or not disabled on Windows 11 semi-annual channel, this is 
 If IE11 is installed on an unsupported operating system and is enabled or installed, this is a finding.
 
 For more information, visit: https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge#what-is-the-lifecycle-policy-for-internet-explorer-'
-  desc 'fix', 'For Windows 11 semi-annual channel, remove or disable the IE11 application. 
+  desc 'fix', 'For Windows 11 semi-annual channel, remove or disable the IE11 application.
 
 To disable IE11 as a standalone browser:
 

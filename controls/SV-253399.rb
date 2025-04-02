@@ -1,8 +1,8 @@
 control 'SV-253399' do
   title 'Windows 11 must be configured to disable Windows Game Recording and Broadcasting.'
   desc 'Windows Game Recording and Broadcasting is intended for use with games; however, it could potentially record screen shots of other applications and expose sensitive data. Disabling the feature will prevent this from occurring.'
-  desc 'check', 'This is NA for Windows 11 LTSC. 
-                
+  desc 'check', 'This is NA for Windows 11 LTSC.
+
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -29,7 +29,7 @@ Value: 0x00000000 (0)'
 
   releaseID = registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion').ReleaseId.to_i
 
-  if ( releaseID == 1607 || releaseID <= 1507 )
+  if releaseID == 1607 || releaseID <= 1507
     impact 0.0
     describe 'This STIG does not apply to Prior Versions before 1507 and 1607.' do
       skip 'This STIG does not apply to Prior Versions before 1507 and 1607.'
