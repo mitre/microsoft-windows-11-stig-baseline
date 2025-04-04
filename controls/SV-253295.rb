@@ -22,4 +22,8 @@ If there is no such documented policy or procedure in place, this is a finding.'
   tag legacy: ['V-102611', 'SV-111557']
   tag cci: ['CCI-001199']
   tag nist: ['SC-28']
+
+  describe 'Windows 11 nonpersistent VM sessions must not exceed 24 hours.' do
+    skip 'The check for this control needs to be done manually'
+  end
 end
