@@ -1,3 +1,11 @@
+*.lock
+*.gem
+*.rbc
+*results.json
+inputs.yml
+attestation.json
+results_attested.json
+
 .DS_Store
 *.gem
 *.rbc
@@ -68,7 +76,7 @@ build-iPhoneSimulator/
 .vscode
 
 # delta files
-delta.json
+# delta.json
 report.md
 *xccdf.xml
 check-results.txt
