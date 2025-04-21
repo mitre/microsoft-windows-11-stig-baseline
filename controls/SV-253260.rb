@@ -57,8 +57,8 @@ https://docs.microsoft.com/en-us/windows/security/information-protection/bitlock
 
   if sys_info.manufacturer == 'VMware, Inc.'
     impact 0.0
-    describe 'This is a VDI System; This System is NA for Control V-94859' do
-      skip 'This is a VDI System; This System is NA for Control V-94859'
+    describe 'This is a VDI System; This System is N/A for Control SV-253260' do
+      skip 'This is a VDI System; This System is N/A for Control SV-253260'
     end
   else
     describe.one do

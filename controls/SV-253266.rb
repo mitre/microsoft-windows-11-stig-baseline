@@ -24,6 +24,6 @@ If the drop-down list box "Default operating system:" shows any operating system
   tag nist: ['CM-6 b']
 
   describe command("bcdedit | Findstr description | Findstr /v /c:'Windows Boot Manager'") do
-    its('stdout') { should eq "description             Windows 10\r\n" }
+    its('stdout') { should cmp "description             Windows 11\r\n" }
   end
 end

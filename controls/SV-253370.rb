@@ -59,8 +59,8 @@ https://docs.microsoft.com/en-us/windows/access-protection/credential-guard/cred
 
   if sys_info.manufacturer == 'VMware, Inc.'
     impact 0.0
-    describe 'This is a VDI System; This System is NA for Control V-63599.' do
-      skip 'This is a VDI System; This System is NA for Control V-63599.'
+    describe 'This is a VDI System; This System is N/A for Control SV-253370' do
+      skip 'This is a VDI System; This System is N/A for Control SV-253370'
     end
   elsif is_domain == 'WORKGROUP'
     impact 0.0

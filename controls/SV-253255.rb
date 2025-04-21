@@ -44,8 +44,8 @@ Run "tpm.msc" for configuration options in Windows.'
 
   if sys_info.manufacturer == 'VMware, Inc.'
     impact 0.0
-    describe 'This is a VDI System; This System is NA for Control V-63323.' do
-      skip 'This is a VDI System; This System is NA for Control V-63323.'
+    describe 'This is a VDI System; This System is N/A for Control SV-253255' do
+      skip 'This is a VDI System; This System is N/A for Control SV-253255'
     end
   elsif is_domain == 'WORKGROUP'
     impact 0.0

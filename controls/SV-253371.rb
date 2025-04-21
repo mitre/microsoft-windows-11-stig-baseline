@@ -50,4 +50,20 @@ Configure the policy value for Computer Configuration >> Administrative Template
   tag 'documentable'
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
+
+  if sys_info.manufacturer == 'VMware, Inc.'
+    impact 0.0
+    describe 'This is a VDI System; This System is N/A for Control SV-253371' do
+      skip 'This is a VDI System; This System is N/A for Control SV-253371'
+    end
+  else
+    describe powershell('Get-CimInstance -ClassName Win32_DeviceGuard -Namespace root\Microsoft\Windows\DeviceGuard | Select-Object -ExpandProperty SecurityServicesRunning') do
+      its('stdout.strip') { should match(/2/) }
+    end
+
+    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard') do
+      it { should have_property 'HypervisorEnforcedCodeIntegrity' }
+      its('HypervisorEnforcedCodeIntegrity') { should be_in [1, 2] }
+    end
+  end
 end

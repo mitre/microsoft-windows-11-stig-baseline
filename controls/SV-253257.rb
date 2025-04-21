@@ -31,8 +31,8 @@ Under "System Summary", if "Secure Boot State" does not display "On", this is a 
     end
   else
     impact 0.0
-    describe 'This is a VDI System; This System is NA for Control V-77085.' do
-      skip 'This is a VDI System; This System is NA for Control V-77085.'
+    describe 'This is a VDI System; This System is N/A for Control SV-253257' do
+      skip 'This is a VDI System; This System is N/A for Control SV-253257'
     end
   end
 end

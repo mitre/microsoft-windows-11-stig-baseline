@@ -27,4 +27,9 @@ Specify the Transcript output directory to point to a Central Log Server or anot
   tag 'documentable'
   tag cci: ['CCI-000132', 'CCI-000134']
   tag nist: ['AU-3 c', 'AU-3 e']
+
+  describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription') do
+    it { should have_property 'EnableTranscripting' }
+    its('EnableTranscripting') { should cmp 1 }
+  end
 end

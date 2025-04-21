@@ -42,4 +42,12 @@ Value Name: Deny'
   tag legacy: ['SV-109197', 'V-100093']
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
+
+  describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PortProxy\v4tov4\tcp') do
+    it { should_not exist }
+  end
+
+  describe powershell('netsh interface portproxy show all') do
+    its('stdout.strip') { should be_empty }
+  end
 end

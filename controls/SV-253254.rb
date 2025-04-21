@@ -33,7 +33,7 @@ If "System type" is not "64-bit operating system...", this is a finding.'
       it { should eq 'x86_64' }
     end
     describe os.name do
-      it { should eq 'windows_10_enterprise' }
+      it { should eq 'windows_11_enterprise' }
     end
   else
     impact 0.0

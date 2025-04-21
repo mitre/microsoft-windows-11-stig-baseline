@@ -36,14 +36,14 @@ Note: An alternate encryption application may be used in lieu of BitLocker provi
 
   if sys_info.manufacturer == 'VMware, Inc.'
     impact 0.0
-    describe 'This is a VDI System; This System is NA for Control V-63337.' do
-      skip 'This is a VDI System; This System is NA for Control V-63337.'
+    describe 'This is a VDI System; This System is N/A for Control SV-253259' do
+      skip 'This is a VDI System; This System is N/A for Control SV-253259'
     end
   else
     # Code needs to be worked on for Parsing the Output of the Command
     bitlocker_status = JSON.parse(input('bitlocker_status').to_json)
     query = json({ command: 'Get-BitlockerVolume | Select ProtectionStatus | ConvertTo-Json' })
-    describe 'Verify all Windows 10 information systems (including SIPRNET) employ BitLocker for full disk encryption.' do
+    describe 'Verify all Windows 11 information systems (including SIPRNET) employ BitLocker for full disk encryption.' do
       subject { query.params }
       its(['ProtectionStatus']) { should be 1 }
     end

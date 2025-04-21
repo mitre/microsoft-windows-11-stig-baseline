@@ -30,8 +30,8 @@ Value: 0x00000006 (6) or greater'
 
   if sys_info.manufacturer == 'VMware, Inc.'
     impact 0.0
-    describe 'This is a VDI System; This System is NA for Control V-94861.' do
-      skip 'This is a VDI System; This System is NA for Control V-94861'
+    describe 'This is a VDI System; This System is N/A for Control SV-253261' do
+      skip 'This is a VDI System; This System is N/A for Control SV-253261'
     end
   else
     describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Bitlocker') do
