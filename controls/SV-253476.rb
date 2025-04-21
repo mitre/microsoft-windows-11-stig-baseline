@@ -39,4 +39,13 @@ https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview#win
   tag 'documentable'
   tag cci: ['CCI-004066', 'CCI-000199']
   tag nist: ['IA-5 (1) (h)', 'IA-5 (1) (d)']
+
+  # test 3, is this what its supposed to be checking? stig is unclear
+  describe 'LAPS policy processing event succeeded (Event ID 10004)' do
+    subject do
+      powershell("(Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-LAPS/Operational'; Id=10004} -MaxEvents 1).Count").stdout.to_i
+    end
+
+    it { should be > 0 }
+  end
 end

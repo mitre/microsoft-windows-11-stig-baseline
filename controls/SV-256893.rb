@@ -25,4 +25,8 @@ Set the policy value for "Computer Configuration/Administrative Templates/Window
   tag 'documentable'
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
+
+  describe registry_key('HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main') do
+    skip 'not sure what value to check'
+  end
 end

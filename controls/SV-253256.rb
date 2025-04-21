@@ -25,8 +25,8 @@ Under "System Summary", if "BIOS Mode" does not display "UEFI", this is a findin
 
   if sys_info.manufacturer == 'VMware, Inc.'
     impact 0.0
-    describe 'This is a VDI System; This System is NA for Control V-77083.' do
-      skip 'This is a VDI System; This System is NA for Control V-77083.'
+    describe 'This is a VDI System; This System is N/A for Control SV-253256' do
+      skip 'This is a VDI System; This System is N/A for Control SV-253256'
     end
   else
     describe 'Configure UEFI firmware to run in UEFI mode, not Legacy BIOS mode' do
