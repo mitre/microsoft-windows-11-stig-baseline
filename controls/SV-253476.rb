@@ -40,12 +40,39 @@ https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview#win
   tag cci: ['CCI-004066', 'CCI-000199']
   tag nist: ['IA-5 (1) (h)', 'IA-5 (1) (d)']
 
-  # test 3, is this what its supposed to be checking? stig is unclear
-  describe 'LAPS policy processing event succeeded (Event ID 10004)' do
+  only_if('Control is Not Applicable when no local Administrator account is enabled') do
+    powershell('(Get-LocalUser -Name Administrator).Enabled').stdout.strip == 'True'
+  end
+
+  describe 'Local Administrator account password last changed within the past 60 days' do
     subject do
-      powershell("(Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-LAPS/Operational'; Id=10004} -MaxEvents 1).Count").stdout.to_i
+      powershell('[datetime]::Now.AddDays(-60) -lt (Get-LocalUser -Name Administrator).PasswordLastSet').stdout.strip
     end
 
-    it { should be > 0 }
+    it { should cmp 'True' }
+  end
+
+  describe 'Windows LAPS registry setting' do
+    subject { registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS') }
+
+    it 'has PasswordComplexity set to 4 (uppercase, lowercase, numbers, special)' do
+      expect(subject['PasswordComplexity']).to cmp 4
+    end
+
+    it 'has PasswordLength set to 14 characters' do
+      expect(subject['PasswordLength']).to cmp 14
+    end
+
+    it 'has PasswordAgeDays set to 60 days' do
+      expect(subject['PasswordAgeDays']).to cmp 60
+    end
+  end
+
+  describe 'LAPS policy processing event succeeded' do
+    subject { powershell("(Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-LAPS/Operational'; Id=10004} -MaxEvents 1).Count").stdout.to_i }
+
+    it 'verifies LAPS policy process is completing' do
+      expect(subject).to be > 0
+    end
   end
 end

@@ -54,6 +54,8 @@ If one of the following settings does not exist and is not populated, this is a 
     #   powershell('(Get-CimInstance -ClassName Win32_ComputerSystem).PartOfDomain').stdout.strip.downcase == 'true'
     # end
 
+    # this is completely wrong, compared to personal windows machine and it has the exact same settings
+    # what does populated mean
     # unsure what registry value to check, for now just checking if anything exists
     describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\Readers').children do
       it { should_not be_empty }
