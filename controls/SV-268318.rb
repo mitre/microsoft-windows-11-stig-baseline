@@ -24,4 +24,14 @@ If the Window 11 system is not receiving policy from either group Policy or an M
   tag 'documentable'
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
+
+  describe.one do
+    describe powershell('gpresult /R | ConvertTo-Json') do
+      its('stdout.strip') { should match(/OS Configuration:\s+Member Workstation/) }
+    end
+
+    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Provisioning\OMADM\MDMDeviceID') do
+      its('DeviceClientId') { should_not be_empty }
+    end
+  end
 end

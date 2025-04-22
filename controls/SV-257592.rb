@@ -22,4 +22,13 @@ If the command displays any results, this is a finding.'
   tag 'documentable'
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
+
+  # test 1, seems like checking if registry doesnt have something is complicated, since registry_key requires a key to check
+  # describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PortProxy') do
+  #   it { should_not exist }
+  # end
+
+  describe powershell('netsh interface portproxy show all') do
+    its('stdout.strip') { should be_empty }
+  end
 end

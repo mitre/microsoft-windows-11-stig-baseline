@@ -16,4 +16,8 @@ User Configuration >> Administrative Templates >> Windows Components >> Windows 
   tag 'documentable'
   tag cci: ['CCI-000382']
   tag nist: ['CM-7 b']
+
+  describe registry_key('HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\WindowsCopilot') do
+    its('TurnOffWindowsCopilot') { should cmp 1 }
+  end
 end

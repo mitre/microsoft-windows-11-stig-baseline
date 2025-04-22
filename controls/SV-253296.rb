@@ -29,4 +29,8 @@ The US Naval Observatory operates stratum 1 time servers, identified at https://
   tag 'documentable'
   tag cci: ['CCI-004923', 'CCI-001891', 'CCI-001891']
   tag nist: ['SC-45 (1) (a)', 'AU-8 (1) (a)', 'AU-8 (1) (a)']
+
+  describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\Parameters') do
+    its('Type') { should cmp 'NT5DS' }
+  end
 end

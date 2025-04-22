@@ -41,17 +41,27 @@ If one of the following settings does not exist and is not populated, this is a 
   tag cci: ['CCI-000765']
   tag nist: ['IA-2 (1)']
 
-  # this works
-  only_if('The system is not joined to a domain', impact: 0) do
-    powershell('(Get-CimInstance -ClassName Win32_ComputerSystem).PartOfDomain').stdout.strip.downcase == 'true'
-  end
+  is_domain = command('wmic computersystem get domain | FINDSTR /V Domain').stdout.strip
 
-  # unsure what registry value to check, for now just checking if anything exists
-  describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\Readers').children do
-    it { should_not be_empty }
-  end
+  if is_domain == 'WORKGROUP'
+    impact 0.0
+    describe 'The system is not a member of a domain, control is NA' do
+      skip 'The system is not a member of a domain, control is NA'
+    end
+  else
+    # my domain method
+    # only_if('The system is not joined to a domain', impact: 0) do
+    #   powershell('(Get-CimInstance -ClassName Win32_ComputerSystem).PartOfDomain').stdout.strip.downcase == 'true'
+    # end
 
-  describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\SmartCards').children do
-    it { should_not be_empty }
+    # unsure what registry value to check, for now just checking if anything exists
+    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\Readers').children do
+      it { should_not be_empty }
+    end
+
+    # unsure what registry value to check, for now just checking if anything exists
+    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\SmartCards').children do
+      it { should_not be_empty }
+    end
   end
 end

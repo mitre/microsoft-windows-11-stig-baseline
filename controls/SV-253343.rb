@@ -23,4 +23,8 @@ Policy Change >> Other Policy Change Events - Success'
   tag 'documentable'
   tag cci: ['CCI-000130']
   tag nist: ['AU-3 a']
+
+  describe powershell('AuditPol /get /subcategory:"Other Policy Change Events"') do
+    its('stdout.strip') { should match(/Other Policy Change Events\s+Success/) }
+  end
 end

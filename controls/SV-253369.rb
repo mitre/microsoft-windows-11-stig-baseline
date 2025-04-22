@@ -69,4 +69,23 @@ https://technet.microsoft.com/en-us/itpro/windows/keep-secure/credential-guard-r
   tag 'documentable'
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
+
+  script = json(content: powershell('Get-CimInstance -ClassName Win32_DeviceGuard -Namespace root\Microsoft\Windows\DeviceGuard | ConvertTo-Json').stdout.strip).params
+
+  if sys_info.manufacturer == 'VMware, Inc.'
+    impact 0.0
+    describe 'This is a VDI System; This System is N/A for Control SV-253369' do
+      skip 'This is a VDI System; This System is N/A for Control SV-253369'
+    end
+  else
+    describe 'VBS RequiredSecurityProperties' do
+      subject { script['RequiredSecurityProperties'] }
+      it { should include 2 }
+    end
+
+    describe 'VBS VirtualizationBasedSecurityStatus' do
+      subject { script['VirtualizationBasedSecurityStatus'] }
+      it { should cmp 2 }
+    end
+  end
 end

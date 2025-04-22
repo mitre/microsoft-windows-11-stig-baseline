@@ -27,6 +27,6 @@ Set the policy value for "Computer Configuration/Administrative Templates/Window
   tag nist: ['CM-6 b']
 
   describe registry_key('HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main') do
-    skip 'not sure what value to check'
+    its('NotifyDisableIEOptions') { should cmp 0 }
   end
 end
