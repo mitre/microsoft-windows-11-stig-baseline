@@ -1,0 +1,125 @@
+# ---
+# name: Microsoft Windows 11 STIG Baseline
+
+# on:
+#   push:
+#     branches:
+#       - main
+#       - test-pipeline
+#   pull_request:
+
+# jobs:
+#   my-job:
+#     name: Validate the Microsoft Windows 11 STIG Baseline
+
+#     runs-on: windows-latest
+
+#     env:
+#       CHEF_LICENSE: accept-silent
+#       CHEF_LICENSE_KEY: ${{ secrets.SAF_CHEF_LICENSE_KEY }}
+#       RESULTS_FILE: windows11_inspec_results.json
+#       THRESHOLD_FILE: inspec.threshold.yml
+#       # INSPEC_INPUTS: ${{ secrets.INSPEC_INPUTS }}
+#       ATTESTATION_FILE: attestation_template.json
+#       HEIMDALL_URL: https://heimdall-demo.mitre.org
+
+#     steps:
+#       - name: Install Packages
+#         run: sudo apt-get install -y jq curl
+
+#       - name: Check-out Repository
+#         uses: actions/checkout@v4
+
+#       - name: Get Full Clone of Repository
+#         run: git fetch --prune --unshallow
+
+#       - name: Generate Short Commit SHA
+#         id: vars
+#         run: |
+#           calculatedSha=$(git rev-parse --short HEAD)
+#           echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
+
+#       - name: Display Short Commit SHA
+#         run: echo ${{ env.COMMIT_SHORT_SHA }}
+
+#       # - name: Create Input File
+#       #   shell: bash
+#       #   run: |
+#       #     printf "%s" '${{ env.INSPEC_INPUTS }}' > inputs.yml
+
+#       - name: Setup Ruby
+#         uses: ruby/setup-ruby@v1
+#         with:
+#           ruby-version: "3.1"
+
+#       - name: Disable ri and rdoc
+#         run: 'echo "gem: --no-document" >> ~/.gemrc'
+
+#       - name: Install Bundle Dependencies
+#         run: bundle install
+
+#       - name: Check Installed Inspec Version
+#         run: bundle exec inspec version
+
+#       - name: Vendor the InSpec Profile
+#         run: bundle exec inspec vendor --overwrite
+
+#       - name: Lint Inspec profile
+#         run: bundle exec inspec check .
+
+#       - name: Run InSpec Profile
+#         run: |
+#           set +e
+#           inspec exec . \
+#             --reporter cli json:${{ env.COMMIT_SHORT_SHA }}-${{ env.RESULTS_FILE }} \
+#             --enhanced-outcomes \
+#             --filter-empty-profiles
+#           exit_code=$?
+#           echo "InSpec exit code: $exit_code"
+#           if [ $exit_code -eq 0 ] || [ $exit_code -eq 100 ] || [ $exit_code -eq 101 ]; then
+#             echo "Valid exit code ($exit_code), continuing..."
+#             exit 0
+#           else
+#             echo "InSpec failed with exit code: $exit_code"
+#             exit $exit_code
+#           fi
+
+#       - name: Apply Attestation
+#         uses: mitre/saf_action@v1
+#         with:
+#           command_string: "attest apply -i ${{env.ATTESTATION_FILE}} ${{ env.COMMIT_SHORT_SHA }}-${{ env.RESULTS_FILE }} -o ${{ env.COMMIT_SHORT_SHA }}-attested-${{ env.RESULTS_FILE }}"
+
+#       - name: Save Test Results
+#         if: always()
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: ${{ github.workflow }}-${{ env.COMMIT_SHORT_SHA }}-results
+#           path: |
+#             ./${{ env.COMMIT_SHORT_SHA }}-attested-${{ env.RESULTS_FILE }}
+#             ./${{ env.COMMIT_SHORT_SHA }}-${{ env.RESULTS_FILE }}
+
+#       - name: Delete Input file
+#         if: always()
+#         run: rm -f input_file.yml
+
+#       - name: Upload to Heimdall
+#         if: always()
+#         run: |
+#           curl -# -s -F data=@${{ env.COMMIT_SHORT_SHA }}-attested-${{ env.RESULTS_FILE }} \
+#             -F "filename=${{ env.COMMIT_SHORT_SHA }}-${{ env.RESULTS_FILE}}" \
+#             -F "public=true" \
+#             -F "evaluationTags=${{ env.COMMIT_SHORT_SHA }},${{ github.repository }},${{ github.workflow }}" \
+#             -H "Authorization: Api-Key ${{ secrets.SAF_HEIMDALL_UPLOAD_KEY }}" \
+#             "${{ env.HEIMDALL_URL }}/evaluations"
+
+#       - name: Display ${{ env.COMMIT_SHORT_SHA }}-attested-${{ env.RESULTS_FILE }} Results Summary
+#         if: always()
+#         uses: mitre/saf_action@v1
+#         with:
+#           command_string: "view summary -i ${{ env.COMMIT_SHORT_SHA }}-attested-${{ env.RESULTS_FILE }}"
+
+#       - name: Ensure ${{ env.COMMIT_SHORT_SHA }}-attested-${{ env.RESULTS_FILE }} Meets Results Threshold
+#         if: always()
+#         uses: mitre/saf_action@v1
+#         with:
+#           command_string: "validate threshold -i ${{ env.COMMIT_SHORT_SHA }}-attested-${{ env.RESULTS_FILE }} -T ${{ env.THRESHOLD_FILE }}"

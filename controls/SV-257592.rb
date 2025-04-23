@@ -23,12 +23,17 @@ If the command displays any results, this is a finding.'
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
 
-  # test 1, seems like checking if registry doesnt have something is complicated, since registry_key requires a key to check
-  # describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PortProxy') do
-  #   it { should_not exist }
-  # end
+  script = <<-EOH
+    (Get-Item 'Registry::HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PortProxy\\v4tov4\\tcp').Property.Count
+  EOH
 
-  describe powershell('netsh interface portproxy show all') do
-    its('stdout.strip') { should be_empty }
+  describe 'The key does not contain v4tov4\tcp\ and is not populated with any v4tov4\tcp\ entries.' do
+    subject { powershell(script).stdout.strip.to_i }
+    it { should cmp 0 }
+  end
+
+  describe 'Powershell command does not display any results' do
+    subject { powershell('netsh interface portproxy show all').stdout.strip }
+    it { should be_empty }
   end
 end
