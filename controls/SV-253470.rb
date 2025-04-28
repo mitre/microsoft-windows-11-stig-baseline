@@ -57,14 +57,23 @@ If one of the following settings does not exist and is not populated, this is a 
       skip 'The system is not a member of a domain, control is NA'
     end
   else
-    describe 'Registry key HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\Readers is not populated' do
-      subject { powershell(reader_script).stdout.strip.to_i }
-      it { should cmp 0 }
+
+    describe registry_key('HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\Readers') do
+      it { should exist }
     end
 
-    describe 'Registry key HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\SmartCards is not populated' do
+    describe registry_key('HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\SmartCards') do
+      it { should exist }
+    end
+
+    describe 'Registry key HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\Readers is populated' do
+      subject { powershell(reader_script).stdout.strip.to_i }
+      it { should be > 0 }
+    end
+
+    describe 'Registry key HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\SmartCards is populated' do
       subject { powershell(card_script).stdout.strip.to_i }
-      it { should cmp 0 }
+      it { should be > 0 }
     end
   end
 end
