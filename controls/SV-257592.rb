@@ -27,7 +27,7 @@ If the command displays any results, this is a finding.'
     (Get-Item 'Registry::HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PortProxy\\v4tov4\\tcp').Property.Count
   EOH
 
-  describe 'The key does not contain v4tov4\tcp\ and is not populated with any v4tov4\tcp\ entries.' do
+  describe 'Registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PortProxy\\v4tov4\\tcp does not contain or is populatd with any v4tov4\tcp\ entries' do
     subject { powershell(script).stdout.strip.to_i }
     it { should cmp 0 }
   end

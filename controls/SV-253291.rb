@@ -22,8 +22,9 @@ Approval must be documented with the ISSO.'
   tag nist: ['CM-7 a']
 
   if sys_info.manufacturer == 'VMware, Inc.'
-    describe 'This is a VDI System this control is NA.' do
-      skip 'This is a VDI System this control is NA.'
+    impact 0.0
+    describe 'This is a VDI System; This System is N/A for Control SV-253291' do
+      skip 'This is a VDI System; This System is N/A for Control SV-253291'
     end
   else
     describe 'Turn off Bluetooth radios when not in use. Establish an organizational policy for the use of Bluetooth to include training of personnel' do

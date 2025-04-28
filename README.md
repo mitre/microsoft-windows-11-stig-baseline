@@ -208,10 +208,10 @@ access to the hosting repository.
 
 ```bash
 # Using `ssh` transport
-bundle exec [inspec or cinc-auditor] exec https://github.com/mitre/microsoft-windows-11-stig-baseline/archive/main.tar.gz --input-file=<your_inputs_file.yml> -t ssh://<hostname>:<port> --sudo --reporter=cli json:<your_results_file.json>
+bundle exec [inspec or cinc-auditor] exec https://github.com/mitre/microsoft-windows-11-stig-baseline/archive/main.tar.gz --input-file=<your_inputs_file.yml> -t ssh://<hostname>:<port> --sudo --reporter=cli json:<your_results_file.json> --enhanced-outcomes
 
 # Using `winrm` transport
-bundle exec [inspec or cinc-auditor] exec https://github.com/mitre/microsoft-windows-11-stig-baseline/archive/master.tar.gz --target winrm://<hostip> --user '<admin-account>' --password=<password> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+bundle exec [inspec or cinc-auditor] exec https://github.com/mitre/microsoft-windows-11-stig-baseline/archive/master.tar.gz --target winrm://<hostip> --user '<admin-account>' --password=<password> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> --enhanced-outcomes
 ```
 
 ### Using a local Archive copy
@@ -228,13 +228,13 @@ When the **"runner"** host uses this profile overlay for the first time, follow 
 mkdir profiles
 cd profiles
 git clone https://github.com/mitre/microsoft-windows-11-stig-baseline.git
-bundle exec [inspec or cinc-auditor] archive microsoft-windows-11-stig-baseline
+bundle exec [inspec or cinc-auditor] archive microsoft-windows-11-stig-baseline --enhanced-outcomes
 
 # Using `ssh` transport
-bundle exec [inspec or cinc-auditor] exec <name of generated archive> --input-file=<your_inputs_file.yml> -t ssh://<hostname>:<port> --sudo --reporter=cli json:<your_results_file.json>
+bundle exec [inspec or cinc-auditor] exec <name of generated archive> --input-file=<your_inputs_file.yml> -t ssh://<hostname>:<port> --sudo --reporter=cli json:<your_results_file.json> --enhanced-outcomes
 
 # Using `winrm` transport
-bundle exec [inspec or cinc-auditor] exec <name of generated archive> --target winrm://<hostip> --user '<admin-account>' --password=<password> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>    
+bundle exec [inspec or cinc-auditor] exec <name of generated archive> --target winrm://<hostip> --user '<admin-account>' --password=<password> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> --enhanced-outcomes
 ```
 
 For every successive run, follow these steps to always have the latest version of this profile baseline:
@@ -246,10 +246,10 @@ cd ..
 bundle exec [inspec or cinc-auditor] archive microsoft-windows-11-stig-baseline --overwrite
 
 # Using `ssh` transport
-bundle exec [inspec or cinc-auditor] exec <name of generated archive> --input-file=<your_inputs_file.yml> -t ssh://<hostname>:<port> --sudo --reporter=cli json:<your_results_file.json>
+bundle exec [inspec or cinc-auditor] exec <name of generated archive> --input-file=<your_inputs_file.yml> -t ssh://<hostname>:<port> --sudo --reporter=cli json:<your_results_file.json> --enhanced-outcomes
 
 # Using `winrm` transport
-bundle exec [inspec or cinc-auditor] exec <name of generated archive> --target winrm://<hostip> --user '<admin-account>' --password=<password> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>    
+bundle exec [inspec or cinc-auditor] exec <name of generated archive> --target winrm://<hostip> --user '<admin-account>' --password=<password> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> --enhanced-outcomes
 ```
 
 ## Different Run Options

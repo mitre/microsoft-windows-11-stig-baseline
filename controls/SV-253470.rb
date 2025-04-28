@@ -43,27 +43,28 @@ If one of the following settings does not exist and is not populated, this is a 
 
   is_domain = command('wmic computersystem get domain | FINDSTR /V Domain').stdout.strip
 
+  reader_script = <<-EOH
+   (Get-Item 'Registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\Readers').Property.Count
+  EOH
+
+  card_script = <<-EOH
+   (Get-Item 'Registry::HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\SmartCards').Property.Count
+  EOH
+
   if is_domain == 'WORKGROUP'
     impact 0.0
     describe 'The system is not a member of a domain, control is NA' do
       skip 'The system is not a member of a domain, control is NA'
     end
   else
-    # my domain method
-    # only_if('The system is not joined to a domain', impact: 0) do
-    #   powershell('(Get-CimInstance -ClassName Win32_ComputerSystem).PartOfDomain').stdout.strip.downcase == 'true'
-    # end
-
-    # this is completely wrong, compared to personal windows machine and it has the exact same settings
-    # what does populated mean
-    # unsure what registry value to check, for now just checking if anything exists
-    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\Readers').children do
-      it { should_not be_empty }
+    describe 'Registry key HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\Readers is not populated' do
+      subject { powershell(reader_script).stdout.strip.to_i }
+      it { should cmp 0 }
     end
 
-    # unsure what registry value to check, for now just checking if anything exists
-    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Calais\SmartCards').children do
-      it { should_not be_empty }
+    describe 'Registry key HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\SmartCards is not populated' do
+      subject { powershell(card_script).stdout.strip.to_i }
+      it { should cmp 0 }
     end
   end
 end
