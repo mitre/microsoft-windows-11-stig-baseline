@@ -81,4 +81,4 @@ report.md
 *xccdf.xml
 check-results.txt
 kitchen.local.ec2.yml
-test-scan-*.json
+test-scan*.json
