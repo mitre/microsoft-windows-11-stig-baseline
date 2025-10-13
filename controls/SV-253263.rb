@@ -10,7 +10,6 @@ A separate servicing branch intended for special purpose systems is the Long-Ter
 If the "About Windows" dialog box does not display "Microsoft Windows 11 Version 22H2 (OS Build 22621.380)" or greater, this is a finding.'
   desc 'fix', 'Update systems on the Semi-Annual Channel to "Microsoft Windows 11 Version 22H2 (OS Build 22621.380)" or greater.'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56716r1016362_chk'
   tag severity: 'high'
   tag gid: 'V-253263'

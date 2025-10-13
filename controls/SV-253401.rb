@@ -12,7 +12,6 @@ Type: REG_DWORD
 Value: 6 (or greater)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> System >> PIN Complexity >> "Minimum PIN length" to "6" or greater.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56854r829285_chk'
   tag severity: 'medium'
   tag gid: 'V-253401'

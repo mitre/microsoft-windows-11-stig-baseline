@@ -30,11 +30,10 @@ If any enabled accounts have not been logged on to within the past 35 days, this
 Inactive accounts that have been reviewed and deemed to be required must be documented with the information system security officer (ISSO).)
   desc 'fix', 'Review local accounts and verify their necessity. Disable or delete any active accounts that have not been used in the last 35 days.'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56721r997867_chk'
   tag severity: 'low'
   tag gid: 'V-253268'
-  tag rid: 'SV-253268r1016424_rule'
+  tag rid: 'SV-253268r1051039_rule'
   tag stig_id: 'WN11-00-000065'
   tag gtitle: 'SRG-OS-000468-GPOS-00212'
   tag fix_id: 'F-56671r828887_fix'

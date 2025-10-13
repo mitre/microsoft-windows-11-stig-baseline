@@ -18,17 +18,16 @@ If the system needs to be configured to an NTP server, configure the system to p
 
 The US Naval Observatory operates stratum 1 time servers, identified at https://www.cnmoc.usff.navy.mil/Our-Commands/United-States-Naval-Observatory/Precise-Time-Department/Network-Time-Protocol-NTP/. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56749r828970_chk'
   tag severity: 'low'
   tag gid: 'V-253296'
-  tag rid: 'SV-253296r1016426_rule'
+  tag rid: 'SV-253296r1051041_rule'
   tag stig_id: 'WN11-00-000260'
   tag gtitle: 'SRG-OS-000355-GPOS-00143'
   tag fix_id: 'F-56699r922035_fix'
   tag 'documentable'
-  tag cci: ['CCI-004923', 'CCI-001891', 'CCI-001891']
-  tag nist: ['SC-45 (1) (a)', 'AU-8 (1) (a)', 'AU-8 (1) (a)']
+  tag cci: ['CCI-004923', 'CCI-001891']
+  tag nist: ['SC-45 (1) (a)', 'AU-8 (1) (a)']
 
   describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\Parameters') do
     its('Type') { should cmp 'NT5DS' }

@@ -12,11 +12,10 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Remote Desktop Services >> Remote Desktop Connection Client >> "Do not allow passwords to be saved" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56855r829288_chk'
   tag severity: 'medium'
   tag gid: 'V-253402'
-  tag rid: 'SV-253402r1016436_rule'
+  tag rid: 'SV-253402r1051051_rule'
   tag stig_id: 'WN11-CC-000270'
   tag gtitle: 'SRG-OS-000373-GPOS-00156'
   tag fix_id: 'F-56805r829289_fix'

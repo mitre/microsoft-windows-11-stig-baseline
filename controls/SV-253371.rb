@@ -39,7 +39,6 @@ Configure the policy value for Computer Configuration >> Administrative Template
 
 "Enabled without lock" will allow this to be turned off remotely while testing for issues.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56824r829195_chk'
   tag severity: 'medium'
   tag gid: 'V-253371'

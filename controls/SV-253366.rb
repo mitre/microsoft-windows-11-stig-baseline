@@ -12,7 +12,6 @@ Type: REG_DWORD
 Value: 0x00000000 (0)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Network >> WLAN Service >> WLAN Settings>> "Allow Windows to automatically connect to suggested open hotspots, to networks shared by contacts, and to hotspots offering paid services" to "Disabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56819r829180_chk'
   tag severity: 'medium'
   tag gid: 'V-253366'

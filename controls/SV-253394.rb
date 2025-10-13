@@ -39,7 +39,6 @@ Simple (99)
 
 .'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56847r829264_chk'
   tag severity: 'low'
   tag gid: 'V-253394'

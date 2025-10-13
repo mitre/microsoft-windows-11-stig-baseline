@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 3'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Remote Desktop Services >> Remote Desktop Session Host >> Security >> "Set client connection encryption level" to "Enabled" and "High Level".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56859r829300_chk'
   tag severity: 'medium'
   tag gid: 'V-253406'

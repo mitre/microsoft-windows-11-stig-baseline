@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Application Compatibility >> "Turn off Inventory Collector" to "Enabled".'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56838r829237_chk'
   tag severity: 'low'
   tag gid: 'V-253385'

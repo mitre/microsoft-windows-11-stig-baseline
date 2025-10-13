@@ -22,7 +22,6 @@ Click "Settings" in the "Performance" section.
 Select the "Data Execution Prevention" tab.
 Applications that are opted out are configured in the window below the selection "Turn on DEP for all programs and services except those I select:".'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56736r828931_chk'
   tag severity: 'high'
   tag gid: 'V-253283'

@@ -18,7 +18,6 @@ All users authorized to create or run virtual machines must be documented with t
 
 For hosted hypervisors other than Hyper-V, restrict access to create or run virtual machines to authorized user accounts only.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56724r828895_chk'
   tag severity: 'medium'
   tag gid: 'V-253271'

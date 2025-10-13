@@ -27,7 +27,6 @@ Domain Systems Only:
 Enterprise Admins Group
 Domain Admins Group'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56946r829561_chk'
   tag severity: 'medium'
   tag gid: 'V-253493'

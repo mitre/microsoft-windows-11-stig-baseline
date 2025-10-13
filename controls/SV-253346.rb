@@ -12,7 +12,6 @@ Compare the AuditPol settings with the following. If the system does not audit t
 Logon/Logoff >> Other Logon/Logoff Events - Failure'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> Logon/Logoff >> "Audit Other Logon/Logoff Events" with "Failure" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56799r829120_chk'
   tag severity: 'medium'
   tag gid: 'V-253346'

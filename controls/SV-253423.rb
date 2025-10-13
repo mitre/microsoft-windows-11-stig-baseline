@@ -13,7 +13,6 @@ Value data: 0'
 
 To correct this, configure the policy value for Computer Configuration >> Administrative Templates >> System >> Logon >> Set "Turn on convenience PIN sign-in" to "Disabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56876r829351_chk'
   tag severity: 'medium'
   tag gid: 'V-253423'

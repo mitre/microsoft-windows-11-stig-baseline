@@ -8,7 +8,6 @@ Verify the Bluetooth radio is turned off unless approved by the organization. If
 Approval must be documented with the ISSO.'
   desc 'fix', 'Turn off Bluetooth radios not organizationally approved. Establish an organizational policy for the use of Bluetooth.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56744r828955_chk'
   tag severity: 'medium'
   tag gid: 'V-253291'

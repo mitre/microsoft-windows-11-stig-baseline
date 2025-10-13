@@ -32,7 +32,6 @@ Search for "Features".
 Select "Turn Windows features on or off".
 De-select "Windows PowerShell 2.0".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56738r828937_chk'
   tag severity: 'medium'
   tag gid: 'V-253285'

@@ -16,7 +16,6 @@ Value: 0 (or if the Value Name does not exist)'
 
 To correct this, configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> RSS Feeds >> "Turn on Basic feed authentication over HTTP" to "Not Configured" or "Disabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56861r829306_chk'
   tag severity: 'medium'
   tag gid: 'V-253408'

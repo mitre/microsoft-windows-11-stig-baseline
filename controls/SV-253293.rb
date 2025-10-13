@@ -11,7 +11,6 @@ If "Alert me when a new Bluetooth device wants to connect" is not checked, this 
 View Bluetooth Settings.
 Ensure "Alert me when a new Bluetooth device wants to connect" is checked.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56746r828961_chk'
   tag severity: 'medium'
   tag gid: 'V-253293'

@@ -21,17 +21,16 @@ Local access is defined as access to an organizational information system by a u
 The DoD CAC with DoD-approved PKI is an example of multifactor authentication.'
   desc 'check', 'If the system is not a member of a domain, this is Not Applicable.
 
-If one of the following settings does not exist and is not populated, this is a finding:
+If all of the following settings exist and are populated, this is not a finding.
 
 \\HKLM\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\Readers
 \\HKLM\\SOFTWARE\\Microsoft\\Cryptography\\Calais\\SmartCards'
   desc 'fix', "For nondomain joined systems, configuring Windows Hello for sign-on options would be suggested based on the organization's needs and capabilities."
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
-  tag check_id: 'C-56923r890468_chk'
+  tag check_id: 'C-56923r1106509_chk'
   tag severity: 'medium'
   tag gid: 'V-253470'
-  tag rid: 'SV-253470r958484_rule'
+  tag rid: 'SV-253470r1106510_rule'
   tag stig_id: 'WN11-SO-000251'
   tag gtitle: 'SRG-OS-000105-GPOS-00052'
   tag fix_id: 'F-56873r890469_fix'

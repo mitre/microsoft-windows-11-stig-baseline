@@ -14,11 +14,10 @@ Compare the AuditPol settings with the following. If the system does not audit t
 Detailed Tracking >> Plug and Play Events - Success'
   desc 'fix', 'Computer Configuration >> Windows Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> Detailed Tracking >> "Audit PNP Activity" with "Success" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56764r829015_chk'
   tag severity: 'medium'
   tag gid: 'V-253311'
-  tag rid: 'SV-253311r1016432_rule'
+  tag rid: 'SV-253311r1051047_rule'
   tag stig_id: 'WN11-AU-000045'
   tag gtitle: 'SRG-OS-000365-GPOS-00152'
   tag fix_id: 'F-56714r829016_fix'

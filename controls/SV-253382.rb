@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 0'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> System >> Remote Assistance >> "Configure Solicited Remote Assistance" to "Disabled".'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56835r829228_chk'
   tag severity: 'high'
   tag gid: 'V-253382'

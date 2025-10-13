@@ -19,7 +19,6 @@ The default behavior for "Support device authentication using certificate" is "A
 
 To correct this, configured the policy value for Computer Configuration >> Administrative Templates >> System >> Kerberos >> "Support device authentication using certificate" to "Not Configured or "Enabled" with either option selected in "Device authentication behavior using certificate:".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56830r829213_chk'
   tag severity: 'medium'
   tag gid: 'V-253377'

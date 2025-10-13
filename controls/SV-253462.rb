@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 5'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Network security: LAN Manager authentication level" to "Send NTLMv2 response only. Refuse LM & NTLM".'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56915r829468_chk'
   tag severity: 'high'
   tag gid: 'V-253462'

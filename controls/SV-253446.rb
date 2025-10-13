@@ -18,7 +18,6 @@ If a site-defined title is used, it can in no case contravene or modify the lang
 
 If a site-defined title is used, it can in no case contravene or modify the language of the banner text required in WN11-SO-000075.'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56899r829420_chk'
   tag severity: 'low'
   tag gid: 'V-253446'

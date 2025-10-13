@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 0'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Domain member: Disable machine account password changes" to "Disabled".'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56894r829405_chk'
   tag severity: 'low'
   tag gid: 'V-253441'

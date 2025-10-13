@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Network access: Restrict anonymous access to Named Pipes and Shares" to "Enabled".'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56909r829450_chk'
   tag severity: 'high'
   tag gid: 'V-253456'

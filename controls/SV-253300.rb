@@ -9,7 +9,6 @@ Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings 
 If the value for "Enforce password history" is less than "24" passwords remembered, this is a finding.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Password Policy >> "Enforce password history" to "24" passwords remembered.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56753r828982_chk'
   tag severity: 'medium'
   tag gid: 'V-253300'

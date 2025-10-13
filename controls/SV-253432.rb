@@ -9,7 +9,6 @@ Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings 
 If the value for "Accounts: Administrator account status" is not set to "Disabled", this is a finding.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Accounts: Administrator account status" to "Disabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56885r829378_chk'
   tag severity: 'medium'
   tag gid: 'V-253432'

@@ -10,7 +10,6 @@ For Azure Virtual Desktop (AVD) implementations with no data at rest, this is No
 If there is no such documented policy or procedure in place, this is a finding.'
   desc 'fix', 'Set nonpersistent VM sessions to not exceed 24 hours.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56748r890450_chk'
   tag severity: 'medium'
   tag gid: 'V-253295'

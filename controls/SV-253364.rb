@@ -16,7 +16,6 @@ Value: 3 (or if the Value Name does not exist)'
 
 If this needs to be corrected, configure the policy value for Computer Configuration >> Administrative Templates >> Network >> Windows Connection Manager >> "Minimize the number of simultaneous connections to the Internet or a Windows Domain" to "Enabled".  Under "Options", set "Minimize Policy Options" to "3 = Prevent Wi-Fi When on Ethernet".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56817r890453_chk'
   tag severity: 'medium'
   tag gid: 'V-253364'

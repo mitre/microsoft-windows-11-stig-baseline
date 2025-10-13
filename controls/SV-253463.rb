@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Network security: LDAP client signing requirements" to "Negotiate signing" at a minimum.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56916r829471_chk'
   tag severity: 'medium'
   tag gid: 'V-253463'

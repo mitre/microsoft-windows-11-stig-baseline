@@ -28,11 +28,10 @@ More information is available at:
 https://techcommunity.microsoft.com/t5/windows-it-pro-blog/by-popular-demand-windows-laps-available-now/ba-p/3788747
 https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview#windows-laps-supported-platforms-and-azure-ad-laps-preview-status'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56929r1016367_chk'
   tag severity: 'medium'
   tag gid: 'V-253476'
-  tag rid: 'SV-253476r1016445_rule'
+  tag rid: 'SV-253476r1051060_rule'
   tag stig_id: 'WN11-SO-000280'
   tag gtitle: 'SRG-OS-000076-GPOS-00044'
   tag fix_id: 'F-56879r997891_fix'

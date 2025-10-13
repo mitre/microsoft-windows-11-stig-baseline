@@ -1,6 +1,6 @@
 control 'SV-253457' do
   title 'Remote calls to the Security Account Manager (SAM) must be restricted to Administrators.'
-  desc "The Windows Security Account Manager (SAM) stores users' passwords.  Restricting remote rpc connections to the SAM to Administrators helps protect those credentials."
+  desc "The Windows SAM stores users' passwords. Restricting remote rpc connections to the SAM to Administrators helps protect those credentials."
   desc 'check', 'If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -9,7 +9,11 @@ Registry Path: \\SYSTEM\\CurrentControlSet\\Control\\Lsa\\
 Value Name: RestrictRemoteSAM
 
 Value Type: REG_SZ
-Value: O:BAG:BAD:(A;;RC;;;BA)'
+Value: O:BAG:BAD:(A;;RC;;;BA)
+
+If a domain application account such as for a management tool requires this user right, this would not be a finding.
+Vendor documentation must support the requirement for having the user right.
+The requirement must be documented with the ISSO.'
   desc 'fix', 'Navigate to the policy Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Network access: Restrict clients allowed to make remote calls to SAM".
 
 Select "Edit Security" to configure the "Security descriptor:".
@@ -24,11 +28,10 @@ Click "OK".
 
 The "Security descriptor:" must be populated with "O:BAG:BAD:(A;;RC;;;BA) for the policy to be enforced.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
-  tag check_id: 'C-56910r829453_chk'
+  tag check_id: 'C-56910r1081059_chk'
   tag severity: 'medium'
   tag gid: 'V-253457'
-  tag rid: 'SV-253457r958726_rule'
+  tag rid: 'SV-253457r1081060_rule'
   tag stig_id: 'WN11-SO-000167'
   tag gtitle: 'SRG-OS-000324-GPOS-00125'
   tag fix_id: 'F-56860r829454_fix'

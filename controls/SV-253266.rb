@@ -10,7 +10,6 @@ Click the "Settings" button in the "Startup and Recovery" section.
 If the drop-down list box "Default operating system:" shows any operating system other than Windows 11, this is a finding.'
   desc 'fix', 'Ensure Windows 11 is the only operating system on a device. Remove alternate operating systems.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56719r828880_chk'
   tag severity: 'medium'
   tag gid: 'V-253266'

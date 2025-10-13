@@ -12,11 +12,10 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Windows Remote Management (WinRM) >> WinRM Service >> "Disallow WinRM from storing RunAs credentials" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56873r829342_chk'
   tag severity: 'medium'
   tag gid: 'V-253420'
-  tag rid: 'SV-253420r1016440_rule'
+  tag rid: 'SV-253420r1051055_rule'
   tag stig_id: 'WN11-CC-000355'
   tag gtitle: 'SRG-OS-000373-GPOS-00156'
   tag fix_id: 'F-56823r829343_fix'

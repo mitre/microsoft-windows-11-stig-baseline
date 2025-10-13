@@ -10,14 +10,15 @@ OS Configuration: Member Workstation
 
 If the system is not being managed by GPO, ask the administrator to indicate which MDM is managing the device.
 
-If the Window 11 system is not receiving policy from either group Policy or an MDM, this is a finding.'
+If the Window 11 system is not receiving policy from either group Policy or an MDM, this is a finding.                      
+
+This is NA for standalone, nondomain joined systems.'
   desc 'fix', 'Configure the Windows 11 system to use either Group Policy or an approved MDM product to enforce STIG compliance.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
-  tag check_id: 'C-72339r1028267_chk'
+  tag check_id: 'C-72339r1081061_chk'
   tag severity: 'medium'
   tag gid: 'V-268318'
-  tag rid: 'SV-268318r1028268_rule'
+  tag rid: 'SV-268318r1081062_rule'
   tag stig_id: 'WN11-CC-000063'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-72242r1028259_fix'

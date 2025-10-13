@@ -6,7 +6,6 @@ control 'SV-253292' do
 Verify the organization has a policy to turn off Bluetooth when not in use and personnel are trained. If it does not, this is a finding.'
   desc 'fix', 'Turn off Bluetooth radios when not in use. Establish an organizational policy for the use of Bluetooth to include training of personnel.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56745r828958_chk'
   tag severity: 'medium'
   tag gid: 'V-253292'

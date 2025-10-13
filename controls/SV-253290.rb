@@ -11,7 +11,6 @@ Review each User Right listed for any unresolved SIDs to determine whether they 
 If any unresolved SIDs exist and are not for currently valid accounts or groups, this is a finding.'
   desc 'fix', 'Remove any unresolved SIDs found in User Rights assignments and determined to not be for currently valid accounts or groups by removing the accounts or groups from the appropriate group policy.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56743r828952_chk'
   tag severity: 'medium'
   tag gid: 'V-253290'

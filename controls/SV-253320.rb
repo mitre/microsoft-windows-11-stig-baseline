@@ -17,7 +17,6 @@ Object Access >> File Share - Success
 If the system does not audit the above, this is a finding.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> Object Access >> "Audit File Share" with "Success" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56773r829042_chk'
   tag severity: 'medium'
   tag gid: 'V-253320'

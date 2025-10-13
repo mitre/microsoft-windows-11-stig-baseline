@@ -9,7 +9,6 @@ Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings 
 If the value for "Accounts: Rename guest account" is set to "Guest", this is a finding.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Accounts: Rename guest account" to a name other than "Guest".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56889r829390_chk'
   tag severity: 'medium'
   tag gid: 'V-253436'

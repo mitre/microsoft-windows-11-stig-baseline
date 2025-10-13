@@ -14,7 +14,6 @@ Type: REG_DWORD
 Value: 0x00000001 (1)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Data Collection and Preview Builds >> "Limit optional diagnostic data for Windows Analytics" to "Enabled" with "Enable Desktop Analytics collection" selected in "Options:".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56845r829258_chk'
   tag severity: 'medium'
   tag gid: 'V-253392'

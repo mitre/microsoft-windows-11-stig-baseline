@@ -12,7 +12,6 @@ Run "Programs and Features".
 Select "Turn Windows Features on or off".
 De-select "Simple TCPIP Services (i.e. echo, daytime etc.)".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56730r828913_chk'
   tag severity: 'medium'
   tag gid: 'V-253277'

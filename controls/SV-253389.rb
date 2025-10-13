@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 0x00000001 (1)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Biometrics >> Facial Features >> "Configure enhanced anti-spoofing" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56842r829249_chk'
   tag severity: 'medium'
   tag gid: 'V-253389'

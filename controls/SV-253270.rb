@@ -12,7 +12,6 @@ If the group contains any accounts, the accounts must be specifically for backup
 If the group contains any standard user accounts used for performing normal user tasks, this is a finding.'
   desc 'fix', 'Create separate accounts for backup operations for users with this privilege.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56723r828892_chk'
   tag severity: 'medium'
   tag gid: 'V-253270'

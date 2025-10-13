@@ -32,7 +32,6 @@ Select "Turn Windows features on or off".
 
 De-select "SMB 1.0/CIFS File Sharing Support".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56739r828940_chk'
   tag severity: 'medium'
   tag gid: 'V-253286'

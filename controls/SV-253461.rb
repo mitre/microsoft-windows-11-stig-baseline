@@ -12,11 +12,10 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Network security: Do not store LAN Manager hash value on next password change" to "Enabled".'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56914r829465_chk'
   tag severity: 'high'
   tag gid: 'V-253461'
-  tag rid: 'SV-253461r1016441_rule'
+  tag rid: 'SV-253461r1051056_rule'
   tag stig_id: 'WN11-SO-000195'
   tag gtitle: 'SRG-OS-000073-GPOS-00041'
   tag fix_id: 'F-56864r829466_fix'

@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 0'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> System >> Group Policy >> "Configure registry policy processing" to "Enabled" and select the option "Process even if the Group Policy objects have not changed".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56826r829201_chk'
   tag severity: 'medium'
   tag gid: 'V-253373'

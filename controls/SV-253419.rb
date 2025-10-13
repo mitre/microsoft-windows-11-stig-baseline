@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 0'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Windows Remote Management (WinRM) >> WinRM Service >> "Allow unencrypted traffic" to "Disabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56872r829339_chk'
   tag severity: 'medium'
   tag gid: 'V-253419'

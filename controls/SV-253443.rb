@@ -14,7 +14,6 @@ Value: 1
 Warning: This setting may prevent a system from being joined to a domain if not configured consistently between systems.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Domain member: Require strong (Windows 2000 or Later) session key" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56896r829411_chk'
   tag severity: 'medium'
   tag gid: 'V-253443'

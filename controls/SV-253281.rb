@@ -6,7 +6,6 @@ control 'SV-253281' do
 The configuration requirements will be determined by the applicable firewall STIG.'
   desc 'fix', 'Install and enable a host-based firewall on the system.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56734r828925_chk'
   tag severity: 'medium'
   tag gid: 'V-253281'

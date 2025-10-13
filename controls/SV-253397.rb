@@ -16,7 +16,6 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)'
 
 To correct this, configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> File Explorer >> "Turn off heap termination on corruption" to "Not Configured" or "Disabled".'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56850r829273_chk'
   tag severity: 'low'
   tag gid: 'V-253397'

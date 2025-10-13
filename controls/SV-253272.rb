@@ -18,7 +18,6 @@ Local administrator account(s)
 All of the built-in accounts may not exist on a system, depending on the Windows 11 version.'
   desc 'fix', 'Limit local user accounts on domain-joined systems. Remove any unauthorized local accounts.'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56725r890448_chk'
   tag severity: 'low'
   tag gid: 'V-253272'

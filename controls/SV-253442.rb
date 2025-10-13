@@ -16,7 +16,6 @@ Value: 0x0000001e (30) (or less, excluding 0)'
 
 Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Domain member: Maximum machine account password age" to "30" or less (excluding 0 which is unacceptable).'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56895r829408_chk'
   tag severity: 'low'
   tag gid: 'V-253442'

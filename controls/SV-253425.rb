@@ -12,7 +12,6 @@ Type: REG_DWORD
 Value: 0x00000001 (1)'
   desc 'fix', 'Configure the policy value for User Configuration >> Administrative Templates. >> Windows Components >> Cloud Content >> "Do not suggest third-party content in Windows spotlight" to "Enabled".'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56878r829357_chk'
   tag severity: 'low'
   tag gid: 'V-253425'

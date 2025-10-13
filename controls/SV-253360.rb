@@ -12,7 +12,6 @@ Type: REG_DWORD
 Value: 0x00000000 (0)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Network >> Lanman Workstation >> "Enable insecure guest logons" to "Disabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56813r829162_chk'
   tag severity: 'medium'
   tag gid: 'V-253360'

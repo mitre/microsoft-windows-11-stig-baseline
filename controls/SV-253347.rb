@@ -13,7 +13,6 @@ Compare the AuditPol settings with the following. If the system does not audit t
 Object Access >> Detailed File Share - Failure'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> Object Access >> Audit Detailed File Share" with "Failure" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56800r829123_chk'
   tag severity: 'medium'
   tag gid: 'V-253347'

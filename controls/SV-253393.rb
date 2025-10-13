@@ -13,7 +13,6 @@ Value: 0x00000000 (0) (Security)
 0x00000001 (1) (Basic)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Data Collection and Preview Builds >> "Allow Diagnostic Data" to "Enabled" with "Send required diagnostic data" selected in "Options:".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56846r829261_chk'
   tag severity: 'medium'
   tag gid: 'V-253393'

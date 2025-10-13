@@ -21,7 +21,6 @@ BitLocker, included in Windows, can be enabled in the Control Panel under "BitLo
 
 Note: An alternate encryption application may be used in lieu of BitLocker providing it is configured for full disk encryption and satisfies the pre-boot authentication requirements (WN11-00-000031 and WN11-00-000032).'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56712r828859_chk'
   tag severity: 'high'
   tag gid: 'V-253259'

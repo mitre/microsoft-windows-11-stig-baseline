@@ -42,7 +42,6 @@ A Microsoft TechNet article on Credential Guard, including system requirement de
 
 https://docs.microsoft.com/en-us/windows/access-protection/credential-guard/credential-guard'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56823r829192_chk'
   tag severity: 'high'
   tag gid: 'V-253370'

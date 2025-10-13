@@ -16,7 +16,6 @@ Value:  0x00008000 (32768) (or greater)'
 
 Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Event Log Service >> System >> "Specify the maximum log file size (KB)" to "Enabled" with a "Maximum Log Size (KB)" of "32768" or greater.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56792r829099_chk'
   tag severity: 'medium'
   tag gid: 'V-253339'

@@ -14,7 +14,6 @@ If "Edition" is not "Windows 11 Enterprise", this is a finding.
 If "System type" is not "64-bit operating system...", this is a finding.'
   desc 'fix', 'Use Windows 11 Enterprise 64-bit version for domain-joined systems.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56707r828844_chk'
   tag severity: 'medium'
   tag gid: 'V-253254'

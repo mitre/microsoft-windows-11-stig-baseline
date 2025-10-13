@@ -20,7 +20,6 @@ Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,D
 If there is no antivirus solution installed on the system, this is a finding.'
   desc 'fix', 'Install Microsoft Defender Antivirus or a third-party antivirus solution.'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56717r828874_chk'
   tag severity: 'high'
   tag gid: 'V-253264'

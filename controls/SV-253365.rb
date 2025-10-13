@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Network >> Windows Connection Manager >> "Prohibit connection to non-domain networks when connected to domain authenticated network" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56818r829177_chk'
   tag severity: 'medium'
   tag gid: 'V-253365'

@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for User Configuration >> Administrative Templates >> Start Menu and Taskbar >> Notifications >> "Turn off toast notifications on the lock screen" to "Enabled".'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56930r829513_chk'
   tag severity: 'low'
   tag gid: 'V-253477'

@@ -20,7 +20,6 @@ Configure the policy value for Computer Configuration >> Windows Settings >> Sec
 
 This setting only applies to domain-joined systems, however, it is configured by default on all systems.'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56900r829423_chk'
   tag severity: 'low'
   tag gid: 'V-253447'

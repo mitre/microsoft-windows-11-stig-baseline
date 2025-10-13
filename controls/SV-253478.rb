@@ -16,7 +16,6 @@ Value: 0x00000002 (2) (or if the Value Name does not exist)'
 
 To correct this, configure the policy value for User Configuration >> Administrative Templates >> Windows Components >> Attachment Manager >> "Do not preserve zone information in file attachments" to "Not Configured" or "Disabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56931r829516_chk'
   tag severity: 'medium'
   tag gid: 'V-253478'

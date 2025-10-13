@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Interactive logon: Machine inactivity limit" to "900" seconds" or less, excluding "0" which is effectively disabled.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56897r829414_chk'
   tag severity: 'medium'
   tag gid: 'V-253444'

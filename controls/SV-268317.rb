@@ -5,7 +5,6 @@ control 'SV-268317' do
 User Configuration >> Administrative Templates >> Windows Components >> Windows Copilot >> "Turn off Windows Copilot" to "Enabled”.'
   desc 'fix', 'Configure the policy value for User Configuration >> Administrative Templates >> Windows Components >> Windows Copilot >> "Turn off Windows Copilot" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-72338r1016369_chk'
   tag severity: 'medium'
   tag gid: 'V-268317'

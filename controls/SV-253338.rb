@@ -16,7 +16,6 @@ Value: 0x000fa000 (1024000) (or greater)'
 
 If the system is configured to send audit records directly to an audit server, this must be documented with the ISSO.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56791r829096_chk'
   tag severity: 'medium'
   tag gid: 'V-253338'

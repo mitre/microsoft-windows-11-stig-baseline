@@ -12,7 +12,6 @@ If the ISSM is not able to provide a documented configuration for an installed E
 Note: Example of documentation can be a copy of the site's CCB approved Software Baseline with version of software noted or a memo from the ISSM stating current ESS software and version."
   desc 'fix', 'Install DOD-approved ESS software and ensure it is operating continuously.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56711r997864_chk'
   tag severity: 'medium'
   tag gid: 'V-253258'

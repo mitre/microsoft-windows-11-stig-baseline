@@ -16,7 +16,6 @@ Value: 1'
 
 Configure the policy value for Computer Configuration >> Administrative Templates >> Control Panel >> Personalization >> "Prevent enabling lock screen camera" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56803r829132_chk'
   tag severity: 'medium'
   tag gid: 'V-253350'

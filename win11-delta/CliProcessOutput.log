@@ -1,0 +1,1973 @@
+==================== Delta Process =====================
+Date: 2025-10-13T15:17:48.916Z
+Process Flags ===========================================
+logLevel=info
+inspecJsonFile=./profile.json
+xccdfXmlFile=U_MS_Windows_11_STIG_V2R4_Manual-xccdf.xml
+deltaOutputDir=win11-delta
+reportFile=report.md
+idType=rule
+
+
+Update Results ===========================================================================
+
+## Automatic Update:  -> 
+
+### New Controls:
+
+
+### Updated Check/Fixes:
+#### Checks:
+<details open>
+  <summary>Click to expand.</summary>
+SV-253351:
+Old: 
+```
+If the device or operating system does not have a camera installed, this requirement is not applicable.
+
+This requirement is not applicable to mobile devices (smartphones and tablets), where the use of the camera is a local AO decision.
+
+This requirement is not applicable to dedicated VTC suites located in approved VTC locations that are centrally managed.
+
+For an external camera, if there is not a method for the operator to manually disconnect camera at the end of collaborative computing sessions, this is a finding.
+
+For a built-in camera, the camera must be protected by a camera cover (e.g. laptop camera cover slide) when not in use. If the built-in camera is not protected with a camera cover, or if the built-in
+camera is not disabled in the bios, this is a finding.
+
+If the camera is not disconnected or covered, the following registry entry is required:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+RegistryPath\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam
+
+Value Name: Deny
+
+If "Value Name" is set to a value other than "Deny" and the collaborative computing device has not been authorized for use, this is a finding.
+
+```
+
+Updated:
+```
+If the device or operating system does not have a camera installed, this requirement is not applicable.
+
+This requirement is not applicable to mobile devices (smartphones and tablets), where the use of the camera is a local authorizing official (AO) decision.
+
+This requirement is not applicable to dedicated VTC suites located in approved VTC locations that are centrally managed.
+
+For an external camera, if there is not a method for the operator to manually disconnect camera at the end of collaborative computing sessions, this is a finding.
+
+For a built-in camera, the camera must be protected by a camera cover (e.g. laptop camera cover slide) when not in use. If the built-in camera is not protected with a camera cover, or if the built-in
+camera is not disabled in the bios, this is a finding.
+
+If the camera is not disconnected or covered, the following registry entry is required:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+RegistryPath\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam
+
+Value Name: Value                                                                             Value Data: Deny
+
+If "Value Name" is set to a value other than "Deny" and the collaborative computing device has not been authorized for use, this is a finding.
+
+```
+---
+SV-253430:
+Old: 
+```
+Verify the US DoD CCEB Interoperability Root CA cross-certificate is installed on unclassified systems as an Untrusted Certificate.
+
+Run "PowerShell" as an administrator.
+
+Execute the following command:
+
+Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
+
+If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is a finding.
+
+Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025 9:56:22 A
+
+Alternately, use the Certificates MMC snap-in:
+
+Run "MMC".
+
+Select "File", "Add/Remove Snap-in".
+
+Select "Certificates", click "Add".
+
+Select "Computer account", click "Next".
+
+Select "Local computer: (the computer this console is running on)", click "Finish".
+
+Click "OK".
+
+Expand "Certificates" and navigate to Untrusted Certificates >> Certificates.
+
+For each certificate with "US DoD CCEB Interoperability Root CA..." under "Issued By":
+
+Right-click on the certificate and select "Open".
+
+Select the "Details" tab.
+
+Scroll to the bottom and select "Thumbprint".
+
+If the certificate below is not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
+
+Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Thumbprint: Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025 9:56:22 AM
+
+```
+
+Updated:
+```
+Verify the US DOD CCEB Interoperability Root CA cross-certificate is installed on unclassified systems as an Untrusted Certificate.
+
+Run "PowerShell" as an administrator.
+
+Execute the following command:
+
+Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
+
+If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is a finding. 
+
+Subject: CN=DOD Root CA 3, OU=PKI, OU=DOD, O=U.S. Government, C=US
+Issuer: CN=US DOD CCEB Interoperability Root CA 2, OU=PKI, OU=DOD, O=U.S. Government, C=US
+Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025 9:56:22 A
+
+Alternately, use the Certificates MMC snap-in:
+
+Run "MMC".
+
+Select "File", then click "Add/Remove Snap-in".
+
+Select "Certificates", then click "Add".
+
+Select "Computer account", then click "Next".
+
+Select "Local computer: (the computer this console is running on)", then click "Finish".
+
+Click "OK".
+
+Expand "Certificates" and navigate to Untrusted Certificates >> Certificates.
+
+For each certificate with "US DOD CCEB Interoperability Root CA..." under "Issued By":
+
+Right-click on the certificate and select "Open".
+
+Select the "Details" tab.
+
+Scroll to the bottom and select "Thumbprint".
+
+If the certificate below is not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
+
+Subject: CN=DOD Root CA 3, OU=PKI, OU=DOD, O=U.S. Government, C=US
+Issuer: CN=US DOD CCEB Interoperability Root CA 2, OU=PKI, OU=DOD, O=U.S. Government, C=US
+Thumbprint: Thumbprint: 9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025 9:56:22 AM                                       
+Subject: CN=DOD Root CA 6, OU=PKI, OU=DOD, O=U.S. Government, C=US
+Issuer: CN=US DOD CCEB Interoperability Root CA 2, OU=PKI, OU=DOD, O=U.S. Government, C=US
+Thumbprint: D471CA32F7A692CE6CBB6196BD3377FE4DBCD106
+NotAfter: 7/18/2026 9:56:22 AM
+
+```
+---
+SV-253457:
+Old: 
+```
+If the following registry value does not exist or is not configured as specified, this is a finding:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
+
+Value Name: RestrictRemoteSAM
+
+Value Type: REG_SZ
+Value: O:BAG:BAD:(A;;RC;;;BA)
+
+```
+
+Updated:
+```
+If the following registry value does not exist or is not configured as specified, this is a finding:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
+
+Value Name: RestrictRemoteSAM
+
+Value Type: REG_SZ
+Value: O:BAG:BAD:(A;;RC;;;BA)
+
+If a domain application account such as for a management tool requires this user right, this would not be a finding.
+Vendor documentation must support the requirement for having the user right.
+The requirement must be documented with the ISSO.
+
+```
+---
+SV-253470:
+Old: 
+```
+If the system is not a member of a domain, this is Not Applicable.
+
+If one of the following settings does not exist and is not populated, this is a finding:
+
+\HKLM\SOFTWARE\Microsoft\Cryptography\Calais\Readers
+\HKLM\SOFTWARE\Microsoft\Cryptography\Calais\SmartCards
+
+```
+
+Updated:
+```
+If the system is not a member of a domain, this is Not Applicable.
+
+If all of the following settings exist and are populated, this is not a finding.
+
+\HKLM\SOFTWARE\Microsoft\Cryptography\Calais\Readers
+\HKLM\SOFTWARE\Microsoft\Cryptography\Calais\SmartCards
+
+```
+---
+SV-268318:
+Old: 
+```
+Verify the Windows 11 system is receiving policy from either group Policy or an MDM with the following steps:
+
+From a command line or PowerShell:
+
+gpresult /R
+OS Configuration: Member Workstation
+
+If the system is not being managed by GPO, ask the administrator to indicate which MDM is managing the device.
+
+If the Window 11 system is not receiving policy from either group Policy or an MDM, this is a finding.
+
+```
+
+Updated:
+```
+Verify the Windows 11 system is receiving policy from either group Policy or an MDM with the following steps:
+
+From a command line or PowerShell:
+
+gpresult /R
+OS Configuration: Member Workstation
+
+If the system is not being managed by GPO, ask the administrator to indicate which MDM is managing the device.
+
+If the Window 11 system is not receiving policy from either group Policy or an MDM, this is a finding.                      
+
+This is NA for standalone, nondomain joined systems.
+
+```
+---
+</details>
+
+#### Fixes:
+<details open>
+  <summary>Click to expand.</summary>
+SV-253351:
+Old: 
+```
+If the camera is not disconnected or covered, the following registry entry is required.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+RegistryPath\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam
+
+Value Name: Deny
+
+```
+New:
+```
+If the camera is not disconnected or covered, the following registry entry is required.
+ 
+Registry Hive: HKEY_LOCAL_MACHINE
+RegistryPath\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam
+
+Value Name: Value                                                                            Value Data: Deny
+
+```
+---
+SV-253430:
+Old: 
+```
+Install the US DoD CCEB Interoperability Root CA cross-certificate on unclassified systems.
+
+Issued To - Issued By - Thumbprint
+9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025 9:56:22 AM
+
+The certificates can be installed using the InstallRoot tool. The tool and user guide are available on Cyber Exchange at https://cyber.mil/pki-pke/tools-configuration-files. Certificate bundles published by the PKI can be found at https://crl.gds.disa.mil/.
+
+```
+New:
+```
+Install the US DOD CCEB Interoperability Root CA cross-certificate on unclassified systems.
+
+Issued To - Issued By - Thumbprint
+9B74964506C7ED9138070D08D5F8B969866560C8
+NotAfter: 7/18/2025 9:56:22 AM                                         
+Issued To: DOD Root CA 6
+Issued By: US DOD CCEB Interoperability Root CA 2
+Thumbprint: D471CA32F7A692CE6CBB6196BD3377FE4DBCD106
+NotAfter: 7/18/2026 
+
+The certificates can be installed using the InstallRoot tool. The tool and user guide are available on Cyber Exchange at https://cyber.mil/pki-pke/tools-configuration-files. Certificate bundles published by the PKI can be found at https://crl.gds.disa.mil/.
+
+```
+---
+</details>
+
+### Updated Impacts
+<details open>
+  <summary>Click to expand.</summary>
+SV-253254:
+Old: 0
+New: 0.5
+---
+SV-253255:
+Old: 0
+New: 0.5
+---
+SV-253256:
+Old: 0
+New: 0.5
+---
+SV-253257:
+Old: 0
+New: 0.5
+---
+SV-253259:
+Old: 0
+New: 0.7
+---
+SV-253260:
+Old: 0
+New: 0.7
+---
+SV-253261:
+Old: 0
+New: 0.5
+---
+SV-253262:
+Old: 0
+New: 0.5
+---
+SV-253265:
+Old: 0
+New: 0.7
+---
+SV-253267:
+Old: 0
+New: 0.5
+---
+SV-253268:
+Old: 0
+New: 0.3
+---
+SV-253269:
+Old: 0
+New: 0.7
+---
+SV-253270:
+Old: 0
+New: 0.5
+---
+SV-253271:
+Old: 0
+New: 0.5
+---
+SV-253284:
+Old: 0
+New: 0.7
+---
+SV-253286:
+Old: 0
+New: 0.5
+---
+SV-253287:
+Old: 0
+New: 0.5
+---
+SV-253288:
+Old: 0
+New: 0.5
+---
+SV-253291:
+Old: 0
+New: 0.5
+---
+SV-253292:
+Old: 0
+New: 0.5
+---
+SV-253293:
+Old: 0
+New: 0.5
+---
+SV-253350:
+Old: 0
+New: 0.5
+---
+SV-253357:
+Old: 0
+New: 0.5
+---
+SV-253360:
+Old: 0
+New: 0.5
+---
+SV-253362:
+Old: 0
+New: 0.5
+---
+SV-253364:
+Old: 0
+New: 0.5
+---
+SV-253366:
+Old: 0
+New: 0.5
+---
+SV-253368:
+Old: 0
+New: 0.5
+---
+SV-253369:
+Old: 0
+New: 0.5
+---
+SV-253370:
+Old: 0
+New: 0.7
+---
+SV-253371:
+Old: 0
+New: 0.5
+---
+SV-253377:
+Old: 0
+New: 0.5
+---
+SV-253379:
+Old: 0
+New: 0.5
+---
+SV-253380:
+Old: 0
+New: 0.5
+---
+SV-253381:
+Old: 0
+New: 0.5
+---
+SV-253389:
+Old: 0
+New: 0.5
+---
+SV-253392:
+Old: 0
+New: 0.5
+---
+SV-253395:
+Old: 0
+New: 0.5
+---
+SV-253399:
+Old: 0
+New: 0.5
+---
+SV-253400:
+Old: 0
+New: 0.5
+---
+SV-253422:
+Old: 0
+New: 0.5
+---
+SV-253426:
+Old: 0
+New: 0.5
+---
+SV-253427:
+Old: 0
+New: 0.5
+---
+SV-253428:
+Old: 0
+New: 0.5
+---
+SV-253429:
+Old: 0
+New: 0.5
+---
+SV-253430:
+Old: 0
+New: 0.5
+---
+SV-253457:
+Old: 0
+New: 0.5
+---
+SV-253470:
+Old: 0
+New: 0.5
+---
+SV-253492:
+Old: 0
+New: 0.5
+---
+SV-253493:
+Old: 0
+New: 0.5
+---
+</details>
+
+### Updated Titles
+<details>
+  <summary>Click to expand.</summary>
+SV-253430:
+Old: The US DoD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificates Store on unclassified systems.
+New: The US DOD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificates Store on unclassified systems.
+---
+</details>
+
+### Updated Descriptions
+<details>
+  <summary>Click to expand.</summary>
+SV-253265:
+Old:
+```
+The ability to set access permissions and auditing is critical to maintaining the security and proper access controls of a system.  To support this, volumes must be formatted using the NTFS file system.
+
+```
+New:
+```
+The ability to set access permissions and auditing is critical to maintaining the security and proper access controls of a system. To support this, volumes must be formatted using the NTFS file system.
+
+```
+---
+SV-253268:
+Old:
+```
+Outdated or unused accounts provide penetration points that may go undetected. Inactive accounts must be deleted if no longer necessary or, if still required, disable until needed.
+
+```
+New:
+```
+Outdated or unused accounts provide penetration points that may go undetected. Inactive accounts must be deleted if no longer necessary or, if still required, disable until needed.
+
+
+
+```
+---
+SV-253269:
+Old:
+```
+An account that does not have Administrator duties must not have Administrator rights.  Such rights would allow the account to bypass or modify required security restrictions on that machine and make it vulnerable to attack.
+
+System administrators must log on to systems only using accounts with the minimum level of authority necessary.
+
+For domain-joined workstations, the Domain Admins group must be replaced by a domain workstation administrator group (see V-36434 in the Active Directory Domain STIG).  Restricting highly privileged accounts from the local Administrators group helps mitigate the risk of privilege escalation resulting from credential theft attacks.
+
+Standard user accounts must not be members of the local administrators group.
+
+```
+New:
+```
+An account that does not have Administrator duties must not have Administrator rights. Such rights would allow the account to bypass or modify required security restrictions on that machine and make it vulnerable to attack.
+
+System administrators must log on to systems only using accounts with the minimum level of authority necessary.
+
+For domain-joined workstations, the Domain Admins group must be replaced by a domain workstation administrator group (see V-36434 in the Active Directory Domain STIG). Restricting highly privileged accounts from the local Administrators group helps mitigate the risk of privilege escalation resulting from credential theft attacks.
+
+Standard user accounts must not be members of the local administrators group.
+
+```
+---
+SV-253270:
+Old:
+```
+Backup Operators are able to read and write to any file in the system, regardless of the rights assigned to it.  Backup and restore rights permit users to circumvent the file access restrictions present on NTFS disk drives for backup and restore purposes.  Members of the Backup Operators group must have separate logon accounts for performing backup duties.
+
+```
+New:
+```
+Backup Operators are able to read and write to any file in the system, regardless of the rights assigned to it. Backup and restore rights permit users to circumvent the file access restrictions present on NTFS disk drives for backup and restore purposes. Members of the Backup Operators group must have separate logon accounts for performing backup duties.
+
+```
+---
+SV-253282:
+Old:
+```
+Allowing inbound access to domain workstations from other systems may allow lateral movement across systems if credentials are compromised.  Limiting inbound connections only from authorized remote management systems will help limit this exposure.
+
+```
+New:
+```
+Allowing inbound access to domain workstations from other systems may allow lateral movement across systems if credentials are compromised. Limiting inbound connections only from authorized remote management systems will help limit this exposure.
+
+```
+---
+SV-253285:
+Old:
+```
+Windows PowerShell 5.0 added advanced logging features which can provide additional detail when malware has been run on a system.  Disabling the Windows PowerShell 2.0 mitigates against a downgrade attack that evades the Windows PowerShell 5.0 script block logging feature.
+
+```
+New:
+```
+Windows PowerShell 5.0 added advanced logging features which can provide additional detail when malware has been run on a system. Disabling the Windows PowerShell 2.0 mitigates against a downgrade attack that evades the Windows PowerShell 5.0 script block logging feature.
+
+```
+---
+SV-253286:
+Old:
+```
+This control is not applicable, as controls V-74725 is configured
+
+```
+New:
+```
+SMBv1 is a legacy protocol that uses the MD5 algorithm as part of SMB. MD5 is known to be vulnerable to a number of attacks such as collision and preimage attacks as well as not being FIPS compliant.
+
+Disabling SMBv1 support may prevent access to file or print sharing resources with systems or devices that only support SMBv1. File shares and print services hosted on Windows Server 2003 are an example, however Windows Server 2003 is no longer a supported operating system. Some older Network Attached Storage (NAS) devices may only support SMBv1.
+
+```
+---
+SV-253287:
+Old:
+```
+SMBv1 is not installed on this system, therefore this control is not applicable
+
+```
+New:
+```
+SMBv1 is a legacy protocol that uses the MD5 algorithm as part of SMB. MD5 is known to be vulnerable to a number of attacks such as collision and preimage attacks as well as not being FIPS compliant.
+
+Disabling SMBv1 support may prevent access to file or print sharing resources with systems or devices that only support SMBv1. File shares and print services hosted on Windows Server 2003 are an example, however Windows Server 2003 is no longer a supported operating system. Some older network attached devices may only support SMBv1.
+
+```
+---
+SV-253289:
+Old:
+```
+The Secondary Logon service provides a means for entering alternate credentials, typically used to run commands with elevated privileges.  Using privileged credentials in a standard user session can expose those credentials to theft.
+
+```
+New:
+```
+The Secondary Logon service provides a means for entering alternate credentials, typically used to run commands with elevated privileges. Using privileged credentials in a standard user session can expose those credentials to theft.
+
+```
+---
+SV-253290:
+Old:
+```
+Accounts or groups given rights on a system may show up as unresolved SIDs for various reasons including deletion of the accounts or groups.  If the account or group objects are reanimated, there is a potential they may still have rights no longer intended.  Valid domain accounts or groups may also show up as unresolved SIDs if a connection to the domain cannot be established for some reason.
+
+```
+New:
+```
+Accounts or groups given rights on a system may show up as unresolved SIDs for various reasons including deletion of the accounts or groups. If the account or group objects are reanimated, there is a potential they may still have rights no longer intended. Valid domain accounts or groups may also show up as unresolved SIDs if a connection to the domain cannot be established for some reason.
+
+```
+---
+SV-253297:
+Old:
+```
+The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.
+
+```
+New:
+```
+The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.
+
+```
+---
+SV-253298:
+Old:
+```
+The account lockout feature, when enabled, prevents brute-force password attacks on the system.  The higher this value is, the less effective the account lockout feature will be in protecting the local system.  The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack, while allowing for honest errors made during a normal user logon.
+
+```
+New:
+```
+The account lockout feature, when enabled, prevents brute-force password attacks on the system. The higher this value is, the less effective the account lockout feature will be in protecting the local system. The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack, while allowing for honest errors made during a normal user logon.
+
+```
+---
+SV-253299:
+Old:
+```
+The account lockout feature, when enabled, prevents brute-force password attacks on the system.  This parameter specifies the period of time that must pass after failed logon attempts before the counter is reset to 0.  The smaller this value is, the less effective the account lockout feature will be in protecting the local system.
+
+```
+New:
+```
+The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that must pass after failed logon attempts before the counter is reset to 0. The smaller this value is, the less effective the account lockout feature will be in protecting the local system.
+
+```
+---
+SV-253304:
+Old:
+```
+The use of complex passwords increases their strength against guessing and brute-force attacks.  This setting configures the system to verify that newly created passwords conform to the Windows password complexity policy.
+
+```
+New:
+```
+The use of complex passwords increases their strength against guessing and brute-force attacks. This setting configures the system to verify that newly created passwords conform to the Windows password complexity policy.
+
+```
+---
+SV-253306:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Credential validation records events related to validation tests on credentials for a user account logon.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Credential validation records events related to validation tests on credentials for a user account logon.
+
+```
+---
+SV-253307:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Credential validation records events related to validation tests on credentials for a user account logon.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Credential validation records events related to validation tests on credentials for a user account logon.
+
+```
+---
+SV-253308:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Security Group Management records events such as creating, deleting or changing of security groups, including changes in group members.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Security Group Management records events such as creating, deleting or changing of security groups, including changes in group members.
+
+```
+---
+SV-253309:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+User Account Management records events such as creating, changing, deleting, renaming, disabling, or enabling user accounts.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+User Account Management records events such as creating, changing, deleting, renaming, disabling, or enabling user accounts.
+
+```
+---
+SV-253310:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+User Account Management records events such as creating, changing, deleting, renaming, disabling, or enabling user accounts.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+User Account Management records events such as creating, changing, deleting, renaming, disabling, or enabling user accounts.
+
+```
+---
+SV-253315:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Logoff records user logoffs. If this is an interactive logoff, it is recorded on the local system. If it is to a network share, it is recorded on the system accessed.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Logoff records user logoffs. If this is an interactive logoff, it is recorded on the local system. If it is to a network share, it is recorded on the system accessed.
+
+```
+---
+SV-253316:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Logon records user logons. If this is an interactive logon, it is recorded on the local system. If it is to a network share, it is recorded on the system accessed.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Logon records user logons. If this is an interactive logon, it is recorded on the local system. If it is to a network share, it is recorded on the system accessed.
+
+```
+---
+SV-253317:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Logon records user logons. If this is an interactive logon, it is recorded on the local system. If it is to a network share, it is recorded on the system accessed.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Logon records user logons. If this is an interactive logon, it is recorded on the local system. If it is to a network share, it is recorded on the system accessed.
+
+```
+---
+SV-253318:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Special Logon records special logons which have administrative privileges and can be used to elevate processes.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Special Logon records special logons which have administrative privileges and can be used to elevate processes.
+
+```
+---
+SV-253323:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Auditing object access for removable media records events related to access attempts on file system objects on removable storage devices.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Auditing object access for removable media records events related to access attempts on file system objects on removable storage devices.
+
+```
+---
+SV-253324:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Auditing object access for removable media records events related to access attempts on file system objects on removable storage devices.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Auditing object access for removable media records events related to access attempts on file system objects on removable storage devices.
+
+```
+---
+SV-253325:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Audit Policy Change records events related to changes in audit policy.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Audit Policy Change records events related to changes in audit policy.
+
+```
+---
+SV-253326:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Authentication Policy Change records events related to changes in authentication policy including Kerberos policy and Trust changes.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Authentication Policy Change records events related to changes in authentication policy including Kerberos policy and Trust changes.
+
+```
+---
+SV-253328:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Sensitive Privilege Use records events related to use of sensitive privileges, such as "Act as part of the operating system" or "Debug programs".
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Sensitive Privilege Use records events related to use of sensitive privileges, such as "Act as part of the operating system" or "Debug programs".
+
+```
+---
+SV-253329:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Sensitive Privilege Use records events related to use of sensitive privileges, such as "Act as part of the operating system" or "Debug programs".
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Sensitive Privilege Use records events related to use of sensitive privileges, such as "Act as part of the operating system" or "Debug programs".
+
+```
+---
+SV-253333:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Security State Change records events related to changes in the security state, such as startup and shutdown of the system.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Security State Change records events related to changes in the security state, such as startup and shutdown of the system.
+
+```
+---
+SV-253334:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Security System Extension records events related to extension code being loaded by the security subsystem.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Security System Extension records events related to extension code being loaded by the security subsystem.
+
+```
+---
+SV-253335:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+System Integrity records events related to violations of integrity to the security subsystem.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+System Integrity records events related to violations of integrity to the security subsystem.
+
+```
+---
+SV-253336:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+System Integrity records events related to violations of integrity to the security subsystem.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+System Integrity records events related to violations of integrity to the security subsystem.
+
+```
+---
+SV-253337:
+Old:
+```
+Inadequate log size will cause the log to fill up quickly.  This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.
+
+```
+New:
+```
+Inadequate log size will cause the log to fill up quickly. This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.
+
+```
+---
+SV-253338:
+Old:
+```
+Inadequate log size will cause the log to fill up quickly.  This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.
+
+```
+New:
+```
+Inadequate log size will cause the log to fill up quickly. This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.
+
+```
+---
+SV-253339:
+Old:
+```
+Inadequate log size will cause the log to fill up quickly.  This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.
+
+```
+New:
+```
+Inadequate log size will cause the log to fill up quickly. This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.
+
+```
+---
+SV-253340:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  The Application event log may be  susceptible to tampering if proper permissions are not applied.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The Application event log may be susceptible to tampering if proper permissions are not applied.
+
+```
+---
+SV-253341:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  The Security event log may disclose sensitive information or be  susceptible to tampering if proper permissions are not applied.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The Security event log may disclose sensitive information or be susceptible to tampering if proper permissions are not applied.
+
+```
+---
+SV-253342:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  The System event log may be  susceptible to tampering if proper permissions are not applied.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The System event log may be susceptible to tampering if proper permissions are not applied.
+
+```
+---
+SV-253350:
+Old:
+```
+Enabling camera access from the lock screen could allow for unauthorized use.  Requiring logon will ensure the device is only used by authorized personnel.
+
+```
+New:
+```
+Enabling camera access from the lock screen could allow for unauthorized use. Requiring logon will ensure the device is only used by authorized personnel.
+
+```
+---
+SV-253351:
+Old:
+```
+It is detrimental for operating systems to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors.
+
+Failing to disconnect from collaborative computing devices (i.e. cameras) can result in subsequent compromises of organizational information. Providing easy methods to physically disconnect from such devices after a collaborative computing session helps to ensure that participants actually carry out the disconnect activity without having to go through complex and tedious procedures.
+
+```
+New:
+```
+It is detrimental for operating systems to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors.
+
+Failing to disconnect from collaborative computing devices (i.e. cameras) can result in subsequent compromises of organizational information. Providing easy methods to physically disconnect from such devices after a collaborative computing session helps to ensure that participants actually carry out the disconnect activity without having to go through complex and tedious procedures.
+
+
+
+```
+---
+SV-253352:
+Old:
+```
+Slide shows that are displayed on the lock screen could display sensitive information to unauthorized personnel.  Turning off this feature will limit access to the information to a logged on user.
+
+```
+New:
+```
+Slide shows that are displayed on the lock screen could display sensitive information to unauthorized personnel. Turning off this feature will limit access to the information to a logged on user.
+
+```
+---
+SV-253355:
+Old:
+```
+Allowing ICMP redirect of routes can lead to traffic not being routed properly.   When disabled, this forces ICMP to be routed via shortest path first.
+
+```
+New:
+```
+Allowing ICMP redirect of routes can lead to traffic not being routed properly.  When disabled, this forces ICMP to be routed via shortest path first.
+
+```
+---
+SV-253359:
+Old:
+```
+The "Run as different user" selection from context menus allows the use of credentials other than the currently logged on user.  Using privileged credentials in a standard user session can expose those credentials to theft.  Removing this option from context menus helps prevent this from occurring.
+
+```
+New:
+```
+The "Run as different user" selection from context menus allows the use of credentials other than the currently logged on user. Using privileged credentials in a standard user session can expose those credentials to theft. Removing this option from context menus helps prevent this from occurring.
+
+```
+---
+SV-253360:
+Old:
+```
+Insecure guest logons allow unauthenticated access to shared folders.  Shared resources on a system must require authentication to establish proper access.
+
+```
+New:
+```
+Insecure guest logons allow unauthenticated access to shared folders. Shared resources on a system must require authentication to establish proper access.
+
+```
+---
+SV-253361:
+Old:
+```
+Internet connection sharing makes it possible for an existing internet connection, such as through wireless, to be shared and used by other systems essentially creating a mobile hotspot.  This exposes the system sharing the connection to others with potentially malicious purpose.
+
+```
+New:
+```
+Internet connection sharing makes it possible for an existing internet connection, such as through wireless, to be shared and used by other systems essentially creating a mobile hotspot. This exposes the system sharing the connection to others with potentially malicious purpose.
+
+```
+---
+SV-253363:
+Old:
+```
+Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. By default Windows uses ECC curves with shorter key lengths first.  Requiring ECC curves with longer key lengths to be prioritized first helps ensure more secure algorithms are used.
+
+```
+New:
+```
+Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. By default Windows uses ECC curves with shorter key lengths first. Requiring ECC curves with longer key lengths to be prioritized first helps ensure more secure algorithms are used.
+
+```
+---
+SV-253366:
+Old:
+```
+Wi-Fi Sense automatically connects the system to known hotspots and networks that contacts have shared.  It also allows the sharing of the system's known networks to contacts.  Automatically connecting to hotspots and shared networks can expose a system to unsecured or potentially malicious systems.
+
+```
+New:
+```
+Wi-Fi Sense automatically connects the system to known hotspots and networks that contacts have shared. It also allows the sharing of the system's known networks to contacts. Automatically connecting to hotspots and shared networks can expose a system to unsecured or potentially malicious systems.
+
+```
+---
+SV-253367:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Enabling "Include command line data for process creation events" will record the command line information with the process creation events in the log.  This can provide additional detail when malware has run on a system.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Enabling "Include command line data for process creation events" will record the command line information with the process creation events in the log. This can provide additional detail when malware has run on a system.
+
+```
+---
+SV-253368:
+Old:
+```
+An exportable version of credentials is provided to remote hosts when using credential delegation which exposes them to theft on the remote host.  Restricted Admin mode or Remote Credential Guard allow delegation of non-exportable credentials providing additional protection of the credentials.  Enabling this configures the host to support Restricted Admin mode or Remote Credential Guard.
+
+```
+New:
+```
+An exportable version of credentials is provided to remote hosts when using credential delegation which exposes them to theft on the remote host. Restricted Admin mode or Remote Credential Guard allow delegation of non-exportable credentials providing additional protection of the credentials. Enabling this configures the host to support Restricted Admin mode or Remote Credential Guard.
+
+```
+---
+SV-253374:
+Old:
+```
+Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  This setting prevents the computer from downloading print driver packages over HTTP.
+
+```
+New:
+```
+Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system. This setting prevents the computer from downloading print driver packages over HTTP.
+
+```
+---
+SV-253375:
+Old:
+```
+Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  This setting prevents Windows from downloading a list of providers for the Web publishing and online ordering wizards.
+
+```
+New:
+```
+Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system. This setting prevents Windows from downloading a list of providers for the Web publishing and online ordering wizards.
+
+```
+---
+SV-253377:
+Old:
+```
+Using certificates to authenticate devices to the domain provides increased security over passwords.  By default systems will attempt to authenticate using certificates and fall back to passwords if the domain controller does not support certificates for devices.  This may also be configured to always use certificates for device authentication.
+
+```
+New:
+```
+Using certificates to authenticate devices to the domain provides increased security over passwords. By default systems will attempt to authenticate using certificates and fall back to passwords if the domain controller does not support certificates for devices. This may also be configured to always use certificates for device authentication.
+
+```
+---
+SV-253382:
+Old:
+```
+Remote assistance allows another user to view or take control of the local session of a user.  Solicited assistance is help that is specifically requested by the local user.  This may allow unauthorized parties access to the resources on the computer.
+
+```
+New:
+```
+Remote assistance allows another user to view or take control of the local session of a user. Solicited assistance is help that is specifically requested by the local user. This may allow unauthorized parties access to the resources on the computer.
+
+```
+---
+SV-253384:
+Old:
+```
+Control of credentials and the system must be maintained within the enterprise.  Enabling this setting allows enterprise credentials to be used with modern style apps that support this, instead of Microsoft accounts.
+
+```
+New:
+```
+Control of credentials and the system must be maintained within the enterprise. Enabling this setting allows enterprise credentials to be used with modern style apps that support this, instead of Microsoft accounts.
+
+```
+---
+SV-253385:
+Old:
+```
+Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  This setting will prevent the Program Inventory from collecting data about a system and sending the information to Microsoft.
+
+```
+New:
+```
+Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system. This setting will prevent the Program Inventory from collecting data about a system and sending the information to Microsoft.
+
+```
+---
+SV-253387:
+Old:
+```
+Allowing autorun commands to execute may introduce malicious code to a system.  Configuring this setting prevents autorun commands from executing.
+
+```
+New:
+```
+Allowing autorun commands to execute may introduce malicious code to a system. Configuring this setting prevents autorun commands from executing.
+
+```
+---
+SV-253391:
+Old:
+```
+Enumeration of administrator accounts when elevating can provide part of the logon information to an unauthorized user.  This setting configures the system to always require users to type in a username and password to elevate a running application.
+
+```
+New:
+```
+Enumeration of administrator accounts when elevating can provide part of the logon information to an unauthorized user. This setting configures the system to always require users to type in a username and password to elevate a running application.
+
+```
+---
+SV-253396:
+Old:
+```
+Data Execution Prevention (DEP) provides additional protection by performing  checks on memory to help prevent malicious code from running.  This setting will prevent Data Execution Prevention from being turned off for File Explorer.
+
+```
+New:
+```
+Data Execution Prevention (DEP) provides additional protection by performing checks on memory to help prevent malicious code from running. This setting will prevent Data Execution Prevention from being turned off for File Explorer.
+
+```
+---
+SV-253397:
+Old:
+```
+Legacy plug-in applications may continue to function when a File Explorer session has become corrupt.  Disabling this feature will prevent this.
+
+```
+New:
+```
+Legacy plug-in applications may continue to function when a File Explorer session has become corrupt. Disabling this feature will prevent this.
+
+```
+---
+SV-253398:
+Old:
+```
+The shell protocol will  limit the set of folders applications can open when run in protected mode.  Restricting files an application can open, to a limited set of folders, increases the security of Windows.
+
+```
+New:
+```
+The shell protocol will limit the set of folders applications can open when run in protected mode. Restricting files an application can open, to a limited set of folders, increases the security of Windows.
+
+```
+---
+SV-253400:
+Old:
+```
+The use of a Trusted Platform Module (TPM) to store keys for Windows Hello for Business provides additional security.  Keys stored in the TPM may only be used on that system while keys stored using software are more susceptible to compromise and could be used on other systems.
+
+```
+New:
+```
+The use of a Trusted Platform Module (TPM) to store keys for Windows Hello for Business provides additional security. Keys stored in the TPM may only be used on that system while keys stored using software are more susceptible to compromise and could be used on other systems.
+
+```
+---
+SV-253401:
+Old:
+```
+Windows allows the use of PINs as well as biometrics for authentication without sending a password to a network or website where it could be compromised.  Longer minimum PIN lengths increase the available combinations an attacker would have to attempt.  Shorter minimum length significantly reduces the strength.
+
+```
+New:
+```
+Windows allows the use of PINs as well as biometrics for authentication without sending a password to a network or website where it could be compromised. Longer minimum PIN lengths increase the available combinations an attacker would have to attempt. Shorter minimum length significantly reduces the strength.
+
+```
+---
+SV-253407:
+Old:
+```
+Attachments from RSS feeds may not be secure.  This setting will prevent attachments from being downloaded from RSS feeds.
+
+```
+New:
+```
+Attachments from RSS feeds may not be secure. This setting will prevent attachments from being downloaded from RSS feeds.
+
+```
+---
+SV-253409:
+Old:
+```
+Indexing of encrypted files may expose sensitive data.  This setting prevents encrypted files from being indexed.
+
+```
+New:
+```
+Indexing of encrypted files may expose sensitive data. This setting prevents encrypted files from being indexed.
+
+```
+---
+SV-253412:
+Old:
+```
+Web-based programs may attempt to install malicious software on a system.  Ensuring users are notified if a web-based program attempts to install software allows them to refuse the installation.
+
+```
+New:
+```
+Web-based programs may attempt to install malicious software on a system. Ensuring users are notified if a web-based program attempts to install software allows them to refuse the installation.
+
+```
+---
+SV-253413:
+Old:
+```
+Windows can be configured to automatically sign the user back in after a Windows Update restart.  Some protections are in place to help ensure this is done in a secure fashion; however, disabling this will prevent the caching of credentials for this purpose and also ensure the user is aware of the restart.
+
+```
+New:
+```
+Windows can be configured to automatically sign the user back in after a Windows Update restart. Some protections are in place to help ensure this is done in a secure fashion; however, disabling this will prevent the caching of credentials for this purpose and also ensure the user is aware of the restart.
+
+```
+---
+SV-253414:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Enabling PowerShell script block logging will record detailed information from the processing of PowerShell commands and scripts.  This can provide additional detail when malware has run on a system.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Enabling PowerShell script block logging will record detailed information from the processing of PowerShell commands and scripts. This can provide additional detail when malware has run on a system.
+
+```
+---
+SV-253417:
+Old:
+```
+Unencrypted remote access to a system can allow sensitive information to be compromised.  Windows remote management connections must be encrypted to prevent this.
+
+```
+New:
+```
+Unencrypted remote access to a system can allow sensitive information to be compromised. Windows remote management connections must be encrypted to prevent this.
+
+```
+---
+SV-253419:
+Old:
+```
+Unencrypted remote access to a system can allow sensitive information to be compromised.  Windows remote management connections must be encrypted to prevent this.
+
+```
+New:
+```
+Unencrypted remote access to a system can allow sensitive information to be compromised. Windows remote management connections must be encrypted to prevent this.
+
+```
+---
+SV-253430:
+Old:
+```
+To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the US DoD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
+
+```
+New:
+```
+To ensure users do not experience denial of service when performing certificate-based authentication to DOD websites due to the system chaining to a root other than DOD Root CAs, the US DOD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.
+
+```
+---
+SV-253431:
+Old:
+```
+The registry is integral to the function, security, and stability of the Windows system.  Changing the system's registry permissions allows the possibility of unauthorized and anonymous modification to the operating system.
+
+```
+New:
+```
+The registry is integral to the function, security, and stability of the Windows system. Changing the system's registry permissions allows the possibility of unauthorized and anonymous modification to the operating system.
+
+```
+---
+SV-253432:
+Old:
+```
+The built-in administrator account is a well-known account subject to attack.  It also provides no accountability to individual administrators on a system.  It must be disabled to prevent its use.
+
+```
+New:
+```
+The built-in administrator account is a well-known account subject to attack. It also provides no accountability to individual administrators on a system. It must be disabled to prevent its use.
+
+```
+---
+SV-253433:
+Old:
+```
+A system faces an increased vulnerability threat if the built-in guest account is not disabled.  This account is a known account that exists on all Windows systems and cannot be deleted.  This account is initialized during the installation of the operating system with no password assigned.
+
+```
+New:
+```
+A system faces an increased vulnerability threat if the built-in guest account is not disabled. This account is a known account that exists on all Windows systems and cannot be deleted. This account is initialized during the installation of the operating system with no password assigned.
+
+```
+---
+SV-253435:
+Old:
+```
+The built-in administrator account is a well-known account subject to attack.  Renaming this account to an unidentified name improves the protection of this account and the system.
+
+```
+New:
+```
+The built-in administrator account is a well-known account subject to attack. Renaming this account to an unidentified name improves the protection of this account and the system.
+
+```
+---
+SV-253436:
+Old:
+```
+The built-in guest account is a well-known user account on all Windows systems and, as initially installed, does not require a password.  This can allow access to system resources by unauthorized users.  Renaming this account to an unidentified name improves the protection of this account and the system.
+
+```
+New:
+```
+The built-in guest account is a well-known user account on all Windows systems and, as initially installed, does not require a password. This can allow access to system resources by unauthorized users. Renaming this account to an unidentified name improves the protection of this account and the system.
+
+```
+---
+SV-253437:
+Old:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.  This setting allows administrators to enable more precise auditing capabilities.
+
+```
+New:
+```
+Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. This setting allows administrators to enable more precise auditing capabilities.
+
+```
+---
+SV-253438:
+Old:
+```
+Requests sent on the secure channel are authenticated, and sensitive information (such as passwords) is encrypted, but not all information is encrypted.  If this policy is enabled, outgoing secure channel traffic will be encrypted and signed.
+
+```
+New:
+```
+Requests sent on the secure channel are authenticated, and sensitive information (such as passwords) is encrypted, but not all information is encrypted. If this policy is enabled, outgoing secure channel traffic will be encrypted and signed.
+
+```
+---
+SV-253440:
+Old:
+```
+Requests sent on the secure channel are authenticated, and sensitive information (such as passwords) is encrypted, but the channel is not integrity checked.  If this policy is enabled, outgoing secure channel traffic will be signed.
+
+```
+New:
+```
+Requests sent on the secure channel are authenticated, and sensitive information (such as passwords) is encrypted, but the channel is not integrity checked. If this policy is enabled, outgoing secure channel traffic will be signed.
+
+```
+---
+SV-253442:
+Old:
+```
+Computer account passwords are changed automatically on a regular basis.  This setting controls the maximum password age that a machine account may have.  This setting must be set to no more than 30 days, ensuring the machine changes its password monthly.
+
+```
+New:
+```
+Computer account passwords are changed automatically on a regular basis. This setting controls the maximum password age that a machine account may have. This setting must be set to no more than 30 days, ensuring the machine changes its password monthly.
+
+```
+---
+SV-253443:
+Old:
+```
+A computer connecting to a domain controller will establish a secure channel.  Requiring strong session keys enforces 128-bit encryption between systems.
+
+```
+New:
+```
+A computer connecting to a domain controller will establish a secure channel. Requiring strong session keys enforces 128-bit encryption between systems.
+
+```
+---
+SV-253444:
+Old:
+```
+Unattended systems are susceptible to unauthorized use and must be locked when unattended. The screen saver must be set at a maximum of 15 minutes and be password protected. This protects critical and sensitive data from exposure to unauthorized personnel with physical access to the computer.
+
+```
+New:
+```
+Unattended systems are susceptible to unauthorized use and must be locked when unattended. The screen saver must be set at a maximum of 15 minutes and be password protected. This protects critical and sensitive data from exposure to unauthorized personnel with physical access to the computer.
+
+
+
+```
+---
+SV-253445:
+Old:
+```
+Failure to display the logon banner prior to a logon attempt will negate legal proceedings resulting from unauthorized access to system resources.
+
+```
+New:
+```
+Failure to display the logon banner prior to a logon attempt will negate legal proceedings resulting from unauthorized access to system resources.
+
+
+
+```
+---
+SV-253447:
+Old:
+```
+The default Windows configuration caches the last logon credentials for users who log on interactively to a system.  This feature is provided for system availability reasons, such as the user's machine being disconnected from the network or domain controllers being unavailable.  Even though the credential cache is well-protected, if a system is attacked, an unauthorized individual may isolate the password to a domain user account using a password-cracking program and gain access to the domain.
+
+```
+New:
+```
+The default Windows configuration caches the last logon credentials for users who log on interactively to a system. This feature is provided for system availability reasons, such as the user's machine being disconnected from the network or domain controllers being unavailable. Even though the credential cache is well-protected, if a system is attacked, an unauthorized individual may isolate the password to a domain user account using a password-cracking program and gain access to the domain.
+
+```
+---
+SV-253448:
+Old:
+```
+Unattended systems are susceptible to unauthorized use and must be locked.  Configuring a system to lock when a smart card is removed will ensure the system is inaccessible when unattended.
+
+```
+New:
+```
+Unattended systems are susceptible to unauthorized use and must be locked. Configuring a system to lock when a smart card is removed will ensure the system is inaccessible when unattended.
+
+```
+---
+SV-253449:
+Old:
+```
+The server message block (SMB) protocol provides the basis for many network operations.  Digitally signed SMB packets aid in preventing man-in-the-middle attacks.  If this policy is enabled, the SMB client will only communicate with an SMB server that performs SMB packet signing.
+
+```
+New:
+```
+The server message block (SMB) protocol provides the basis for many network operations. Digitally signed SMB packets aid in preventing man-in-the-middle attacks. If this policy is enabled, the SMB client will only communicate with an SMB server that performs SMB packet signing.
+
+```
+---
+SV-253450:
+Old:
+```
+Some non-Microsoft SMB servers only support unencrypted (plain text) password authentication.  Sending plain text passwords across the network, when authenticating to an SMB server, reduces the overall security of the environment.  Check with the vendor of the SMB server to see if there is a way to support encrypted password authentication.
+
+```
+New:
+```
+Some non-Microsoft SMB servers only support unencrypted (plain text) password authentication. Sending plain text passwords across the network, when authenticating to an SMB server, reduces the overall security of the environment. Check with the vendor of the SMB server to see if there is a way to support encrypted password authentication.
+
+```
+---
+SV-253451:
+Old:
+```
+The server message block (SMB) protocol provides the basis for many network operations.  Digitally signed SMB packets aid in preventing man-in-the-middle attacks.  If this policy is enabled, the SMB server will only communicate with an SMB client that performs SMB packet signing.
+
+```
+New:
+```
+The server message block (SMB) protocol provides the basis for many network operations. Digitally signed SMB packets aid in preventing man-in-the-middle attacks. If this policy is enabled, the SMB server will only communicate with an SMB client that performs SMB packet signing.
+
+```
+---
+SV-253452:
+Old:
+```
+Allowing anonymous SID/Name translation can provide sensitive information for accessing a system.  Only authorized users must be able to perform such translations.
+
+```
+New:
+```
+Allowing anonymous SID/Name translation can provide sensitive information for accessing a system. Only authorized users must be able to perform such translations.
+
+```
+---
+SV-253455:
+Old:
+```
+Access by anonymous users must be restricted.  If this setting is enabled, then anonymous users have the same rights and permissions as the built-in Everyone group.  Anonymous users must not have these permissions or rights.
+
+```
+New:
+```
+Access by anonymous users must be restricted. If this setting is enabled, then anonymous users have the same rights and permissions as the built-in Everyone group. Anonymous users must not have these permissions or rights.
+
+```
+---
+SV-253456:
+Old:
+```
+Allowing anonymous access to named pipes or shares provides the potential for unauthorized system access.  This setting restricts access to those defined in "Network access: Named Pipes that can be accessed anonymously" and "Network access: Shares that can be accessed anonymously",  both of which must be blank under other requirements.
+
+```
+New:
+```
+Allowing anonymous access to named pipes or shares provides the potential for unauthorized system access. This setting restricts access to those defined in "Network access: Named Pipes that can be accessed anonymously" and "Network access: Shares that can be accessed anonymously", both of which must be blank under other requirements.
+
+```
+---
+SV-253457:
+Old:
+```
+The Windows Security Account Manager (SAM) stores users' passwords.  Restricting remote rpc connections to the SAM to Administrators helps protect those credentials.
+
+```
+New:
+```
+The Windows SAM stores users' passwords. Restricting remote rpc connections to the SAM to Administrators helps protect those credentials.
+
+```
+---
+SV-253459:
+Old:
+```
+PKU2U is a peer-to-peer authentication protocol.   This setting prevents online identities from authenticating to domain-joined systems.  Authentication will be centrally managed with Windows user accounts.
+
+```
+New:
+```
+PKU2U is a peer-to-peer authentication protocol.  This setting prevents online identities from authenticating to domain-joined systems. Authentication will be centrally managed with Windows user accounts.
+
+```
+---
+SV-253460:
+Old:
+```
+Certain encryption types are no longer considered secure.  This setting configures a minimum encryption type for Kerberos, preventing the use of the DES and RC4 encryption suites.
+
+```
+New:
+```
+Certain encryption types are no longer considered secure. This setting configures a minimum encryption type for Kerberos, preventing the use of the DES and RC4 encryption suites.
+
+```
+---
+SV-253462:
+Old:
+```
+The Kerberos v5 authentication protocol is the default for authentication of users who are logging on to domain accounts.  NTLM, which is less secure, is retained in later Windows versions  for compatibility with clients and servers that are running earlier versions of Windows or applications that still use it.  It is also used to authenticate logons to stand-alone computers that are running later versions.
+
+```
+New:
+```
+The Kerberos v5 authentication protocol is the default for authentication of users who are logging on to domain accounts. NTLM, which is less secure, is retained in later Windows versions for compatibility with clients and servers that are running earlier versions of Windows or applications that still use it. It is also used to authenticate logons to stand-alone computers that are running later versions.
+
+```
+---
+SV-253463:
+Old:
+```
+This setting controls the signing requirements for LDAP clients.  This setting must be set to Negotiate signing or Require signing, depending on the environment and type of LDAP server in use.
+
+```
+New:
+```
+This setting controls the signing requirements for LDAP clients. This setting must be set to Negotiate signing or Require signing, depending on the environment and type of LDAP server in use.
+
+```
+---
+SV-253464:
+Old:
+```
+Microsoft has implemented a variety of security support providers for use with RPC sessions.  All of the options must be enabled to ensure the maximum security level.
+
+```
+New:
+```
+Microsoft has implemented a variety of security support providers for use with RPC sessions. All of the options must be enabled to ensure the maximum security level.
+
+```
+---
+SV-253465:
+Old:
+```
+Microsoft has implemented a variety of security support providers for use with RPC sessions.  All of the options must be enabled to ensure the maximum security level.
+
+```
+New:
+```
+Microsoft has implemented a variety of security support providers for use with RPC sessions. All of the options must be enabled to ensure the maximum security level.
+
+```
+---
+SV-253466:
+Old:
+```
+This setting ensures that the system uses algorithms that are FIPS-compliant for encryption, hashing, and signing.  FIPS-compliant algorithms meet specific standards established by the U.S. Government and must be the algorithms used for all OS encryption functions.
+
+```
+New:
+```
+This setting ensures that the system uses algorithms that are FIPS-compliant for encryption, hashing, and signing. FIPS-compliant algorithms meet specific standards established by the U.S. Government and must be the algorithms used for all OS encryption functions.
+
+```
+---
+SV-253469:
+Old:
+```
+User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized.  This setting configures the elevation requirements for logged on administrators to complete a task that requires raised privileges.
+
+```
+New:
+```
+User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting configures the elevation requirements for logged on administrators to complete a task that requires raised privileges.
+
+```
+---
+SV-253470:
+Old:
+```
+Without the use of multifactor authentication, the ease of access to privileged and nonprivileged functions is greatly increased.
+
+All domain accounts must be enabled for multifactor authentication with the exception of local emergency accounts.
+
+Multifactor authentication requires using two or more factors to achieve authentication.
+
+Factors include:
+
+1) Something a user knows (e.g., password/PIN);
+2) Something a user has (e.g., cryptographic identification device, token); and
+3) Something a user is (e.g., biometric).
+
+A privileged account is defined as an information system account with authorizations of a privileged user.
+
+Network access is defined as access to an information system by a user (or a process acting on behalf of a user) communicating through a network (e.g., local area network, wide area network, or the internet).
+
+Local access is defined as access to an organizational information system by a user (or process acting on behalf of a user) communicating through a direct connection without the use of a network.
+
+The DoD CAC with DoD-approved PKI is an example of multifactor authentication.
+
+```
+New:
+```
+Without the use of multifactor authentication, the ease of access to privileged and nonprivileged functions is greatly increased. 
+
+All domain accounts must be enabled for multifactor authentication with the exception of local emergency accounts. 
+
+Multifactor authentication requires using two or more factors to achieve authentication.
+
+Factors include: 
+
+1) Something a user knows (e.g., password/PIN);
+
+2) Something a user has (e.g., cryptographic identification device, token); and
+
+3) Something a user is (e.g., biometric).
+
+A privileged account is defined as an information system account with authorizations of a privileged user.
+
+Network access is defined as access to an information system by a user (or a process acting on behalf of a user) communicating through a network (e.g., local area network, wide area network, or the internet).
+
+Local access is defined as access to an organizational information system by a user (or process acting on behalf of a user) communicating through a direct connection without the use of a network.
+
+The DoD CAC with DoD-approved PKI is an example of multifactor authentication.
+
+
+
+```
+---
+SV-253472:
+Old:
+```
+User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized.  This setting requires Windows to respond to application installation requests by prompting for credentials.
+
+```
+New:
+```
+User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting requires Windows to respond to application installation requests by prompting for credentials.
+
+```
+---
+SV-253473:
+Old:
+```
+User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized.  This setting configures Windows to only allow applications installed in a secure location on the file system, such as the Program Files or the Windows\System32 folders, to run with elevated privileges.
+
+```
+New:
+```
+User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting configures Windows to only allow applications installed in a secure location on the file system, such as the Program Files or the Windows\System32 folders, to run with elevated privileges.
+
+```
+---
+SV-253475:
+Old:
+```
+User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized.  This setting configures non-UAC compliant applications to run in virtualized file and registry entries in per-user locations, allowing them to run.
+
+```
+New:
+```
+User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting configures non-UAC compliant applications to run in virtualized file and registry entries in per-user locations, allowing them to run.
+
+```
+---
+SV-253477:
+Old:
+```
+Toast notifications that are displayed on the lock screen could display sensitive information to unauthorized personnel.  Turning off this feature will limit access to the information to a logged on user.
+
+```
+New:
+```
+Toast notifications that are displayed on the lock screen could display sensitive information to unauthorized personnel. Turning off this feature will limit access to the information to a logged on user.
+
+```
+---
+SV-253501:
+Old:
+```
+Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
+
+Accounts with the "Manage auditing and security log" user right can manage the security log and change auditing configurations. This could be used to clear evidence of tampering.
+
+```
+New:
+```
+Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
+
+Accounts with the "Manage auditing and security log" user right can manage the security log and change auditing configurations. This could be used to clear evidence of tampering.
+
+
+
+```
+---
+</details>
+
+Delta Process completed successfully
+

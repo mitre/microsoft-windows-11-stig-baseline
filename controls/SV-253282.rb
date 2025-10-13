@@ -20,7 +20,6 @@ For any inbound rules that allow connections, configure the Scope for Remote IP 
 
 If a third-party firewall is used, configure inbound exceptions to only include authorized remote management hosts.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56735r828928_chk'
   tag severity: 'medium'
   tag gid: 'V-253282'

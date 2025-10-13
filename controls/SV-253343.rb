@@ -12,7 +12,6 @@ Compare the AuditPol settings with the following. If the system does not audit t
 Policy Change >> Other Policy Change Events - Success'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> Policy Change>> "Audit Other Policy Change Events" with "Success" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56796r829111_chk'
   tag severity: 'medium'
   tag gid: 'V-253343'

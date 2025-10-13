@@ -5,7 +5,7 @@ control 'SV-253351' do
 Failing to disconnect from collaborative computing devices (i.e. cameras) can result in subsequent compromises of organizational information. Providing easy methods to physically disconnect from such devices after a collaborative computing session helps to ensure that participants actually carry out the disconnect activity without having to go through complex and tedious procedures.'
   desc 'check', 'If the device or operating system does not have a camera installed, this requirement is not applicable.
 
-This requirement is not applicable to mobile devices (smartphones and tablets), where the use of the camera is a local AO decision.
+This requirement is not applicable to mobile devices (smartphones and tablets), where the use of the camera is a local authorizing official (AO) decision.
 
 This requirement is not applicable to dedicated VTC suites located in approved VTC locations that are centrally managed.
 
@@ -19,24 +19,23 @@ If the camera is not disconnected or covered, the following registry entry is re
 Registry Hive: HKEY_LOCAL_MACHINE
 RegistryPath\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\webcam
 
-Value Name: Deny
+Value Name: Value                                                                             Value Data: Deny
 
 If "Value Name" is set to a value other than "Deny" and the collaborative computing device has not been authorized for use, this is a finding.'
   desc 'fix', 'If the camera is not disconnected or covered, the following registry entry is required.
-
+ 
 Registry Hive: HKEY_LOCAL_MACHINE
 RegistryPath\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\webcam
 
-Value Name: Deny'
+Value Name: Value                                                                            Value Data: Deny'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
-  tag check_id: 'C-56804r829135_chk'
+  tag check_id: 'C-56804r1106506_chk'
   tag severity: 'medium'
   tag gid: 'V-253351'
-  tag rid: 'SV-253351r958478_rule'
+  tag rid: 'SV-253351r1106508_rule'
   tag stig_id: 'WN11-CC-000007'
   tag gtitle: 'SRG-OS-000095-GPOS-00049'
-  tag fix_id: 'F-56754r829136_fix'
+  tag fix_id: 'F-56754r1106507_fix'
   tag satisfies: ['SRG-OS-000095-GPOS-00049', 'SRG-OS-000370-GPOS-00155']
   tag 'documentable'
   tag legacy: ['SV-109197', 'V-100093']
