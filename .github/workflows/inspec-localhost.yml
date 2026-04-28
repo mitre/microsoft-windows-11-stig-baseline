@@ -24,7 +24,11 @@ jobs:
         run: |
           . { Invoke-WebRequest -UseBasicParsing https://omnitruck.cinc.sh/install.ps1 } | Invoke-Expression
           install -project cinc-auditor -channel stable
-          cinc-auditor --version
+          # MSI updates machine PATH in the registry, but the running shell
+          # has a stale PATH. Expose the bin dir to subsequent steps via
+          # GITHUB_PATH, and use the absolute path to verify within this step.
+          "C:\opscode\cinc-auditor\bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+          & "C:\opscode\cinc-auditor\bin\cinc-auditor.bat" --version
 
       - name: Lint profile
         shell: pwsh
