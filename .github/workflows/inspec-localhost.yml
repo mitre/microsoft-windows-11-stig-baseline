@@ -1,0 +1,53 @@
+---
+name: InSpec Profile Validation (windows-11-arm, localhost)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  inspec-localhost:
+    name: Run InSpec against the runner itself
+    runs-on: windows-11-arm
+
+    env:
+      RESULTS_FILE: windows11_inspec_results.json
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Install cinc-auditor
+        shell: pwsh
+        run: |
+          . { Invoke-WebRequest -UseBasicParsing https://omnitruck.cinc.sh/install.ps1 } | Invoke-Expression
+          install -project cinc-auditor -channel stable
+          cinc-auditor --version
+
+      - name: Lint profile
+        shell: pwsh
+        run: cinc-auditor check .
+
+      - name: Run profile against localhost
+        id: inspec
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Continue'
+          cinc-auditor exec . `
+            --input-file kitchen.inputs.yml `
+            --reporter cli "json:$env:RESULTS_FILE" `
+            --enhanced-outcomes `
+            --filter-empty-profiles
+          $code = $LASTEXITCODE
+          Write-Host "cinc-auditor exit code: $code"
+          # 0 = all passed, 100 = some controls failed, 101 = skips present
+          if ($code -in 0, 100, 101) { exit 0 } else { exit $code }
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: inspec-results-${{ github.run_id }}
+          path: ${{ env.RESULTS_FILE }}
