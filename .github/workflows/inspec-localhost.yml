@@ -45,6 +45,11 @@ jobs:
         shell: pwsh
         run: cinc-auditor check .
 
+      # The profile expects full system admin; the runner agent provides
+      # it. Some controls (HKLM\SECURITY/SAM, GPO/domain checks, presence
+      # of features like BitLocker/AppLocker/Credential Guard) may still
+      # report unexpected results on a standalone, unhardened CI runner —
+      # those reflect environment, not profile correctness.
       - name: Run profile against localhost
         id: inspec
         shell: pwsh
