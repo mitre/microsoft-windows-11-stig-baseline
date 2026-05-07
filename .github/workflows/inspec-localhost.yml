@@ -1,0 +1,101 @@
+---
+name: InSpec Profile Validation (windows-11-arm, localhost)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  inspec-localhost:
+    name: Run InSpec against the runner itself
+    runs-on: windows-11-arm
+
+    env:
+      RESULTS_FILE: windows11_inspec_results.json
+      PLATFORM: windows-11
+      DEPLOYMENT: gh-runner
+      HARDENING_SOURCE: vanilla
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Generate short commit SHA
+        shell: pwsh
+        run: |
+          "COMMIT_SHORT_SHA=$($env:GITHUB_SHA.Substring(0,7))" |
+            Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Install cinc-auditor
+        shell: pwsh
+        run: |
+          . { Invoke-WebRequest -UseBasicParsing https://omnitruck.cinc.sh/install.ps1 } | Invoke-Expression
+          install -project cinc-auditor -channel stable
+          # The Cinc Omnibus MSI installs to C:\cinc-project\<project>\
+          # (per https://omnitruck.cinc.sh/install.ps1). The MSI updates
+          # machine PATH in the registry, but the running shell has a stale
+          # PATH — expose the bin dir to subsequent steps via GITHUB_PATH
+          # and use the absolute path to verify within this step.
+          "C:\cinc-project\cinc-auditor\bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+          & "C:\cinc-project\cinc-auditor\bin\cinc-auditor.bat" --version
+
+      - name: Lint profile
+        shell: pwsh
+        run: cinc-auditor check .
+
+      # The profile expects full system admin; the runner agent provides
+      # it. Some controls (HKLM\SECURITY/SAM, GPO/domain checks, presence
+      # of features like BitLocker/AppLocker/Credential Guard) may still
+      # report unexpected results on a standalone, unhardened CI runner —
+      # those reflect environment, not profile correctness.
+      - name: Run profile against localhost
+        id: inspec
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Continue'
+          cinc-auditor exec . `
+            --input-file kitchen.inputs.yml `
+            --reporter cli "json:$env:RESULTS_FILE" `
+            --enhanced-outcomes `
+            --filter-empty-profiles
+          $code = $LASTEXITCODE
+          Write-Host "cinc-auditor exit code: $code"
+          # 0 = all passed, 100 = some controls failed, 101 = skips present
+          if ($code -in 0, 100, 101) { exit 0 } else { exit $code }
+
+      - name: Upload results artifact
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: inspec-results-${{ github.run_id }}
+          path: ${{ env.RESULTS_FILE }}
+
+      - name: Display results summary
+        if: always()
+        continue-on-error: true
+        uses: mitre/saf_action@40f8aed2f77631c191fe86e01c2d3cdcd2d9675f # v1.5.2
+        with:
+          command_string: "view summary -i ${{ env.RESULTS_FILE }}"
+
+      - name: Upload to Heimdall
+        if: always()
+        continue-on-error: true
+        shell: bash
+        env:
+          HEIMDALL_URL: ${{ vars.SAF_HEIMDALL_URL }}
+          HEIMDALL_KEY: ${{ secrets.SAF_HEIMDALL_UPLOAD_KEY }}
+        run: |
+          curl -# -s -F data=@"${RESULTS_FILE}" \
+            -F "filename=${HARDENING_SOURCE}-${DEPLOYMENT}-${PLATFORM}-${COMMIT_SHORT_SHA}.json" \
+            -F "public=true" \
+            -F "evaluationTags=${COMMIT_SHORT_SHA},${GITHUB_REPOSITORY},${GITHUB_WORKFLOW},${HARDENING_SOURCE},${DEPLOYMENT},${PLATFORM}" \
+            -H "Authorization: Api-Key ${HEIMDALL_KEY}" \
+            "${HEIMDALL_URL}/evaluations"
+
+      - name: Validate threshold
+        if: always()
+        uses: mitre/saf_action@40f8aed2f77631c191fe86e01c2d3cdcd2d9675f # v1.5.2
+        with:
+          command_string: "validate threshold -i ${{ env.RESULTS_FILE }} -F vanilla.threshold.yml"
