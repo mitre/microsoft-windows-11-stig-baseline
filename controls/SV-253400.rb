@@ -37,7 +37,7 @@ Value: 1'
     else { 'None' }
     EOH
 
-  if !virtualization.physical_system?
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253400' do
       skip 'This is a VDI System; This System is N/A for Control SV-253400'

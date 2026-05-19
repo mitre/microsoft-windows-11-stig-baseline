@@ -71,7 +71,7 @@ https://technet.microsoft.com/en-us/itpro/windows/keep-secure/credential-guard-r
 
   script = json(content: powershell('Get-CimInstance -ClassName Win32_DeviceGuard -Namespace root\Microsoft\Windows\DeviceGuard | ConvertTo-Json').stdout.strip).params
 
-  if !virtualization.physical_system?
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253369' do
       skip 'This is a VDI System; This System is N/A for Control SV-253369'

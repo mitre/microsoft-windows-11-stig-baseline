@@ -24,7 +24,7 @@ Value: 1'
   tag cci: ['CCI-004895', 'CCI-002038']
   tag nist: ['SC-11 b', 'IA-11']
 
-  if !virtualization.physical_system?
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253380' do
       skip 'This is a VDI System; This System is N/A for Control SV-253380'

@@ -23,7 +23,7 @@ Under "System Summary", if "Secure Boot State" does not display "On", this is a 
   tag nist: ['CM-6 b', 'SC-8 (1)']
 
   uefi_boot = json(command: 'Confirm-SecureBootUEFI | ConvertTo-Json').params
-  if !virtualization.physical_system?
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253257' do
       skip 'This is a VDI System; This System is N/A for Control SV-253257'

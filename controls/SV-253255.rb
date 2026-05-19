@@ -50,7 +50,7 @@ Run "tpm.msc" for configuration options in Windows.'
     else { 'None' }
     EOH
 
-  if !virtualization.physical_system?
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253255' do
       skip 'This is a VDI System; This System is N/A for Control SV-253255'

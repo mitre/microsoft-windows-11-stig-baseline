@@ -20,6 +20,7 @@ inputs:
       - McAfee Host Intrusion Prevention
       - McAfee Endpoint Security
       - McAfee Agent
+      - Trellix Endpoint Security
   
   # SV-253261
   - name: bitlocker_pin_len
@@ -293,3 +294,20 @@ inputs:
     desc: "The minimum size for the Security Event Log in KB [5120000]"
     type: Numeric
     value: 5120000
+
+
+  - name: vdi_services
+    desc: "List of services that indicate it is a VDI workstation."
+    type: Array
+    value:
+      - "BrokerAgent" #Citrix Virtual Apps and Desktops Service
+      - "TermService" #Microsoft Remote Desktop Services
+      - "WSNM" #VMware Horizon View Agent
+      - "VMBlast" #VMware Horizon View Agent
+      - "RDAgentBootLoader" #Microsoft Azure Remote Desktop Services Agent Boot Loader
+      - "SkyLightWorkspaceConfigService" #AWS Windows WorkSpaces Service
+
+  - name: is_vdi
+    desc: "Flag to indicate if the system is a VDI workstation"
+    type: String
+    value: "false"

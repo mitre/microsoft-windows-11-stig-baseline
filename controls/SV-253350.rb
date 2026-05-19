@@ -28,7 +28,7 @@ Configure the policy value for Computer Configuration >> Administrative Template
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
 
-  if !virtualization.physical_system?
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253350' do
       skip 'This is a VDI System; This System is N/A for Control SV-253350'

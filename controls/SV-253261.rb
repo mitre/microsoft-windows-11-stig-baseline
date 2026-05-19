@@ -27,7 +27,7 @@ Value: 0x00000006 (6) or greater'
   tag cci: ['CCI-001199', 'CCI-002475', 'CCI-002476', 'CCI-000804']
   tag nist: ['SC-28', 'SC-28 (1)', 'IA-8']
 
-  if !virtualization.physical_system?
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253261' do
       skip 'This is a VDI System; This System is N/A for Control SV-253261'

@@ -65,7 +65,7 @@ https://docs.microsoft.com/en-us/windows/access-protection/credential-guard/cred
     else { 'None' }
     EOH
 
-  if !virtualization.physical_system?
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253370' do
       skip 'This is a VDI System; This System is N/A for Control SV-253370'

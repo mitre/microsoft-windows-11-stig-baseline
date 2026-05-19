@@ -58,7 +58,7 @@ If Network Unlock is active, select "Configure TPM startup PIN:" and set to "Req
   tag cci: ['CCI-001199', 'CCI-002475', 'CCI-002476']
   tag nist: ['SC-28', 'SC-28 (1)']
 
-  if !virtualization.physical_system?
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253260' do
       skip 'This is a VDI System; This System is N/A for Control SV-253260'
