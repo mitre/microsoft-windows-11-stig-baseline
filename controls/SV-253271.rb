@@ -30,7 +30,7 @@ For hosted hypervisors other than Hyper-V, restrict access to create or run virt
   tag cci: ['CCI-000381', 'CCI-002165']
   tag nist: ['CM-7 a', 'AC-3 (4)']
 
-  hyper_v_administrator_group = command("net localgroup Hyper-V Administrators | Format-List | Findstr /V 'Alias Name Comment Members - command'").stdout.strip.split("\r\n")
+  hyper_v_administrator_group = command("net localgroup 'Hyper-V Administrators' | Format-List | Findstr /V 'Alias Name Comment Members - command'").stdout.strip.split("\r\n")
 
   hyper_v_administrator_group.each do |user|
     describe user.to_s do

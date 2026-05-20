@@ -18,13 +18,18 @@
 #   else
 #     # actual check logic
 #   end
+module VDIHelper
+  def vdi_workstation?
+    return true if input('is_vdi') == 'true'
 
-def vdi_workstation?
-  return true if input('is_vdi') == 'true'
-
-  input('vdi_services').any? do |svc|
-    powershell(
-      "(Get-Service -Name '#{svc}' -ErrorAction SilentlyContinue).Status"
-    ).stdout.strip == 'Running'
+    input('vdi_services').any? do |svc|
+      powershell(
+        "(Get-Service -Name '#{svc}' -ErrorAction SilentlyContinue).Status"
+      ).stdout.strip == 'Running'
+    end
+  rescue StandardError
+    nil
   end
 end
+
+::Inspec::Rule.include(VDIHelper)
