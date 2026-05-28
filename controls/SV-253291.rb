@@ -47,13 +47,11 @@ Steps to create an Intune policy:
 
   # 1) No Bluetooth devices -> control is NA
   if bt_count == 0
-    describe 'Bluetooth presence check' do
-      it 'has no Bluetooth devices present' do
-        expect(bt_count).to eq 0
-        impact 0.0
-      end
+    impact 0.0
+    describe 'No Bluetooth devices present' do
+      skip 'This system does not have Bluetooth, therefore this control is not applicable.'
     end
-  
+    
   # 2) Bluetooth present 
   else
     describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\current\device\Connectivity') do
