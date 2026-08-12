@@ -28,6 +28,6 @@ If the "About Windows" dialog box does not display "Microsoft Windows 11 Version
   end
   describe registry_key('HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion') do
     it { should have_property 'CurrentBuildNumber' }
-    its('ReleaseId') { should be >= '1703' }
+    its('CurrentBuildNumber') { should be >= '22631' }
   end
 end
