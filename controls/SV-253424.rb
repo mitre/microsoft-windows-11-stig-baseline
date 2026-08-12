@@ -13,7 +13,6 @@ Value data: 1'
 
 To correct this, configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Windows Ink Workspace >> Set "Allow Windows Ink Workspace" to "Enabled and set Options "On, but disallow access above lock".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56877r829354_chk'
   tag severity: 'medium'
   tag gid: 'V-253424'

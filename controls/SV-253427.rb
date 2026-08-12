@@ -78,7 +78,6 @@ DoD Root CA 6
 
 The InstallRoot tool is available on Cyber Exchange at https://cyber.mil/pki-pke/tools-configuration-files. PKI can be found at https://crl.gds.disa.mil/.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56880r922037_chk'
   tag severity: 'medium'
   tag gid: 'V-253427'

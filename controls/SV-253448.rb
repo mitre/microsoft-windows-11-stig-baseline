@@ -17,7 +17,6 @@ This can be left not configured or set to "No action" on workstations with the f
 -The screen saver is properly configured to lock as required.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Interactive logon: Smart card removal behavior" to  "Lock Workstation" or "Force Logoff".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56901r829426_chk'
   tag severity: 'medium'
   tag gid: 'V-253448'

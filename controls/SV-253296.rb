@@ -18,19 +18,36 @@ If the system needs to be configured to an NTP server, configure the system to p
 
 The US Naval Observatory operates stratum 1 time servers, identified at https://www.cnmoc.usff.navy.mil/Our-Commands/United-States-Naval-Observatory/Precise-Time-Department/Network-Time-Protocol-NTP/. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56749r828970_chk'
   tag severity: 'low'
   tag gid: 'V-253296'
-  tag rid: 'SV-253296r1016426_rule'
+  tag rid: 'SV-253296r1051041_rule'
   tag stig_id: 'WN11-00-000260'
   tag gtitle: 'SRG-OS-000355-GPOS-00143'
   tag fix_id: 'F-56699r922035_fix'
   tag 'documentable'
-  tag cci: ['CCI-004923', 'CCI-001891', 'CCI-001891']
-  tag nist: ['SC-45 (1) (a)', 'AU-8 (1) (a)', 'AU-8 (1) (a)']
+  tag cci: ['CCI-004923', 'CCI-001891']
+  tag nist: ['SC-45 (1) (a)', 'AU-8 (1) (a)']
 
-  describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\Parameters') do
-    its('Type') { should cmp 'NT5DS' }
+  join_type = inspec.powershell(<<~EOH).stdout.strip
+    $dsreg = & "$env:windir\\system32\\dsregcmd.exe" /status 2>$null
+    $azure = ($dsreg | Select-String -Pattern '^\\s*AzureAdJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+    $domain = ($dsreg | Select-String -Pattern '^\\s*DomainJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+
+    if ($azure -eq 'YES' -and $domain -eq 'YES') { 'Hybrid' }
+    elseif ($azure -eq 'YES') { 'AzureAD' }
+    elseif ($domain -eq 'YES') { 'Domain' }
+    else { 'None' }
+    EOH
+
+  if join_type == 'None'
+    impact 0.0
+    describe 'The system is not a member of a domain' do
+      skip 'Control is Not Applicable for standalone/Azure AD-only systems.'
+    end
+  else
+    describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\Parameters') do
+      its('Type') { should cmp 'NT5DS' }
+    end
   end
 end

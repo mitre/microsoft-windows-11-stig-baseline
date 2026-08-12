@@ -34,11 +34,10 @@ Privileged Access Workstations (PAWs) dedicated to the management of Active Dire
 All Systems:
 Guests Group'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56947r829564_chk'
   tag severity: 'medium'
   tag gid: 'V-253494'
-  tag rid: 'SV-253494r958472_rule'
+  tag rid: 'SV-253494r1137691_rule'
   tag stig_id: 'WN11-UR-000085'
   tag gtitle: 'SRG-OS-000080-GPOS-00048'
   tag fix_id: 'F-56897r829565_fix'
@@ -47,9 +46,18 @@ Guests Group'
   tag cci: ['CCI-000213']
   tag nist: ['AC-3']
 
-  is_domain = command('wmic computersystem get domain | FINDSTR /V Domain').stdout.strip
+  join_type = inspec.powershell(<<~EOH).stdout.strip
+    $dsreg = & "$env:windir\\system32\\dsregcmd.exe" /status 2>$null
+    $azure = ($dsreg | Select-String -Pattern '^\\s*AzureAdJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+    $domain = ($dsreg | Select-String -Pattern '^\\s*DomainJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
 
-  if is_domain == 'WORKGROUP'
+    if ($azure -eq 'YES' -and $domain -eq 'YES') { 'Hybrid' }
+    elseif ($azure -eq 'YES') { 'AzureAD' }
+    elseif ($domain -eq 'YES') { 'Domain' }
+    else { 'None' }
+    EOH
+    
+  if join_type == 'None'
     describe security_policy do
       its('SeDenyInteractiveLogonRight') { should eq ['S-1-5-32-546'] }
     end

@@ -25,11 +25,10 @@ If the NTFS permissions have not been reconfigured to restrict permissions to th
 
 Remove any unnecessary non-system-created shares.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56720r828883_chk'
   tag severity: 'medium'
   tag gid: 'V-253267'
-  tag rid: 'SV-253267r958524_rule'
+  tag rid: 'SV-253267r1137695_rule'
   tag stig_id: 'WN11-00-000060'
   tag gtitle: 'SRG-OS-000138-GPOS-00069'
   tag fix_id: 'F-56670r828884_fix'

@@ -9,11 +9,10 @@ Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings 
 If the value for the "Minimum password age" is less than "1" day, this is a finding.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Password Policy >> "Minimum Password Age" to at least "1" day.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56755r828988_chk'
   tag severity: 'medium'
   tag gid: 'V-253302'
-  tag rid: 'SV-253302r1016428_rule'
+  tag rid: 'SV-253302r1051043_rule'
   tag stig_id: 'WN11-AC-000030'
   tag gtitle: 'SRG-OS-000075-GPOS-00043'
   tag fix_id: 'F-56705r828989_fix'

@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Network >> Windows Connection Manager >> "Prohibit connection to non-domain networks when connected to domain authenticated network" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56818r829177_chk'
   tag severity: 'medium'
   tag gid: 'V-253365'
@@ -25,8 +24,26 @@ Value: 1'
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
 
-  describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy') do
-    it { should have_property 'fBlockNonDomain' }
-    its('fBlockNonDomain') { should cmp 1 }
+  join_type = inspec.powershell(<<~EOH).stdout.strip
+    $dsreg = & "$env:windir\\system32\\dsregcmd.exe" /status 2>$null
+    $azure = ($dsreg | Select-String -Pattern '^\\s*AzureAdJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+    $domain = ($dsreg | Select-String -Pattern '^\\s*DomainJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+
+    if ($azure -eq 'YES' -and $domain -eq 'YES') { 'Hybrid' }
+    elseif ($azure -eq 'YES') { 'AzureAD' }
+    elseif ($domain -eq 'YES') { 'Domain' }
+    else { 'None' }
+    EOH
+
+  if join_type == 'None'
+    impact 0.0
+    describe 'The system is not a member of a domain' do
+      skip 'Control is Not Applicable for standalone/Azure AD-only systems.'
+    end
+  else
+    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy') do
+      it { should have_property 'fBlockNonDomain' }
+      its('fBlockNonDomain') { should cmp 1 }
+    end
   end
 end

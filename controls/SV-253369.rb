@@ -58,7 +58,6 @@ Configure the policy value for Computer Configuration >> Administrative Template
 A Microsoft article on Credential Guard system requirement can be found at the following link.
 https://technet.microsoft.com/en-us/itpro/windows/keep-secure/credential-guard-requirements'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56822r829189_chk'
   tag severity: 'medium'
   tag gid: 'V-253369'
@@ -72,7 +71,7 @@ https://technet.microsoft.com/en-us/itpro/windows/keep-secure/credential-guard-r
 
   script = json(content: powershell('Get-CimInstance -ClassName Win32_DeviceGuard -Namespace root\Microsoft\Windows\DeviceGuard | ConvertTo-Json').stdout.strip).params
 
-  if sys_info.manufacturer == 'VMware, Inc.'
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253369' do
       skip 'This is a VDI System; This System is N/A for Control SV-253369'

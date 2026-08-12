@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 0x00000001 (1)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> App Runtime >> "Allow Microsoft accounts to be optional" to "Enabled".'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56837r829234_chk'
   tag severity: 'low'
   tag gid: 'V-253384'

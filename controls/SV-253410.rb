@@ -12,11 +12,10 @@ Value Type: REG_DWORD
 Value: 0'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Windows Installer >> "Allow user control over installs" to "Disabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56863r829312_chk'
   tag severity: 'medium'
   tag gid: 'V-253410'
-  tag rid: 'SV-253410r1016438_rule'
+  tag rid: 'SV-253410r1051053_rule'
   tag stig_id: 'WN11-CC-000310'
   tag gtitle: 'SRG-OS-000362-GPOS-00149'
   tag fix_id: 'F-56813r829313_fix'

@@ -21,7 +21,6 @@ LOCAL SERVICE
 NETWORK SERVICE
 SERVICE'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56940r829543_chk'
   tag severity: 'medium'
   tag gid: 'V-253487'

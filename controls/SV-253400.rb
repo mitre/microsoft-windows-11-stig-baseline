@@ -14,7 +14,6 @@ Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Windows Hello for Business >> "Use a hardware security device" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56853r829282_chk'
   tag severity: 'medium'
   tag gid: 'V-253400'
@@ -27,11 +26,30 @@ Value: 1'
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
 
-  if sys_info.manufacturer == 'VMware, Inc.'
+  join_type = inspec.powershell(<<~EOH).stdout.strip
+    $dsreg = & "$env:windir\\system32\\dsregcmd.exe" /status 2>$null
+    $azure = ($dsreg | Select-String -Pattern '^\\s*AzureAdJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+    $domain = ($dsreg | Select-String -Pattern '^\\s*DomainJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+
+    if ($azure -eq 'YES' -and $domain -eq 'YES') { 'Hybrid' }
+    elseif ($azure -eq 'YES') { 'AzureAD' }
+    elseif ($domain -eq 'YES') { 'Domain' }
+    else { 'None' }
+    EOH
+
+  if vdi_workstation?
     impact 0.0
-    describe 'This is a VDI System; This System is NA for Control V-63717.' do
-      skip 'This is a VDI System; This System is NA for Control V-63717.'
+    describe 'This is a VDI System; This System is N/A for Control SV-253400' do
+      skip 'This is a VDI System; This System is N/A for Control SV-253400'
     end
+
+  #Per MSFT Docs, Windows Hello for Business is only availible on EntraID, Domain, or FIDO IDP credentials
+  elsif join_type == 'None'
+    impact 0.0
+    describe 'This system is not joined to EntraID or a domain, therefore this control is Not Applicable' do
+      skip 'This system is not joined to EntraID or a domain, therefore this control is Not Applicable'
+    end
+
   else
     describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\PassportForWork') do
       it { should have_property 'RequireSecurityDevice' }

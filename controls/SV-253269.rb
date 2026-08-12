@@ -25,7 +25,6 @@ For domain-joined workstations, the Domain Admins group must be replaced by a do
 
 Remove any standard user accounts.'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56722r828889_chk'
   tag severity: 'high'
   tag gid: 'V-253269'

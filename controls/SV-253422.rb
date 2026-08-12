@@ -25,7 +25,6 @@ Value: 0x00000002 (2)'
 
 The requirement is NA if the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> App Privacy >> "Let Windows apps activate with voice" is configured to "Enabled" with Default for all Apps: set to Force Deny.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56875r829348_chk'
   tag severity: 'medium'
   tag gid: 'V-253422'

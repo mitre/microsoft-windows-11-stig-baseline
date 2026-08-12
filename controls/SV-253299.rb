@@ -9,7 +9,6 @@ Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings 
 If the "Reset account lockout counter after" value is less than "15" minutes, this is a finding.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Account Lockout Policy >> "Reset account lockout counter after" to "15" minutes.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56752r828979_chk'
   tag severity: 'medium'
   tag gid: 'V-253299'

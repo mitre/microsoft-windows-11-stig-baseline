@@ -27,11 +27,10 @@ Ensure domain-joined systems must have a TPM that is configured for use. (Versio
 The TPM must be enabled in the firmware.
 Run "tpm.msc" for configuration options in Windows.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56708r828847_chk'
   tag severity: 'medium'
   tag gid: 'V-253255'
-  tag rid: 'SV-253255r971547_rule'
+  tag rid: 'SV-253255r1117271_rule'
   tag stig_id: 'WN11-00-000010'
   tag gtitle: 'SRG-OS-000424-GPOS-00188'
   tag fix_id: 'F-56658r828848_fix'
@@ -40,14 +39,23 @@ Run "tpm.msc" for configuration options in Windows.'
   tag cci: ['CCI-000366', 'CCI-002421']
   tag nist: ['CM-6 b', 'SC-8 (1)']
 
-  is_domain = command('wmic computersystem get domain | FINDSTR /V Domain').stdout.strip
+  join_type = inspec.powershell(<<~EOH).stdout.strip
+    $dsreg = & "$env:windir\\system32\\dsregcmd.exe" /status 2>$null
+    $azure = ($dsreg | Select-String -Pattern '^\\s*AzureAdJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+    $domain = ($dsreg | Select-String -Pattern '^\\s*DomainJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
 
-  if sys_info.manufacturer == 'VMware, Inc.'
+    if ($azure -eq 'YES' -and $domain -eq 'YES') { 'Hybrid' }
+    elseif ($azure -eq 'YES') { 'AzureAD' }
+    elseif ($domain -eq 'YES') { 'Domain' }
+    else { 'None' }
+    EOH
+
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253255' do
       skip 'This is a VDI System; This System is N/A for Control SV-253255'
     end
-  elsif is_domain == 'WORKGROUP'
+  elsif join_type == 'None'
     impact 0.0
     describe 'This system is not joined to a domain, therefore this control is Not Applicable' do
       skip 'This system is not joined to a domain, therefore this control is Not Applicable'

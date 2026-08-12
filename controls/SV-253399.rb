@@ -14,7 +14,6 @@ Type: REG_DWORD
 Value: 0x00000000 (0)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Windows Game Recording and Broadcasting >> "Enables or disables Windows Game Recording and Broadcasting" to "Disabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56852r829279_chk'
   tag severity: 'medium'
   tag gid: 'V-253399'

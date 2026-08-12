@@ -16,7 +16,6 @@ Value: 0x0000001e (30) (or less, excluding 0)'
 
 Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Domain member: Maximum machine account password age" to "30" or less (excluding 0 which is unacceptable).'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56895r829408_chk'
   tag severity: 'low'
   tag gid: 'V-253442'
@@ -29,11 +28,29 @@ Configure the policy value for Computer Configuration >> Windows Settings >> Sec
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
 
-  describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters') do
-    it { should have_property 'MaximumPasswordAge' }
-    its('MaximumPasswordAge') { should be <= 30 }
-  end
-  describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters') do
-    its('MaximumPasswordAge') { should be_positive }
+  join_type = inspec.powershell(<<~EOH).stdout.strip
+    $dsreg = & "$env:windir\\system32\\dsregcmd.exe" /status 2>$null
+    $azure = ($dsreg | Select-String -Pattern '^\\s*AzureAdJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+    $domain = ($dsreg | Select-String -Pattern '^\\s*DomainJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+
+    if ($azure -eq 'YES' -and $domain -eq 'YES') { 'Hybrid' }
+    elseif ($azure -eq 'YES') { 'AzureAD' }
+    elseif ($domain -eq 'YES') { 'Domain' }
+    else { 'None' }
+    EOH
+    
+  if join_type == 'None'
+    impact 0.0
+    describe 'The system is not a member of a domain' do
+      skip 'Control is Not Applicable for standalone/Azure AD-only systems.'
+    end
+  else
+    describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters') do
+      it { should have_property 'MaximumPasswordAge' }
+      its('MaximumPasswordAge') { should be <= 30 }
+    end
+    describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters') do
+      its('MaximumPasswordAge') { should be_positive }
+    end
   end
 end

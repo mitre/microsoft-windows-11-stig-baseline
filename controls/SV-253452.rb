@@ -9,7 +9,6 @@ Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings 
 If the value for "Network access: Allow anonymous SID/Name translation" is not set to "Disabled", this is a finding.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Network access: Allow anonymous SID/Name translation" to "Disabled".'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56905r829438_chk'
   tag severity: 'high'
   tag gid: 'V-253452'

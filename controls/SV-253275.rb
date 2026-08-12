@@ -11,7 +11,6 @@ If the entries for "Internet Information Services" or "Internet Information Serv
 If an application requires IIS or a subset to be installed to function, this needs be documented with the ISSO. In addition, any applicable requirements from the IIS STIG must be addressed.'
   desc 'fix', 'Uninstall "Internet Information Services" or "Internet Information Services Hostable Web Core" from the system.'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56728r828907_chk'
   tag severity: 'high'
   tag gid: 'V-253275'

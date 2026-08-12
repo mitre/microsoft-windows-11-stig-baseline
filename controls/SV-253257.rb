@@ -10,11 +10,10 @@ Run "System Information".
 Under "System Summary", if "Secure Boot State" does not display "On", this is a finding.'
   desc 'fix', 'Enable Secure Boot in the system firmware.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56710r828853_chk'
   tag severity: 'medium'
   tag gid: 'V-253257'
-  tag rid: 'SV-253257r971547_rule'
+  tag rid: 'SV-253257r1117271_rule'
   tag stig_id: 'WN11-00-000020'
   tag gtitle: 'SRG-OS-000424-GPOS-00188'
   tag fix_id: 'F-56660r828854_fix'
@@ -24,15 +23,15 @@ Under "System Summary", if "Secure Boot State" does not display "On", this is a 
   tag nist: ['CM-6 b', 'SC-8 (1)']
 
   uefi_boot = json(command: 'Confirm-SecureBootUEFI | ConvertTo-Json').params
-  if sys_info.manufacturer != 'VMware, Inc.' || nil
-    describe 'Confirm-Secure Boot UEFI is required to be enabled on System' do
-      subject { uefi_boot }
-      it { should_not eq 'False' }
-    end
-  else
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253257' do
       skip 'This is a VDI System; This System is N/A for Control SV-253257'
+    end
+  else
+    describe 'Confirm-Secure Boot UEFI is required to be enabled on System' do
+      subject { uefi_boot }
+      it { should_not eq 'False' }
     end
   end
 end

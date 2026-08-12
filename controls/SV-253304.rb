@@ -11,11 +11,10 @@ If the value for "Password must meet complexity requirements" is not set to "Ena
 If the site is using a password filter that requires this setting be set to "Disabled" for the filter to be used, this would not be considered a finding.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Password Policy >> "Password must meet complexity requirements" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56757r828994_chk'
   tag severity: 'medium'
   tag gid: 'V-253304'
-  tag rid: 'SV-253304r1016430_rule'
+  tag rid: 'SV-253304r1051045_rule'
   tag stig_id: 'WN11-AC-000040'
   tag gtitle: 'SRG-OS-000069-GPOS-00037'
   tag fix_id: 'F-56707r828995_fix'

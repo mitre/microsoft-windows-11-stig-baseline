@@ -1,5 +1,5 @@
 name: microsoft-windows-11-stig-baseline
-title: "Microsoft Windows 11 Security Technical Implementation Guide :: Version 2, Release 2 :: Benchmark Date: 15 Nov 2024"
+title: "Microsoft Windows 11 Security Technical Implementation Guide :: Version 2, Release 7 :: Benchmark Date: 01 April 2026"
 maintainer: MITRE SAF Team
 copyright: MITRE
 copyright_email: saf@groups.mitre.org
@@ -20,6 +20,7 @@ inputs:
       - McAfee Host Intrusion Prevention
       - McAfee Endpoint Security
       - McAfee Agent
+      - Trellix Endpoint Security
   
   # SV-253261
   - name: bitlocker_pin_len
@@ -230,6 +231,7 @@ inputs:
     desc: "Default Permissions for C:\\ Folder on OS"
     type: Array
     value:
+      - S-1-15-3-65536-1888954469-739942743-1668119174-2468466756-4239452838-1296943325-355587736-700089176:(S,RD,X,RA)
       - NT AUTHORITY\Authenticated Users:(S,AD)
       - NT AUTHORITY\Authenticated Users:(OI)(CI)(IO)(M)
       - NT AUTHORITY\SYSTEM:(OI)(CI)(F)
@@ -274,4 +276,38 @@ inputs:
       - APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
       - APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(RX)
       - APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
-      
+
+  # SV-253291
+  - name: bluetooth_approved
+    desc: "If Bluetooth is approved for use on the system true=1 false=0 [false]"
+    type: Numeric
+    value: 0
+
+  #SV-253351
+  - name: camera_approved
+    desc: "If Camera use is approved for the system 'Deny' or 'Allow' [Deny]"
+    type: String
+    value: "Deny"
+
+  #SV-253338
+  - name: max_security_event_log_size
+    desc: "The minimum size for the Security Event Log in KB [5120000]"
+    type: Numeric
+    value: 5120000
+
+
+  - name: vdi_services
+    desc: "List of services that indicate it is a VDI workstation."
+    type: Array
+    value:
+      - "BrokerAgent" #Citrix Virtual Apps and Desktops Service
+      - "TermService" #Microsoft Remote Desktop Services
+      - "WSNM" #VMware Horizon View Agent
+      - "VMBlast" #VMware Horizon View Agent
+      - "RDAgentBootLoader" #Microsoft Azure Remote Desktop Services Agent Boot Loader
+      - "SkyLightWorkspaceConfigService" #AWS Windows WorkSpaces Service
+
+  - name: is_vdi
+    desc: "Flag to indicate if the system is a VDI workstation"
+    type: String
+    value: "false"

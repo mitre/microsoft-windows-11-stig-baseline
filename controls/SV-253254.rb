@@ -14,7 +14,6 @@ If "Edition" is not "Windows 11 Enterprise", this is a finding.
 If "System type" is not "64-bit operating system...", this is a finding.'
   desc 'fix', 'Use Windows 11 Enterprise 64-bit version for domain-joined systems.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56707r828844_chk'
   tag severity: 'medium'
   tag gid: 'V-253254'
@@ -27,8 +26,18 @@ If "System type" is not "64-bit operating system...", this is a finding.'
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
 
-  is_domain = command('(gwmi win32_computersystem).partofdomain').stdout.strip == 'True'
-  if is_domain
+  join_type = inspec.powershell(<<~EOH).stdout.strip
+    $dsreg = & "$env:windir\\system32\\dsregcmd.exe" /status 2>$null
+    $azure = ($dsreg | Select-String -Pattern '^\\s*AzureAdJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+    $domain = ($dsreg | Select-String -Pattern '^\\s*DomainJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+
+    if ($azure -eq 'YES' -and $domain -eq 'YES') { 'Hybrid' }
+    elseif ($azure -eq 'YES') { 'AzureAD' }
+    elseif ($domain -eq 'YES') { 'Domain' }
+    else { 'None' }
+    EOH
+
+  if join_type != 'None'
     describe os.arch do
       it { should eq 'x86_64' }
     end

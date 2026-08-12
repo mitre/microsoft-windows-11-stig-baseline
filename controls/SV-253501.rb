@@ -17,7 +17,6 @@ If the organization has an "Auditors" group the assignment of this group to the 
 
 Administrators'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56954r829585_chk'
   tag severity: 'medium'
   tag gid: 'V-253501'

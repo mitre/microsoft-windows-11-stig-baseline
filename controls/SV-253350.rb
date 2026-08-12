@@ -16,7 +16,6 @@ Value: 1'
 
 Configure the policy value for Computer Configuration >> Administrative Templates >> Control Panel >> Personalization >> "Prevent enabling lock screen camera" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56803r829132_chk'
   tag severity: 'medium'
   tag gid: 'V-253350'
@@ -29,10 +28,10 @@ Configure the policy value for Computer Configuration >> Administrative Template
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
 
-  if sys_info.manufacturer == 'VMware, Inc.'
+  if vdi_workstation?
     impact 0.0
-    describe 'This is a VDI System; This System is NA for Control V-63545.' do
-      skip 'This is a VDI System; This System is NA for Control V-63545.'
+    describe 'This is a VDI System; This System is N/A for Control SV-253350' do
+      skip 'This is a VDI System; This System is N/A for Control SV-253350'
     end
   else
     describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Personalization') do

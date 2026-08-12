@@ -17,7 +17,6 @@ If the workstation has an approved use of Hyper-V, such as being used as a dedic
 
 Administrators'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56942r829549_chk'
   tag severity: 'medium'
   tag gid: 'V-253489'

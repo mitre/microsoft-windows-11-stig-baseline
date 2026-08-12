@@ -14,7 +14,6 @@ Compare the AuditPol settings with the following. If the system does not audit t
 Logon/Logoff >> Logon - Success'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> Logon/Logoff >> "Audit Logon" with "Success" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56770r829033_chk'
   tag severity: 'medium'
   tag gid: 'V-253317'

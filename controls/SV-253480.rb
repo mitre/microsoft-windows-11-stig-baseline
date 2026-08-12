@@ -25,11 +25,10 @@ The application account, managed at the domain level, must meet requirements for
 Administrators
 Remote Desktop Users'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56933r829522_chk'
   tag severity: 'medium'
   tag gid: 'V-253480'
-  tag rid: 'SV-253480r958472_rule'
+  tag rid: 'SV-253480r1137691_rule'
   tag stig_id: 'WN11-UR-000010'
   tag gtitle: 'SRG-OS-000080-GPOS-00048'
   tag fix_id: 'F-56883r829523_fix'

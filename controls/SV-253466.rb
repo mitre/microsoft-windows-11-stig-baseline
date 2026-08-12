@@ -14,11 +14,10 @@ Value: 1
 Warning: Clients with this setting enabled will not be able to communicate via digitally encrypted or signed protocols with servers that do not support these algorithms.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "System cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56919r829480_chk'
   tag severity: 'medium'
   tag gid: 'V-253466'
-  tag rid: 'SV-253466r959006_rule'
+  tag rid: 'SV-253466r1137699_rule'
   tag stig_id: 'WN11-SO-000230'
   tag gtitle: 'SRG-OS-000478-GPOS-00223'
   tag fix_id: 'F-56869r829481_fix'

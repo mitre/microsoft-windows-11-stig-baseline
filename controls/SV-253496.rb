@@ -11,7 +11,6 @@ Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings 
 If any groups or accounts are granted the "Enable computer and user accounts to be trusted for delegation" user right, this is a finding.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> User Rights Assignment >> "Enable computer and user accounts to be trusted for delegation" to be defined but containing no entries (blank).'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56949r829570_chk'
   tag severity: 'medium'
   tag gid: 'V-253496'

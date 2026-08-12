@@ -20,7 +20,6 @@ A documented mechanism and or script that can disable Basic authentication once 
 ....
 Use of a Privileged Access Workstation (PAW) and adherence to the Clean Source principle for administration.'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56871r829336_chk'
   tag severity: 'high'
   tag gid: 'V-253418'

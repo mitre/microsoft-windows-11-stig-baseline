@@ -16,7 +16,6 @@ Value: 1'
 
 Specify the Transcript output directory to point to a Central Log Server or another secure location to prevent user access.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56868r829327_chk'
   tag severity: 'medium'
   tag gid: 'V-253415'

@@ -12,11 +12,10 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Remote Desktop Services >> Remote Desktop Session Host >> Security >> "Always prompt for password upon connection" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56857r829294_chk'
   tag severity: 'medium'
   tag gid: 'V-253404'
-  tag rid: 'SV-253404r1016437_rule'
+  tag rid: 'SV-253404r1051052_rule'
   tag stig_id: 'WN11-CC-000280'
   tag gtitle: 'SRG-OS-000373-GPOS-00156'
   tag fix_id: 'F-56807r829295_fix'

@@ -5,8 +5,8 @@ infrastructure and applications when validating compliancy with [Department of D
 requirements.
 
 - Profile Version: **2.2.0**
-- Benchmark Date: **15 Nov 2024**
-- Benchmark Version: **Version 2 Release 2 (V2R2)**
+- Benchmark Date: **01 April 2026**
+- Benchmark Version: **Version 2 Release 2 (V2R7)**
 
 This profile was developed to reduce the time it takes to perform a security checks based upon the
 STIG Guidance from the Defense Information Systems Agency (DISA) in partnership between the DISA Services Directorate (SD) and the DISA Risk Management Executive (RME) office.

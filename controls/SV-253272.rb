@@ -18,7 +18,6 @@ Local administrator account(s)
 All of the built-in accounts may not exist on a system, depending on the Windows 11 version.'
   desc 'fix', 'Limit local user accounts on domain-joined systems. Remove any unauthorized local accounts.'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56725r890448_chk'
   tag severity: 'low'
   tag gid: 'V-253272'
@@ -59,20 +58,38 @@ All of the built-in accounts may not exist on a system, depending on the Windows
   write-output $select_object_wdagutacc
   EOH
 
-  describe 'Administrator built-in account needs to be disabled as part of security' do
-    subject { powershell(admin_script).strip }
-    it { should_not eq 'True' }
-  end
-  describe 'Guest built-in account needs to be disabled as part of security' do
-    subject { powershell(guest_script).strip }
-    it { should_not eq 'True' }
-  end
-  describe 'Default Account built-in account needs to be disabled as part of security' do
-    subject { powershell(default_account_script).strip }
-    it { should_not eq 'True' }
-  end
-  describe 'WDAGUtilityAccount built-in account needs to be disabled as part of security' do
-    subject { powershell(wdagutacc_script).strip }
-    it { should_not eq 'True' }
+  join_type = inspec.powershell(<<~EOH).stdout.strip
+    $dsreg = & "$env:windir\\system32\\dsregcmd.exe" /status 2>$null
+    $azure = ($dsreg | Select-String -Pattern '^\\s*AzureAdJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+    $domain = ($dsreg | Select-String -Pattern '^\\s*DomainJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+
+    if ($azure -eq 'YES' -and $domain -eq 'YES') { 'Hybrid' }
+    elseif ($azure -eq 'YES') { 'AzureAD' }
+    elseif ($domain -eq 'YES') { 'Domain' }
+    else { 'None' }
+    EOH
+
+  if join_type == 'None'
+    impact 0.0
+    describe 'The system is not a member of a domain' do
+      skip 'Control is Not Applicable for standalone/Azure AD-only systems.'
+    end
+  else
+    describe 'Administrator built-in account needs to be disabled as part of security' do
+      subject { powershell(admin_script).stdout.strip }
+      it { should_not eq 'True' }
+    end
+    describe 'Guest built-in account needs to be disabled as part of security' do
+      subject { powershell(guest_script).stdout.strip }
+      it { should_not eq 'True' }
+    end
+    describe 'Default Account built-in account needs to be disabled as part of security' do
+      subject { powershell(default_account_script).stdout.strip }
+      it { should_not eq 'True' }
+    end
+    describe 'WDAGUtilityAccount built-in account needs to be disabled as part of security' do
+      subject { powershell(wdagutacc_script).stdout.strip }
+      it { should_not eq 'True' }
+    end
   end
 end

@@ -15,7 +15,6 @@ Type: REG_DWORD
 Value: 0x00000006 (6) or greater'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> BitLocker Drive Encryption >> Operating System Drives "Configure minimum PIN length for startup" to "Enabled" with "Minimum characters:" set to "6" or greater.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56714r828865_chk'
   tag severity: 'medium'
   tag gid: 'V-253261'
@@ -28,7 +27,7 @@ Value: 0x00000006 (6) or greater'
   tag cci: ['CCI-001199', 'CCI-002475', 'CCI-002476', 'CCI-000804']
   tag nist: ['SC-28', 'SC-28 (1)', 'IA-8']
 
-  if sys_info.manufacturer == 'VMware, Inc.'
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253261' do
       skip 'This is a VDI System; This System is N/A for Control SV-253261'

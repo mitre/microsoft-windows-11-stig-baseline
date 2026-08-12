@@ -27,11 +27,10 @@ Domain Systems Only:
 Enterprise Admins Group
 Domain Admins Group'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56946r829561_chk'
   tag severity: 'medium'
   tag gid: 'V-253493'
-  tag rid: 'SV-253493r958472_rule'
+  tag rid: 'SV-253493r1137691_rule'
   tag stig_id: 'WN11-UR-000080'
   tag gtitle: 'SRG-OS-000080-GPOS-00048'
   tag fix_id: 'F-56896r829562_fix'
@@ -40,9 +39,18 @@ Domain Admins Group'
   tag cci: ['CCI-000213']
   tag nist: ['AC-3']
 
-  is_domain = command('wmic computersystem get domain | FINDSTR /V Domain').stdout.strip
+  join_type = inspec.powershell(<<~EOH).stdout.strip
+    $dsreg = & "$env:windir\\system32\\dsregcmd.exe" /status 2>$null
+    $azure = ($dsreg | Select-String -Pattern '^\\s*AzureAdJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+    $domain = ($dsreg | Select-String -Pattern '^\\s*DomainJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
 
-  if is_domain == 'WORKGROUP'
+    if ($azure -eq 'YES' -and $domain -eq 'YES') { 'Hybrid' }
+    elseif ($azure -eq 'YES') { 'AzureAD' }
+    elseif ($domain -eq 'YES') { 'Domain' }
+    else { 'None' }
+    EOH
+    
+  if join_type == 'None'
     impact 0.0
     describe 'This requirement is applicable to domain-joined systems, for standalone systems this is NA' do
       skip 'This requirement is applicable to domain-joined systems, for standalone systems this is NA'

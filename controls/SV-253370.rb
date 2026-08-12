@@ -42,7 +42,6 @@ A Microsoft TechNet article on Credential Guard, including system requirement de
 
 https://docs.microsoft.com/en-us/windows/access-protection/credential-guard/credential-guard'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56823r829192_chk'
   tag severity: 'high'
   tag gid: 'V-253370'
@@ -55,14 +54,23 @@ https://docs.microsoft.com/en-us/windows/access-protection/credential-guard/cred
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
 
-  is_domain = command('wmic computersystem get domain | FINDSTR /V Domain').stdout.strip
+  join_type = inspec.powershell(<<~EOH).stdout.strip
+    $dsreg = & "$env:windir\\system32\\dsregcmd.exe" /status 2>$null
+    $azure = ($dsreg | Select-String -Pattern '^\\s*AzureAdJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+    $domain = ($dsreg | Select-String -Pattern '^\\s*DomainJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
 
-  if sys_info.manufacturer == 'VMware, Inc.'
+    if ($azure -eq 'YES' -and $domain -eq 'YES') { 'Hybrid' }
+    elseif ($azure -eq 'YES') { 'AzureAD' }
+    elseif ($domain -eq 'YES') { 'Domain' }
+    else { 'None' }
+    EOH
+
+  if vdi_workstation?
     impact 0.0
     describe 'This is a VDI System; This System is N/A for Control SV-253370' do
       skip 'This is a VDI System; This System is N/A for Control SV-253370'
     end
-  elsif is_domain == 'WORKGROUP'
+  elsif join_type == 'None'
     impact 0.0
     describe 'The system is not a member of a domain, control is NA' do
       skip 'The system is not a member of a domain, control is NA'

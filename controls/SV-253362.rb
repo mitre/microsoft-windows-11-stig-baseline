@@ -25,7 +25,6 @@ Value: RequireMutualAuthentication=1, RequireIntegrity=1
 Value Name: \\\\*\\NETLOGON
 Value: RequireMutualAuthentication=1, RequireIntegrity=1'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56815r829168_chk'
   tag severity: 'medium'
   tag gid: 'V-253362'
@@ -38,11 +37,20 @@ Value: RequireMutualAuthentication=1, RequireIntegrity=1'
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
 
-  is_domain = command('wmic computersystem get domain | FINDSTR /V Domain').stdout.strip
+  join_type = inspec.powershell(<<~EOH).stdout.strip
+    $dsreg = & "$env:windir\\system32\\dsregcmd.exe" /status 2>$null
+    $azure = ($dsreg | Select-String -Pattern '^\\s*AzureAdJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+    $domain = ($dsreg | Select-String -Pattern '^\\s*DomainJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+
+    if ($azure -eq 'YES' -and $domain -eq 'YES') { 'Hybrid' }
+    elseif ($azure -eq 'YES') { 'AzureAD' }
+    elseif ($domain -eq 'YES') { 'Domain' }
+    else { 'None' }
+    EOH
   keyvalue_netlogon = '\\\\*\\NETLOGON'
   keyvalue_sysvol = '\\\\*\\SYSVOL'
 
-  if is_domain == 'WORKGROUP'
+  if join_type == 'None'
     impact 0.0
     describe 'The system is not a member of a domain, control is NA' do
       skip 'The system is not a member of a domain, control is NA'

@@ -10,7 +10,6 @@ This does not apply to server-based applications that have a requirement for .p1
 
 Note: This does not apply to server-based applications that have a requirement for .p12 certificate files (e.g., Oracle Wallet Manager) or Adobe PreFlight certificate files.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56733r828922_chk'
   tag severity: 'medium'
   tag gid: 'V-253280'

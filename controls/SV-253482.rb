@@ -18,11 +18,10 @@ Users'
 Administrators
 Users'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56935r829528_chk'
   tag severity: 'medium'
   tag gid: 'V-253482'
-  tag rid: 'SV-253482r958472_rule'
+  tag rid: 'SV-253482r1137691_rule'
   tag stig_id: 'WN11-UR-000025'
   tag gtitle: 'SRG-OS-000080-GPOS-00048'
   tag fix_id: 'F-56885r829529_fix'

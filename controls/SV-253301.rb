@@ -9,11 +9,10 @@ Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings 
 If the value for the "Maximum password age" is greater than "60" days, this is a finding.  If the value is set to "0" (never expires), this is a finding.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Password Policy >> "Maximum Password Age" to "60" days or less (excluding "0" which is unacceptable).'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56754r828985_chk'
   tag severity: 'medium'
   tag gid: 'V-253301'
-  tag rid: 'SV-253301r1016427_rule'
+  tag rid: 'SV-253301r1051042_rule'
   tag stig_id: 'WN11-AC-000025'
   tag gtitle: 'SRG-OS-000076-GPOS-00044'
   tag fix_id: 'F-56704r828986_fix'

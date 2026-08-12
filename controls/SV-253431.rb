@@ -78,7 +78,6 @@ Microsoft has also given read permission to the SOFTWARE and SYSTEM registry key
 
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56884r829375_chk'
   tag severity: 'medium'
   tag gid: 'V-253431'

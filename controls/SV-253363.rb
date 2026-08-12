@@ -15,7 +15,6 @@ Value: NistP384 NistP256'
 NistP384
 NistP256'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56816r829171_chk'
   tag severity: 'medium'
   tag gid: 'V-253363'
