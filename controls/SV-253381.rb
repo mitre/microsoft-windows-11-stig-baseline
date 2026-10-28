@@ -12,28 +12,20 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> System >> Power Management >> Sleep Settings >> "Require a password when a computer wakes (plugged in)" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56834r829225_chk'
   tag severity: 'medium'
   tag gid: 'V-253381'
-  tag rid: 'SV-253381r1016435_rule'
+  tag rid: 'SV-253381r1051050_rule'
   tag stig_id: 'WN11-CC-000150'
   tag gtitle: 'SRG-OS-000373-GPOS-00156'
   tag fix_id: 'F-56784r829226_fix'
   tag 'documentable'
   tag legacy: ['SV-78139', 'V-63649']
-  tag cci: ['CCI-004895', 'CCI-002038']
-  tag nist: ['SC-11 b', 'IA-11']
+  tag cci: ['CCI-002038']
+  tag nist: ['IA-11']
 
-  if sys_info.manufacturer == 'VMware, Inc.'
-    impact 0.0
-    describe 'This is a VDI System; This System is NA for Control V-63649.' do
-      skip 'This is a VDI System; This System is NA for Control V-63649.'
-    end
-  else
-    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51') do
-      it { should have_property 'ACSettingIndex' }
-      its('ACSettingIndex') { should cmp 1 }
-    end
+  describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51') do
+    it { should have_property 'ACSettingIndex' }
+    its('ACSettingIndex') { should cmp 1 }
   end
 end

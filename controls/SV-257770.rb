@@ -10,7 +10,6 @@ Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audi
 If "Audit Process Creation" is not set to "Failure", this is a finding.'
   desc 'fix', 'Go to Computer Configuration >> Windows Settings >>Security Settings>> Advanced Audit Policy Configuration >> System Audit Policies >> Detailed Tracking >> Set "Audit Process Creation" to "Failure".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-61511r953802_chk'
   tag severity: 'medium'
   tag gid: 'V-257770'
@@ -22,7 +21,12 @@ If "Audit Process Creation" is not set to "Failure", this is a finding.'
   tag cci: ['CCI-002234']
   tag nist: ['AC-6 (9)']
 
-  describe audit_policy do
-    its('Process Creation') { should cmp 'Failure' }
+  describe.one do
+    describe audit_policy do
+      its('Process Creation') { should eq 'Failure' }
+    end
+    describe audit_policy do
+      its('Process Creation') { should eq 'Success and Failure' }
+    end
   end
 end

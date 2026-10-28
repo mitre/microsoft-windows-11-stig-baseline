@@ -12,18 +12,17 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Remote Desktop Services >> Remote Desktop Session Host >> Security >> "Always prompt for password upon connection" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56857r829294_chk'
   tag severity: 'medium'
   tag gid: 'V-253404'
-  tag rid: 'SV-253404r1016437_rule'
+  tag rid: 'SV-253404r1051052_rule'
   tag stig_id: 'WN11-CC-000280'
   tag gtitle: 'SRG-OS-000373-GPOS-00156'
   tag fix_id: 'F-56807r829295_fix'
   tag 'documentable'
   tag legacy: ['SV-78223', 'V-63733']
-  tag cci: ['CCI-004895', 'CCI-002038']
-  tag nist: ['SC-11 b', 'IA-11']
+  tag cci: ['CCI-002038']
+  tag nist: ['IA-11']
 
   describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services') do
     it { should have_property 'fPromptForPassword' }

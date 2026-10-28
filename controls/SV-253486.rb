@@ -11,7 +11,6 @@ Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings 
 If any groups or accounts are granted the "Create a token object" user right, this is a finding.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> User Rights Assignment >> "Create a token object" to be defined but containing no entries (blank).'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56939r829540_chk'
   tag severity: 'high'
   tag gid: 'V-253486'

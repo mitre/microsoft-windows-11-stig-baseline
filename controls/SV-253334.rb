@@ -14,7 +14,6 @@ Compare the AuditPol settings with the following. If the system does not audit t
 System >> Security System Extension - Success'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> System >> "Audit Security System Extension" with "Success" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56787r829084_chk'
   tag severity: 'medium'
   tag gid: 'V-253334'
@@ -24,8 +23,8 @@ System >> Security System Extension - Success'
   tag fix_id: 'F-56737r829085_fix'
   tag 'documentable'
   tag legacy: ['SV-78003', 'V-63513']
-  tag cci: ['CCI-000172', 'CCI-002234']
-  tag nist: ['AU-12 c', 'AC-6 (9)']
+  tag cci: ['CCI-000172']
+  tag nist: ['AU-12 c']
 
   describe.one do
     describe audit_policy do

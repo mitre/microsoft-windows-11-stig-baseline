@@ -16,11 +16,10 @@ AES128_HMAC_SHA1
 AES256_HMAC_SHA1
 Future encryption types'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56913r829462_chk'
   tag severity: 'medium'
   tag gid: 'V-253460'
-  tag rid: 'SV-253460r971535_rule'
+  tag rid: 'SV-253460r1268232_rule'
   tag stig_id: 'WN11-SO-000190'
   tag gtitle: 'SRG-OS-000120-GPOS-00061'
   tag fix_id: 'F-56863r829463_fix'

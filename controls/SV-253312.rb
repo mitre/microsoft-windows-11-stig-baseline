@@ -14,11 +14,10 @@ Compare the AuditPol settings with the following. If the system does not audit t
 Detailed Tracking >> Process Creation - Success'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> Detailed Tracking >> "Audit Process Creation" with "Success" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56765r829018_chk'
   tag severity: 'medium'
   tag gid: 'V-253312'
-  tag rid: 'SV-253312r1016433_rule'
+  tag rid: 'SV-253312r1051048_rule'
   tag stig_id: 'WN11-AU-000050'
   tag gtitle: 'SRG-OS-000064-GPOS-00033'
   tag fix_id: 'F-56715r829019_fix'

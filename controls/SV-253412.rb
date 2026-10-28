@@ -16,11 +16,10 @@ Value: 0 (or if the Value Name does not exist)'
 
 To correct this, configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Windows Installer >> "Prevent Internet Explorer security prompt for Windows Installer scripts" to "Not Configured" or "Disabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56865r829318_chk'
   tag severity: 'medium'
   tag gid: 'V-253412'
-  tag rid: 'SV-253412r991589_rule'
+  tag rid: 'SV-253412r1268251_rule'
   tag stig_id: 'WN11-CC-000320'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-56815r829319_fix'

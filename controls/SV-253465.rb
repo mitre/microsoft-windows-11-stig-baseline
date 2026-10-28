@@ -12,11 +12,10 @@ Value Type: REG_DWORD
 Value: 0x20080000 (537395200)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Network security: Minimum session security for NTLM SSP based (including secure RPC) servers" to "Require NTLMv2 session security" and "Require 128-bit encryption" (all options selected).'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56918r829477_chk'
   tag severity: 'medium'
   tag gid: 'V-253465'
-  tag rid: 'SV-253465r991589_rule'
+  tag rid: 'SV-253465r1268251_rule'
   tag stig_id: 'WN11-SO-000220'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-56868r829478_fix'

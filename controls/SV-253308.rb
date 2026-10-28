@@ -14,7 +14,6 @@ Compare the AuditPol settings with the following. If the system does not audit t
 Account Management >> Security Group Management - Success'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> Account Management >> "Audit Security Group Management" with "Success" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56761r829006_chk'
   tag severity: 'medium'
   tag gid: 'V-253308'
@@ -24,8 +23,8 @@ Account Management >> Security Group Management - Success'
   tag fix_id: 'F-56711r829007_fix'
   tag 'documentable'
   tag legacy: ['SV-77935', 'V-63445']
-  tag cci: ['CCI-000018', 'CCI-000172', 'CCI-001403', 'CCI-001404', 'CCI-001405', 'CCI-002130', 'CCI-002234', 'CCI-001914']
-  tag nist: ['AC-2 (4)', 'AU-12 c', 'AC-6 (9)', 'AU-12 (3)']
+  tag cci: ['CCI-001914']
+  tag nist: ['AU-12 (3)']
 
   describe.one do
     describe audit_policy do

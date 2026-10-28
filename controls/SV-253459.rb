@@ -12,11 +12,10 @@ Value Type: REG_DWORD
 Value: 0'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Network security: Allow PKU2U authentication requests to this computer to use online identities" to "Disabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56912r829459_chk'
   tag severity: 'medium'
   tag gid: 'V-253459'
-  tag rid: 'SV-253459r991589_rule'
+  tag rid: 'SV-253459r1268251_rule'
   tag stig_id: 'WN11-SO-000185'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-56862r829460_fix'

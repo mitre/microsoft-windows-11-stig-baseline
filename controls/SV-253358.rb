@@ -16,7 +16,6 @@ The patch referenced in the policy title is not required for Windows 11.
 
 This policy setting requires the installation of the SecGuide custom templates included with the STIG package. "SecGuide.admx" and "SecGuide.adml" must be copied to the \\Windows\\PolicyDefinitions and \\Windows\\PolicyDefinitions\\en-US directories respectively.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56811r829156_chk'
   tag severity: 'medium'
   tag gid: 'V-253358'

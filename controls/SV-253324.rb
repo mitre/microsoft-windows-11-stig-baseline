@@ -16,7 +16,6 @@ Object Access >> Removable Storage - Success
 Some virtual machines may generate excessive audit events for access to the virtual hard disk itself when this setting is enabled. This may be set to Not Configured in such cases and would not be a finding. This must be documented with the ISSO to include mitigations such as monitoring or restricting any actual removable storage connected to the VM.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> Object Access >> "Audit Removable Storage" with "Success" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56777r829054_chk'
   tag severity: 'medium'
   tag gid: 'V-253324'

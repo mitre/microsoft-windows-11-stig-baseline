@@ -15,7 +15,6 @@ Administrators'
 
 Administrators'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56943r829552_chk'
   tag severity: 'high'
   tag gid: 'V-253490'

@@ -13,7 +13,6 @@ Compare the AuditPol settings with the following. If the system does not audit t
 Policy Change >> Authentication Policy Change - Success'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> Policy Change >> "Audit Authentication Policy Change" with "Success" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56779r829060_chk'
   tag severity: 'medium'
   tag gid: 'V-253326'
@@ -23,8 +22,8 @@ Policy Change >> Authentication Policy Change - Success'
   tag fix_id: 'F-56729r829061_fix'
   tag 'documentable'
   tag legacy: ['V-63481', 'SV-77971']
-  tag cci: ['CCI-000172', 'CCI-002234']
-  tag nist: ['AU-12 c', 'AC-6 (9)']
+  tag cci: ['CCI-000172']
+  tag nist: ['AU-12 c']
 
   describe.one do
     describe audit_policy do

@@ -11,11 +11,10 @@ Run "netsh interface portproxy show all".
 If the command displays any results, this is a finding.'
   desc 'fix', 'Contact the Administrator to run "netsh interface portproxy delete" with elevation. Remove any enabled portproxies that may be configured.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-61332r922045_chk'
   tag severity: 'medium'
   tag gid: 'V-257592'
-  tag rid: 'SV-257592r991589_rule'
+  tag rid: 'SV-257592r1268251_rule'
   tag stig_id: 'WN11-00-000395'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-61256r922046_fix'

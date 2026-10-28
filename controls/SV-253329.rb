@@ -14,7 +14,6 @@ Compare the AuditPol settings with the following. If the system does not audit t
 Privilege Use >> Sensitive Privilege Use - Success'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> Privilege Use >> "Audit Sensitive Privilege Use" with "Success" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56782r829069_chk'
   tag severity: 'medium'
   tag gid: 'V-253329'
@@ -24,8 +23,8 @@ Privilege Use >> Sensitive Privilege Use - Success'
   tag fix_id: 'F-56732r829070_fix'
   tag 'documentable'
   tag legacy: ['SV-77977', 'V-63487']
-  tag cci: ['CCI-000172', 'CCI-002234']
-  tag nist: ['AU-12 c', 'AC-6 (9)']
+  tag cci: ['CCI-000172']
+  tag nist: ['AU-12 c']
 
   describe.one do
     describe audit_policy do

@@ -1,12 +1,10 @@
 control 'SV-253394' do
   title 'Windows Update must not obtain updates from other PCs on the internet.'
-  desc 'Windows 11 allows Windows Update to obtain updates from additional sources instead of Microsoft. In addition to Microsoft, updates can be obtained from and sent to PCs on the local network as well as on the Internet. This is part of the Windows Update trusted process, however to minimize outside exposure, obtaining updates from or sending to systems on the internet must be prevented.'
+  desc 'Windows 11 allows Windows Update to obtain updates from additional sources instead of Microsoft. In addition to Microsoft, updates can be obtained from and sent to PCs on the local network as well as on the internet. This is part of the Windows Update trusted process; however, to minimize outside exposure, obtaining updates from or sending to systems on the internet must be prevented.'
   desc 'check', 'If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \\SOFTWARE\\Policies\\Microsoft\\Windows\\DeliveryOptimization\\
-
-Value Name: DODownloadMode
+Registry Path: \\SOFTWARE\\Policies\\Microsoft\\Windows\\DeliveryOptimization\\  
 
 Value Type: REG_DWORD
 Value: 0x00000000 (0) - No peering (HTTP Only)
@@ -18,10 +16,11 @@ Value: 0x00000000 (0) - No peering (HTTP Only)
 A value of 0x00000003 (3), Internet, is a finding.
 
 Standalone systems (configured in Settings):
+
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\DeliveryOptimization\\Config\\
+Registry Path: \\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\DeliveryOptimization\\Config\\    
 
 Value Name: DODownloadMode
 
@@ -35,56 +34,30 @@ Bypass (100)
 Group (2)
 HTTP only (0)
 LAN (1)
-Simple (99)
-
-.'
+Simple (99)'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
-  tag check_id: 'C-56847r829264_chk'
+  tag check_id: 'C-56847r1256677_chk'
   tag severity: 'low'
   tag gid: 'V-253394'
-  tag rid: 'SV-253394r991589_rule'
+  tag rid: 'SV-253394r1268251_rule'
   tag stig_id: 'WN11-CC-000206'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
-  tag fix_id: 'F-56797r829265_fix'
+  tag fix_id: 'F-56797r1256678_fix'
   tag 'documentable'
   tag legacy: ['SV-80171', 'V-65681']
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
 
-  if registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion').ReleaseId == '1507'
-    describe.one do
-      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config') do
-        it { should have_property 'DODownloadMode' }
-        its('DODownloadMode') { should cmp 0 }
-      end
-      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config') do
-        it { should have_property 'DODownloadMode' }
-        its('DODownloadMode') { should cmp 1 }
-      end
+  # Domain/GPO policy: any download mode other than 3 (Internet peering)
+  # Standalone systems (configured in Settings): 0 (Off) or 1 (LAN)
+  describe.one do
+    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization') do
+      it { should have_property 'DODownloadMode' }
+      its('DODownloadMode') { should be_in [0, 1, 2, 99, 100] }
     end
-  else
-    describe.one do
-      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config') do
-        it { should have_property 'DODownloadMode' }
-        its('DODownloadMode') { should cmp 0 }
-      end
-      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config') do
-        it { should have_property 'DODownloadMode' }
-        its('DODownloadMode') { should cmp 1 }
-      end
-      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config') do
-        it { should have_property 'DODownloadMode' }
-        its('DODownloadMode') { should cmp 2 }
-      end
-      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config') do
-        it { should have_property 'DODownloadMode' }
-        its('DODownloadMode') { should cmp 99 }
-      end
-      describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config') do
-        it { should have_property 'DODownloadMode' }
-        its('DODownloadMode') { should cmp 100 }
-      end
+    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config') do
+      it { should have_property 'DODownloadMode' }
+      its('DODownloadMode') { should be_in [0, 1] }
     end
   end
 end

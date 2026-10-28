@@ -12,13 +12,12 @@ Value Type: REG_DWORD
 Value: 2'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> MSS (Legacy) >> "MSS: (DisableIPSourceRouting IPv6) IP source routing protection level (protects against packet spoofing)" to "Highest protection, source routing is completely disabled".
 
-This policy setting requires the installation of the MSS-Legacy custom templates included with the STIG package.  "MSS-Legacy.admx" and " MSS-Legacy.adml" must be copied to the \\Windows\\PolicyDefinitions and \\Windows\\PolicyDefinitions\\en-US directories respectively.'
+This policy setting requires the installation of the MSS-Legacy custom templates included with the STIG package.  "MSS-Legacy.admx" and "MSS-Legacy.adml" must be copied to the \\Windows\\PolicyDefinitions and \\Windows\\PolicyDefinitions\\en-US directories respectively.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56806r829141_chk'
   tag severity: 'medium'
   tag gid: 'V-253353'
-  tag rid: 'SV-253353r991589_rule'
+  tag rid: 'SV-253353r1268251_rule'
   tag stig_id: 'WN11-CC-000020'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-56756r829142_fix'

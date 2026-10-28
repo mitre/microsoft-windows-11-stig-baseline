@@ -14,7 +14,6 @@ To disable IE11 as a standalone browser:
 
 Set the policy value for "Computer Configuration/Administrative Templates/Windows Components/Internet Explorer/Disable Internet Explorer 11 as a standalone browser" to "Enabled" with the option value set to "Never".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-60568r891288_chk'
   tag severity: 'medium'
   tag gid: 'V-256893'

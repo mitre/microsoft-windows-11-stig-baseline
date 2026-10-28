@@ -12,11 +12,10 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "System objects: Strengthen default permissions of internal system objects (e.g. Symbolic links)" to "Enabled".'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56920r829483_chk'
   tag severity: 'low'
   tag gid: 'V-253467'
-  tag rid: 'SV-253467r991589_rule'
+  tag rid: 'SV-253467r1268251_rule'
   tag stig_id: 'WN11-SO-000240'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-56870r829484_fix'

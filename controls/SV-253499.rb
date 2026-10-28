@@ -18,7 +18,6 @@ Administrators'
 
       Administrators'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56952r829579_chk'
   tag severity: 'medium'
   tag gid: 'V-253499'
@@ -30,13 +29,6 @@ Administrators'
   tag legacy: ['SV-78407', 'V-63917']
   tag cci: ['CCI-002235']
   tag nist: ['AC-6 (10)']
-
-  desc 'fix', "Configure the policy value for Computer Configuration >> Windows
-      Settings >> Security Settings >> Local Policies >> User Rights Assignment >>
-      \"Load and unload device drivers\" to only include the following groups or
-      accounts:
-
-      Administrators"
 
   describe security_policy do
     its('SeLoadDriverPrivilege') { should eq ['S-1-5-32-544'] }

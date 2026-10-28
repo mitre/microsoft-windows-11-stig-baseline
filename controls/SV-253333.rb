@@ -14,7 +14,6 @@ Compare the AuditPol settings with the following. If the system does not audit t
 System >> Security State Change - Success'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> System >> "Audit Security State Change" with "Success" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56786r829081_chk'
   tag severity: 'medium'
   tag gid: 'V-253333'
@@ -24,8 +23,8 @@ System >> Security State Change - Success'
   tag fix_id: 'F-56736r829082_fix'
   tag 'documentable'
   tag legacy: ['V-63507', 'SV-77997']
-  tag cci: ['CCI-000172', 'CCI-002234']
-  tag nist: ['AU-12 c', 'AC-6 (9)']
+  tag cci: ['CCI-000172']
+  tag nist: ['AU-12 c']
 
   describe.one do
     describe audit_policy do

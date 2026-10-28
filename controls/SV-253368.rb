@@ -12,11 +12,10 @@ Type: REG_DWORD
 Value: 0x00000001 (1)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> System >> Credentials Delegation >> "Remote host allows delegation of non-exportable credentials" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56821r829186_chk'
   tag severity: 'medium'
   tag gid: 'V-253368'
-  tag rid: 'SV-253368r991589_rule'
+  tag rid: 'SV-253368r1268251_rule'
   tag stig_id: 'WN11-CC-000068'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-56771r829187_fix'
@@ -25,17 +24,8 @@ Value: 0x00000001 (1)'
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
 
-  releaseID = registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion').ReleaseId.to_i
-
-  if releaseID == 1607 || releaseID <= 1507
-    impact 0.0
-    describe 'This STIG does not apply to Prior Versions before 1507 and 1607.' do
-      skip 'This STIG does not apply to Prior Versions before 1507 and 1607.'
-    end
-  else
-    describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation') do
-      it { should have_property 'AllowProtectedCreds' }
-      its('AllowProtectedCreds') { should cmp 1 }
-    end
+  describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation') do
+    it { should have_property 'AllowProtectedCreds' }
+    its('AllowProtectedCreds') { should cmp 1 }
   end
 end

@@ -1,131 +1,78 @@
 control 'SV-253264' do
   title 'The Windows 11 system must use an antivirus program.'
   desc 'Malicious software can establish a base on individual desktops and servers. Employing an automated mechanism to detect this type of software will aid in elimination of the software from the operating system.'
-  desc 'check', 'Verify an antivirus solution is installed on the system and in use. The antivirus solution may be bundled with an approved Endpoint Security Solution.
+  desc 'check', 'Verify an organizationally approved antivirus solution (Microsoft Defender Antivirus, for example) is installed on the system and in use. 
 
 Verify if Microsoft Defender Antivirus is in use or enabled:
+If Windows Defender is your primary or secondary antivirus (AV) application, this command will use the built-in Microsoft Defender module to retrieve granular engine data.
+ 
+Run "PowerShell" as an administrator.
 
-Open "PowerShell".
+Execute the following command:
+Get-MpComputerStatus | Select-Object AMRunningMode, RealTimeProtectionEnabled, AntivirusEnabled, AMEngineVersion
 
-Enter "get-service | where {$_.DisplayName -Like "*Defender*"} | Select Status,DisplayName"
+Review the resulting display. Note the text under "AMRunningMode". This reveals how Defender is coexisting with other AV software.
+"Normal" indicates Defender is active and acting as the primary AV software. 
+"Passive" indicates another compatible third-party AV software is registered and active. Defender can still provide auxiliary scanning. 
+"EDR Block Mode" indicates Defender is executing in Passive Mode along with a third-party AV to actively block and remediate malicious files if the primary AV misses them.
+Review the text under heading of "RealTimeProtectionEnabled". A value of "True" or "False" indicates whether (or not) Defender is active (currently running). 
 
 Verify third-party antivirus is in use or enabled:
+Note: This command will display all AV applications registered with the Windows Security Center (including third-party applications).
 
-Open "PowerShell".
+Run "PowerShell" as an administrator.
 
-Enter "get-service | where {$_.DisplayName -Like "*mcafee*"} | Select Status,DisplayName"
+Execute the following command:
+Get-CimInstance -Namespace root\\SecurityCenter2 -ClassName AntiVirusProduct | Select-Object displayName, productState, pathToSignedProductExe
 
-Enter "get-service | where {$_.DisplayName -Like "*symantec*"} | Select Status,DisplayName"
+Review the resulting display. Note the text under "displayName". This will indicate the currently running AV applications.
+The "productState" returns an integer value that reveals whether the AV is active, disabled, or up-to-date.
+The value of "397568" indicates it is active and up-to-date.
+The value of "397584 indicates it is active, but out of date (signature updates required).
+The value of "393472" indicates disabled and up-to-date (AV installed, but not active).
+The value of "393488" indicates disabled and out of date.
 
-If there is no antivirus solution installed on the system, this is a finding.'
-  desc 'fix', 'Install Microsoft Defender Antivirus or a third-party antivirus solution.'
+If there is no antivirus solution installed and active on the system, this is a finding.'
+  desc 'fix', 'Install and activate Microsoft Defender Antivirus or a third-party antivirus solution.'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
-  tag check_id: 'C-56717r828874_chk'
+  tag check_id: 'C-56717r1259976_chk'
   tag severity: 'high'
   tag gid: 'V-253264'
-  tag rid: 'SV-253264r991589_rule'
+  tag rid: 'SV-253264r1268251_rule'
   tag stig_id: 'WN11-00-000045'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
-  tag fix_id: 'F-56667r828875_fix'
+  tag fix_id: 'F-56667r1259977_fix'
   tag 'documentable'
   tag legacy: ['SV-77841', 'V-63351']
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
 
-  anti_virus_product_name = <<-EOH
-        #script came from: https://www.404techsupport.com/2015/04/27/powershell-script-detect-antivirus-product-and-status/
+  av_status = json(command: <<~PS).params
+    $defender = Get-MpComputerStatus -ErrorAction SilentlyContinue |
+      Select-Object AMRunningMode, RealTimeProtectionEnabled, AntivirusEnabled
+    $products = Get-CimInstance -Namespace root\\SecurityCenter2 -ClassName AntiVirusProduct -ErrorAction SilentlyContinue |
+      Select-Object displayName, productState
+    [pscustomobject]@{ Defender = $defender; Products = @($products) } | ConvertTo-Json -Depth 3
+  PS
 
-        $computername=$env:computername
-        $AntiVirusProduct = Get-WmiObject -Namespace root\\SecurityCenter2 -Class AntiVirusProduct  -ComputerName $computername
-
-        #Switch to determine the status of antivirus definitions and real-time protection.
-        #Write-Output $AntiVirusProduct.productState
-        switch ($AntiVirusProduct.productState) {
-          "262144" {$defstatus = "Up to date" ;$rtstatus = "Disabled"}
-          "262160" {$defstatus = "Out of date" ;$rtstatus = "Disabled"}
-          "266240" {$defstatus = "Up to date" ;$rtstatus = "Enabled"}
-          "266256" {$defstatus = "Out of date" ;$rtstatus = "Enabled"}
-          "393216" {$defstatus = "Up to date" ;$rtstatus = "Disabled"}
-          "393232" {$defstatus = "Out of date" ;$rtstatus = "Disabled"}
-          "393488" {$defstatus = "Out of date" ;$rtstatus = "Disabled"}
-          "397312" {$defstatus = "Up to date" ;$rtstatus = "Enabled"}
-          "397328" {$defstatus = "Out of date" ;$rtstatus = "Enabled"}
-          "397584" {$defstatus = "Out of date" ;$rtstatus = "Enabled"}
-          "397568" {$defstatus = "Up to date"; $rtstatus = "Enabled"}
-          "393472" {$defstatus = "Up to date" ;$rtstatus = "Disabled"}
-        default {$defstatus = "Unknown" ;$rtstatus = "Unknown"}
-        }
-
-        Write-Output $AntiVirusProduct.displayName
-  EOH
-
-  anti_virus_def_status = <<-EOH
-        #script came from: https://www.404techsupport.com/2015/04/27/powershell-script-detect-antivirus-product-and-status/
-
-        $computername=$env:computername
-        $AntiVirusProduct = Get-WmiObject -Namespace root\\SecurityCenter2 -Class AntiVirusProduct  -ComputerName $computername
-
-        #Switch to determine the status of antivirus definitions and real-time protection.
-        #Write-Output $AntiVirusProduct.productState
-        switch ($AntiVirusProduct.productState) {
-          "262144" {$defstatus = "Up to date" ;$rtstatus = "Disabled"}
-          "262160" {$defstatus = "Out of date" ;$rtstatus = "Disabled"}
-          "266240" {$defstatus = "Up to date" ;$rtstatus = "Enabled"}
-          "266256" {$defstatus = "Out of date" ;$rtstatus = "Enabled"}
-          "393216" {$defstatus = "Up to date" ;$rtstatus = "Disabled"}
-          "393232" {$defstatus = "Out of date" ;$rtstatus = "Disabled"}
-          "393488" {$defstatus = "Out of date" ;$rtstatus = "Disabled"}
-          "397312" {$defstatus = "Up to date" ;$rtstatus = "Enabled"}
-          "397328" {$defstatus = "Out of date" ;$rtstatus = "Enabled"}
-          "397584" {$defstatus = "Out of date" ;$rtstatus = "Enabled"}
-          "397568" {$defstatus = "Up to date"; $rtstatus = "Enabled"}
-          "393472" {$defstatus = "Up to date" ;$rtstatus = "Disabled"}
-        default {$defstatus = "Unknown" ;$rtstatus = "Unknown"}
-        }
-
-        Write-Output $defstatus
-  EOH
-
-  anti_virus_status = <<-EOH
-        #script came from: https://www.404techsupport.com/2015/04/27/powershell-script-detect-antivirus-product-and-status/
-
-        $computername=$env:computername
-        $AntiVirusProduct = Get-WmiObject -Namespace root\\SecurityCenter2 -Class AntiVirusProduct  -ComputerName $computername
-
-        #Switch to determine the status of antivirus definitions and real-time protection.
-        #Write-Output $AntiVirusProduct.productState
-        switch ($AntiVirusProduct.productState) {
-          "262144" {$defstatus = "Up to date" ;$rtstatus = "Disabled"}
-          "262160" {$defstatus = "Out of date" ;$rtstatus = "Disabled"}
-          "266240" {$defstatus = "Up to date" ;$rtstatus = "Enabled"}
-          "266256" {$defstatus = "Out of date" ;$rtstatus = "Enabled"}
-          "393216" {$defstatus = "Up to date" ;$rtstatus = "Disabled"}
-          "393232" {$defstatus = "Out of date" ;$rtstatus = "Disabled"}
-          "393488" {$defstatus = "Out of date" ;$rtstatus = "Disabled"}
-          "397312" {$defstatus = "Up to date" ;$rtstatus = "Enabled"}
-          "397328" {$defstatus = "Out of date" ;$rtstatus = "Enabled"}
-          "397584" {$defstatus = "Out of date" ;$rtstatus = "Enabled"}
-          "397568" {$defstatus = "Up to date"; $rtstatus = "Enabled"}
-          "393472" {$defstatus = "Up to date" ;$rtstatus = "Disabled"}
-        default {$defstatus = "Unknown" ;$rtstatus = "Unknown"}
-        }
-
-        Write-Output $rtstatus
-  EOH
-
-  check_product = powershell(anti_virus_product_name).stdout.strip.split("\n").map(&:strip)
-
-  describe "The installed anti-virus: #{check_product} is on the Approved Sofware List" do
-    subject { check_product }
-    it { should be_in input('av_approved_software') }
+  defender = av_status['Defender'] || {}
+  products = Array(av_status['Products'])
+  # productState values the STIG identifies as active (up to date / out of date) are maintained in av_active_product_states
+  active_products = products.select do |product|
+    input('av_approved_software').include?(product['displayName']) &&
+      input('av_active_product_states').include?(product['productState'].to_i)
   end
-  describe 'The anti-virus software is enabled on the system' do
-    subject { powershell(anti_virus_status).strip }
-    it { should cmp 'Enabled' }
-  end
-  describe 'The anti-virus signature definitions are up to date' do
-    subject { powershell(anti_virus_def_status).strip }
-    it { should cmp 'Up to date' }
+
+  describe.one do
+    describe 'Microsoft Defender Antivirus (Get-MpComputerStatus)' do
+      it 'is the primary antivirus (AMRunningMode Normal) with real-time protection enabled' do
+        expect(defender['AMRunningMode']).to cmp 'Normal'
+        expect(defender['RealTimeProtectionEnabled']).to cmp true
+      end
+    end
+    describe "Approved and active antivirus registered with Windows Security Center (found: #{products.map { |p| "#{p['displayName']} [#{p['productState']}]" }.join(', ')})" do
+      subject { active_products }
+      it { should_not be_empty }
+    end
   end
 end

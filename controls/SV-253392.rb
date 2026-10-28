@@ -14,11 +14,10 @@ Type: REG_DWORD
 Value: 0x00000001 (1)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Data Collection and Preview Builds >> "Limit optional diagnostic data for Windows Analytics" to "Enabled" with "Enable Desktop Analytics collection" selected in "Options:".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56845r829258_chk'
   tag severity: 'medium'
   tag gid: 'V-253392'
-  tag rid: 'SV-253392r991589_rule'
+  tag rid: 'SV-253392r1268251_rule'
   tag stig_id: 'WN11-CC-000204'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-56795r829259_fix'
@@ -27,15 +26,18 @@ Value: 0x00000001 (1)'
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
 
-  if registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion').ReleaseId >= '1709'
+  # AllowTelemetry (WN11-CC-000205): 0 = Security, 1 = Basic. This requirement is NA at those levels.
+  allow_telemetry = registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection').AllowTelemetry
+
+  if [0, 1].include?(allow_telemetry)
+    impact 0.0
+    describe "Telemetry is configured to #{allow_telemetry.zero? ? 'Security' : 'Basic'} (AllowTelemetry = #{allow_telemetry}); This System is N/A for Control SV-253392" do
+      skip "Telemetry is configured to #{allow_telemetry.zero? ? 'Security' : 'Basic'} (AllowTelemetry = #{allow_telemetry}); This System is N/A for Control SV-253392"
+    end
+  else
     describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection') do
       it { should have_property 'LimitEnhancedDiagnosticDataWindowsAnalytics' }
       its('LimitEnhancedDiagnosticDataWindowsAnalytics') { should cmp 1 }
-    end
-  else
-    impact 0.0
-    describe 'This setting is applicable starting with v1709 or later of Windows 10; it is NA for prior versions' do
-      skip 'This setting is applicable starting with v1709 or later of Windows 10; it is NA for prior versions.'
     end
   end
 end

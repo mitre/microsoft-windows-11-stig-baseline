@@ -1,5 +1,5 @@
 name: microsoft-windows-11-stig-baseline
-title: "Microsoft Windows 11 Security Technical Implementation Guide :: Version 2, Release 2 :: Benchmark Date: 15 Nov 2024"
+title: "Microsoft Windows 11 Security Technical Implementation Guide :: Version 2, Release 11 :: Benchmark Date: 30 September 2026"
 maintainer: MITRE SAF Team
 copyright: MITRE
 copyright_email: saf@groups.mitre.org
@@ -20,12 +20,61 @@ inputs:
       - McAfee Host Intrusion Prevention
       - McAfee Endpoint Security
       - McAfee Agent
-  
+      - Trellix Endpoint Security
+
+  # SV-253264
+  - name: av_active_product_states
+    desc: "Windows Security Center (root\\SecurityCenter2 AntiVirusProduct) productState values that indicate an active antivirus, per the STIG check [397568 = active and up to date, 397584 = active but out of date]"
+    type: Array
+    value:
+      - 397568
+      - 397584
+
+  # SV-253259, SV-253260, SV-253261
+  - name: avd_no_data_at_rest
+    desc: "Set to true if the system is an Azure Virtual Desktop (AVD) implementation with no data at rest [false]"
+    type: String
+    value: "false"
+
+  # SV-253260
+  - name: bitlocker_network_unlock
+    desc: "Set to true if BitLocker network unlock is used, which permits UseTPMPIN/UseTPMKeyPIN values of 2 [false]"
+    type: String
+    value: "false"
+
   # SV-253261
   - name: bitlocker_pin_len
     desc: "The minimum length for the BitLocker Pin [6]"
     type: Numeric
     value: 6
+
+  # SV-253263
+  - name: windows_11_end_of_servicing
+    desc: "End of updates date (YYYY-MM-DD) for each Windows 11 OS build by servicing option, from https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information. Builds not listed are no longer serviced; ~ means updates have already ended for that servicing option."
+    type: Hash
+    value:
+      # 26H2
+      "26300":
+        home_pro: "2028-10-10"
+        enterprise: "2029-10-09"
+      # 26H1
+      "28000":
+        home_pro: "2028-03-14"
+        enterprise: "2029-03-13"
+      # 25H2
+      "26200":
+        home_pro: "2027-10-12"
+        enterprise: "2028-10-10"
+      # 24H2 (Enterprise LTSC 2024 / IoT Enterprise LTSC 2024)
+      "26100":
+        home_pro: ~
+        enterprise: "2027-10-12"
+        ltsc: "2029-10-09"
+        iot_ltsc: "2034-10-10"
+      # 23H2
+      "22631":
+        home_pro: ~
+        enterprise: "2026-11-10"
 
   # SV-253302
   - name: min_pass_age
@@ -47,9 +96,15 @@ inputs:
 
   # SV-253301
   - name: max_pass_age
-    desc: "Sets the maximum age for a password [60]"
+    desc: "Sets the maximum age for a password [180]"
     type: Numeric
-    value: 60
+    value: 180
+
+  # SV-253476
+  - name: local_admin_pass_age
+    desc: "Maximum age in days for the local Administrator account password and the Windows LAPS PasswordAgeDays setting [180]"
+    type: Numeric
+    value: 180
 
   # SV-253297, SV-253299
   - name: pass_lock_time
@@ -69,7 +124,7 @@ inputs:
     type: Numeric
     value: 3
 
-  # SV-253268
+  # SV-288812
   - name: max_inactive_days
     desc: "Max number of days an account is allowed to be inactive [35]"
     type: Numeric
@@ -122,77 +177,26 @@ inputs:
       -Notwithstanding the above, using this IS does not constitute consent to PM, LE
       or CI investigative searching or monitoring of the content of privileged
       communications, or work product, related to personal representation or services
-      by attorneys, psychotherapists, or clergy, and their assistants.  Such
-      communications and work product are private and confidential.  See User
+      by attorneys, psychotherapists, or clergy, and their assistants. Such
+      communications and work product are private and confidential. See User
       Agreement for details."
 
-  # SV-253446
-  - name: LegalNoticeCaption
-    type: String
-    value: "DoD Notice and Consent Banner, US Department of Defense Warning Statement, or a site-defined equivalent."
-  
-  # SV-253430
-  - name: dod_cceb_certificates
-    description: "List of DoD CCEB Interoperability CA Root Certificates"
-    type: Array
-    value:
-      - :Subject: "CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US"
-        :Issuer: "CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US"
-        :Thumbprint: "929BF3196896994C0A201DF4A5B71F603FEFBF2E"
-        :NotAfter: "Friday, September 27, 2019"
-  
-  # SV-253429
-  - name: dod_certificates
-    description: "List of DoD Interoperability Root Certificates"
-    type: Array
-    value:
-      - :Subject: "CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US"
-        :Issuer: "CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US"
-        :Thumbprint: "AC06108CA348CC03B53795C64BF84403C1DBD341"
-        :NotAfter: "Saturday, January 22, 2022"
-
-  # SV-253428
-  - name: dod_eca_certificates
-    description: "List of ECA Root CA certificates Certificates"
-    type: Array
-    value:
-      - :Subject: "CN=ECA Root CA 2, OU=ECA, O=U.S. Government, C=US"
-        :Thumbprint: "C313F919A6ED4E0E8451AFA930FB419A20F181E4"
-        :NotAfter: "Thursday, March 30, 2028"
-
-      - :Subject: "CN=ECA Root CA 4, OU=ECA, O=U.S. Government, C=US"
-        :Thumbprint: "73E8BB08E337D6A5A6AEF90CFFDD97D9176CB582"
-        :NotAfter: "Sunday, December 30, 2029"
-
   # SV-253427
-  - name: dod_trusted_certificates
-    description: "List of DOD Trusted CA certificates Certificates"
+  - name: dod_root_ca_cns
+    desc: "Common Names of the DoW Root CA certificates that must be installed and unexpired in the Trusted Root Certification Authorities store"
     type: Array
-    value: 
-       - :Subject: "CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US"
-         :Thumbprint: "D73CA91102A2204A36459ED32213B467D7CE97FB"
-         :NotAfter: "Sunday, December 30, 2029"
-  
-       - :Subject: "CN=DoD Root CA 4, OU=PKI, OU=DoD, O=U.S. Government, C=US"
-         :Thumbprint: "B8269F25DBD937ECAFD4C35A9838571723F2D026"
-         :NotAfter: "Sunday, July 25, 2032"
-        
-       - :Subject: "CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US"
-         :Thumbprint: "AC06108CA348CC03B53795C64BF84403C1DBD341"
-         :NotAfter: "Saturday, January 22, 2022"
-     
-       - :Subject: "CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US"
-         :Thumbprint: "929BF3196896994C0A201DF4A5B71F603FEFBF2E"
-         :NotAfter: "Friday, September 27, 2019"
-     
-       - :Subject: "CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US"
-         :Thumbprint: "8C941B34EA1EA6ED9AE2BC54CF687252B4C9B561"
-         :NotAfter: "Wednesday, December 05, 2029"
-      
-       - :Subject: "CN=DoD Root CA 5, OU=PKI, OU=DoD, O=U.S. Government, C=US"
-         :Thumbprint: "4ECB5CC3095670454DA1CBD410FC921F46B8564B"
-         :NotAfter: "Friday, June 14, 2041"
+    value:
+      - DoD Root CA 3
+      - DoD Root CA 5
+      - DoD Root CA 6
 
+  # SV-253415
+  - name: transcript_privileged_sids
+    desc: "SIDs permitted read/modify access to the PowerShell Transcript output directory [SYSTEM, Administrators]"
+    type: Array
+    value:
+      - S-1-5-18
+      - S-1-5-32-544
   # SV-253431
   - name: reg_software_perms
     desc: "The required Registry Software Permission Settings"
@@ -230,6 +234,7 @@ inputs:
     desc: "Default Permissions for C:\\ Folder on OS"
     type: Array
     value:
+      - S-1-15-3-65536-1888954469-739942743-1668119174-2468466756-4239452838-1296943325-355587736-700089176:(S,RD,X,RA)
       - NT AUTHORITY\Authenticated Users:(S,AD)
       - NT AUTHORITY\Authenticated Users:(OI)(CI)(IO)(M)
       - NT AUTHORITY\SYSTEM:(OI)(CI)(F)
@@ -274,4 +279,38 @@ inputs:
       - APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
       - APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(RX)
       - APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
-      
+
+  # SV-253291
+  - name: bluetooth_approved
+    desc: "If Bluetooth is approved for use on the system true=1 false=0 [false]"
+    type: Numeric
+    value: 0
+
+  #SV-253351
+  - name: camera_approved
+    desc: "If Camera use is approved for the system 'Deny' or 'Allow' [Deny]"
+    type: String
+    value: "Deny"
+
+  #SV-253338
+  - name: max_security_event_log_size
+    desc: "The minimum size for the Security Event Log in KB [5120000]"
+    type: Numeric
+    value: 5120000
+
+
+  - name: vdi_services
+    desc: "List of services that indicate it is a VDI workstation."
+    type: Array
+    value:
+      - "BrokerAgent" #Citrix Virtual Apps and Desktops Service
+      - "TermService" #Microsoft Remote Desktop Services
+      - "WSNM" #VMware Horizon View Agent
+      - "VMBlast" #VMware Horizon View Agent
+      - "RDAgentBootLoader" #Microsoft Azure Remote Desktop Services Agent Boot Loader
+      - "SkyLightWorkspaceConfigService" #AWS Windows WorkSpaces Service
+
+  - name: is_vdi
+    desc: "Flag to indicate if the system is a VDI workstation"
+    type: String
+    value: "false"

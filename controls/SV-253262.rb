@@ -32,7 +32,6 @@ Implementation guidance for AppLocker is available in the NSA paper "Application
 
 https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-application-control/applocker/applocker-policies-deployment-guide'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56715r951121_chk'
   tag severity: 'medium'
   tag gid: 'V-253262'

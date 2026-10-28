@@ -14,7 +14,6 @@ Compare the AuditPol settings with the following. If the system does not audit t
 Account Management >> User Account Management - Failure'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> Account Management >> "Audit User Account Management" with "Failure" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56762r829009_chk'
   tag severity: 'medium'
   tag gid: 'V-253309'
@@ -24,8 +23,8 @@ Account Management >> User Account Management - Failure'
   tag fix_id: 'F-56712r829010_fix'
   tag 'documentable'
   tag legacy: ['SV-77937', 'V-63447']
-  tag cci: ['CCI-000018', 'CCI-000172', 'CCI-001403', 'CCI-001404', 'CCI-001405', 'CCI-002130', 'CCI-002234', 'CCI-001314']
-  tag nist: ['AC-2 (4)', 'AU-12 c', 'AC-6 (9)', 'SI-11 b']
+  tag cci: ['CCI-001314']
+  tag nist: ['SI-11 b']
 
   describe.one do
     describe audit_policy do

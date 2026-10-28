@@ -1,26 +1,19 @@
 control 'SV-253429' do
-  title 'The DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificates Store on unclassified systems.'
-  desc 'To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.'
-  desc 'check', 'Verify the DoD Interoperability cross-certificates are installed on unclassified systems as Untrusted Certificates.
+  title 'The DoW Interoperability Root CA cross-certificates must be installed in the Untrusted Certificates Store on unclassified systems.'
+  desc 'To ensure users do not experience denial of service when performing certificate-based authentication to DoW websites due to the system chaining to a root other than DoW Root CAs, the DoW Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.'
+  desc 'check', %q(Verify the DoW Interoperability cross-certificates are installed on unclassified systems as Untrusted Certificates.
 
 Run "PowerShell" as an administrator.
 
 Execute the following command:
 
-Get-ChildItem -Path Cert:Localmachine\\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, Issuer, Thumbprint, NotAfter
+Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is a finding.
-
-Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: 49CBE933151872E17C8EAE7F0ABA97FB610F6477
-NotAfter: 11/16/2024
-
-Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: AC06108CA348CC03B53795C64BF84403C1DBD341
-NotAfter: 1/22/2022
-
+If valid DoW Interoperability cross-certificates (such as those below) are not displayed, this is a finding.
+  
+Subject: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
+NotAfter: 11/24/2030 
+           
 Alternately, use the Certificates MMC snap-in:
 
 Run "MMC".
@@ -37,41 +30,42 @@ Click "OK".
 
 Expand "Certificates" and navigate to Untrusted Certificates >> Certificates.
 
-For each certificate with "DoD Root CA...." under "Issued To" and "DoD Interoperability Root CA...." under "Issued By":
+For each DoW Interoperability Root CA certificate displayed:
 
 Right-click on the certificate and select "Open".
 
 Select the "Details" tab.
 
-Scroll to the bottom and select "Thumbprint".
+Verify the Expiration Date is a future date.
 
-If the certificates below are not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
+Scroll to the bottom and select "Subject".
 
-Issued To: DoD Root CA 3
-Issued By: Interoperability Root CA 2
-Thumbprint : 49CBE933151872E17C8EAE7F0ABA97FB610F6477
-Valid to: Saturday, November 16, 2024'
-  desc 'fix', 'Install the DoD Interoperability Root CA cross-certificates on unclassified systems.
+If any of the certificates listed do not include "DoD Interoperability Root CA" in the name or are expired, this is a finding.
 
-Issued To - Issued By - Thumbprint
-DoD Root CA 3 - DoD Interoperability Root CA 2 - 49CBE933151872E17C8EAE7F0ABA97FB610F6477
+Note: This should not be relied upon as a complete list of possible DoW Interoperability Root CA certificates.
+
+DoD Interoperability Root CA 2
+
+Note: Interoperability cross certificates will have a different value (such as "...Root CA 6") in the 'Issued To'  field than in the 'Subject' and 'Issuer' fields.)
+  desc 'fix', 'Install valid (unexpired) DoW Interoperability Root CA cross-certificates on unclassified systems.  
+
+The list below is not to be treated as exhaustive. The STIG should not be used as a definitive resource for the organizationally approved certificates for the systems.
+
+DoD Interoperability Root CA 2                                           
 
 The certificates can be installed using the InstallRoot tool. The tool and user guide are available on Cyber Exchange at https://cyber.mil/pki-pke/tools-configuration-files. Certificate bundles published by the PKI can be found at https://crl.gds.disa.mil/.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
-  tag check_id: 'C-56882r890462_chk'
+  tag check_id: 'C-56882r1256660_chk'
   tag severity: 'medium'
   tag gid: 'V-253429'
-  tag rid: 'SV-253429r958448_rule'
+  tag rid: 'SV-253429r1256662_rule'
   tag stig_id: 'WN11-PK-000015'
   tag gtitle: 'SRG-OS-000066-GPOS-00034'
-  tag fix_id: 'F-56832r890463_fix'
+  tag fix_id: 'F-56832r1256661_fix'
   tag 'documentable'
   tag legacy: ['V-63587', 'SV-78077']
-  tag cci: ['CCI-000185', 'CCI-002470']
-  tag nist: ['IA-5 (2) (b) (1)', 'SC-23 (5)']
-
-  # NOTE:  DoD Root CA 2 - DoD Interoperability Root CA 1 - 22BBE981F0694D246CC1472ED2B021DC8540A22F does not exist on Install Root 5.5
+  tag cci: ['CCI-002470']
+  tag nist: ['SC-23 (5)']
 
   if input('sensitive_system') == 'true'
     impact 0.0
@@ -79,11 +73,21 @@ The certificates can be installed using the InstallRoot tool. The tool and user 
       skip 'This Control is Not Applicable to sensitive systems.'
     end
   else
-    dod_certificates = JSON.parse(input('dod_certificates').to_json)
-    query = json({ command: 'Get-ChildItem -Path Cert:Localmachine\\\\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | Select Subject, Issuer, Thumbprint, @{Name=\'NotAfter\';Expression={"{0:dddd, MMMM dd, yyyy}" -f [datetime]$_.NotAfter}} | ConvertTo-Json' })
-    describe 'The DoD Interoperability Root CA cross-certificates are installed' do
-      subject { query.params }
-      it { should be_in dod_certificates }
+    certificates = json(command: <<~PS).params
+      $certs = Get-ChildItem -Path Cert:\\LocalMachine\\Disallowed | Where-Object { $_.Issuer -like '*DoD Interoperability*' -and $_.Subject -like '*DoD*' } |
+        Select-Object Subject, Issuer, @{ n = 'NotAfter'; e = { $_.NotAfter.ToString('yyyy-MM-dd') } }, @{ n = 'Expired'; e = { $_.NotAfter -lt (Get-Date) } }
+      ConvertTo-Json -InputObject @($certs)
+    PS
+
+    describe 'DoW Interoperability Root CA cross-certificates in the Untrusted Certificates store' do
+      subject { certificates.select { |cert| cert['Expired'] == false } }
+      it { should_not be_empty }
+    end
+    certificates.each do |cert|
+      describe "Cross-certificate #{cert['Subject']} issued by #{cert['Issuer']} (NotAfter: #{cert['NotAfter']})" do
+        subject { cert['Expired'] }
+        it { should eq false }
+      end
     end
   end
 end

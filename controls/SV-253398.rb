@@ -16,11 +16,10 @@ Value: 0 (or if the Value Name does not exist)'
 
 To correct this, configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> File Explorer >> "Turn off shell protocol protected mode" to "Not Configured" or "Disabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56851r829276_chk'
   tag severity: 'medium'
   tag gid: 'V-253398'
-  tag rid: 'SV-253398r991589_rule'
+  tag rid: 'SV-253398r1268251_rule'
   tag stig_id: 'WN11-CC-000225'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-56801r829277_fix'

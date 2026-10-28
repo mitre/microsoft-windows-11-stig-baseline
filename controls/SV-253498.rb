@@ -4,6 +4,7 @@ control 'SV-253498' do
 
 The "Impersonate a client after authentication" user right allows a program to impersonate another user or account to run on their behalf. An attacker could potentially use this to elevate privileges.'
   desc 'check', 'Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> User Rights Assignment.
@@ -13,28 +14,29 @@ If any groups or accounts other than the following are granted the "Impersonate 
 Administrators
 LOCAL SERVICE
 NETWORK SERVICE
+RESTRICTED SERVICES\\PrintSpoolerService
 SERVICE'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> User Rights Assignment >> "Impersonate a client after authentication" to only include the following groups or accounts:
 
 Administrators
 LOCAL SERVICE
 NETWORK SERVICE
+RESTRICTED SERVICES\\PrintSpoolerService
 SERVICE'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
-  tag check_id: 'C-56951r829576_chk'
+  tag check_id: 'C-56951r1138524_chk'
   tag severity: 'medium'
   tag gid: 'V-253498'
-  tag rid: 'SV-253498r958726_rule'
+  tag rid: 'SV-253498r1138526_rule'
   tag stig_id: 'WN11-UR-000110'
   tag gtitle: 'SRG-OS-000324-GPOS-00125'
-  tag fix_id: 'F-56901r829577_fix'
+  tag fix_id: 'F-56901r1138525_fix'
   tag 'documentable'
   tag legacy: ['V-63889', 'SV-78379']
   tag cci: ['CCI-002235']
   tag nist: ['AC-6 (10)']
 
   describe security_policy do
-    its('SeAuditPrivilege') { should be_in ['S-1-5-32-544', 'S-1-5-19', 'S-1-5-20', 'S-1-5-6'] }
+    its('SeImpersonatePrivilege') { should be_in ['S-1-5-32-544', 'S-1-5-19', 'S-1-5-20', 'S-1-5-6', 'S-1-5-99-216390572-1995538116-3857911515-2404958512-2623887229'] }
   end
 end

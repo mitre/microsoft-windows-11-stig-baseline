@@ -11,18 +11,17 @@ If the value for "Password must meet complexity requirements" is not set to "Ena
 If the site is using a password filter that requires this setting be set to "Disabled" for the filter to be used, this would not be considered a finding.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Password Policy >> "Password must meet complexity requirements" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56757r828994_chk'
   tag severity: 'medium'
   tag gid: 'V-253304'
-  tag rid: 'SV-253304r1016430_rule'
+  tag rid: 'SV-253304r1051045_rule'
   tag stig_id: 'WN11-AC-000040'
   tag gtitle: 'SRG-OS-000069-GPOS-00037'
   tag fix_id: 'F-56707r828995_fix'
   tag 'documentable'
   tag legacy: ['SV-77917', 'V-63427']
-  tag cci: ['CCI-000366', 'CCI-000192', 'CCI-000193', 'CCI-000194', 'CCI-001619', 'CCI-004066']
-  tag nist: ['CM-6 b', 'IA-5 (1) (a)', 'IA-5 (1) (h)']
+  tag cci: ['CCI-004066', 'CCI-000192']
+  tag nist: ['IA-5 (1) (h)', 'IA-5 (1) (a)']
 
   describe security_policy do
     its('PasswordComplexity') { should eq input('enable_pass_complexity') }

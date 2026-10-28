@@ -15,7 +15,6 @@ Object Access >> Other Object Access Events - Failure
 If the system does not audit the above, this is a finding.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Advanced Audit Policy Configuration >> System Audit Policies >> Object Access >> "Audit Other Object Access Events" with "Failure" selected.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56775r829048_chk'
   tag severity: 'medium'
   tag gid: 'V-253322'

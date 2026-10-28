@@ -12,13 +12,12 @@ Value Type: REG_DWORD
 Value: 0'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> MSS (Legacy) >> "MSS: (EnableICMPRedirect) Allow ICMP redirects to override OSPF generated routes" to "Disabled".
 
-This policy setting requires the installation of the MSS-Legacy custom templates included with the STIG package.  "MSS-Legacy.admx" and " MSS-Legacy.adml" must be copied to the \\Windows\\PolicyDefinitions and \\Windows\\PolicyDefinitions\\en-US directories respectively.'
+This policy setting requires the installation of the MSS-Legacy custom templates included with the STIG package.  "MSS-Legacy.admx" and "MSS-Legacy.adml" must be copied to the \\Windows\\PolicyDefinitions and \\Windows\\PolicyDefinitions\\en-US directories respectively.'
   impact 0.3
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56808r829147_chk'
   tag severity: 'low'
   tag gid: 'V-253355'
-  tag rid: 'SV-253355r991589_rule'
+  tag rid: 'SV-253355r1268251_rule'
   tag stig_id: 'WN11-CC-000030'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-56758r829148_fix'

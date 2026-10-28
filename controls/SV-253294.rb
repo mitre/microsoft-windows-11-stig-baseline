@@ -18,11 +18,10 @@ If accounts with administrative privileges are not prevented from using applicat
 
 Implement technical measures where feasible such as removal of applications or use of application allowlisting to restrict the use of applications that can access the internet.'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56747r828964_chk'
   tag severity: 'high'
   tag gid: 'V-253294'
-  tag rid: 'SV-253294r991589_rule'
+  tag rid: 'SV-253294r1268251_rule'
   tag stig_id: 'WN11-00-000240'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-56697r828965_fix'

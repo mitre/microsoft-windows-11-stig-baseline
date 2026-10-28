@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Interactive logon: Machine inactivity limit" to "900" seconds" or less, excluding "0" which is effectively disabled.'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56897r829414_chk'
   tag severity: 'medium'
   tag gid: 'V-253444'
@@ -22,8 +21,8 @@ Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)'
   tag fix_id: 'F-56847r829415_fix'
   tag 'documentable'
   tag legacy: ['SV-78159', 'V-63669']
-  tag cci: ['CCI-000057', 'CCI-001133', 'CCI-002361']
-  tag nist: ['AC-11 a', 'SC-10', 'AC-12']
+  tag cci: ['CCI-001133', 'CCI-002361']
+  tag nist: ['SC-10', 'AC-12']
 
   describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System') do
     it { should have_property 'InactivityTimeoutSecs' }

@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 2 (Prompt for consent on the secure desktop)'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "User Account Control: Behavior of the elevation prompt for administrators in Admin Approval Mode" to "Prompt for consent on the secure desktop".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56922r829489_chk'
   tag severity: 'medium'
   tag gid: 'V-253469'

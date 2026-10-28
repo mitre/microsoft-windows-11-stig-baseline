@@ -22,7 +22,6 @@ The default location is the "%SystemRoot%\\SYSTEM32\\WINEVT\\LOGS" directory.
 
 If the location of the logs has been changed, when adding Eventlog to the permissions, it must be entered as "NT Service\\Eventlog".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56793r829102_chk'
   tag severity: 'medium'
   tag gid: 'V-253340'
@@ -32,7 +31,7 @@ If the location of the logs has been changed, when adding Eventlog to the permis
   tag fix_id: 'F-56743r829103_fix'
   tag 'documentable'
   tag legacy: ['V-63533', 'SV-78023']
-  tag cci: ['CCI-000162', 'CCI-000163', 'CCI-000164']
+  tag cci: ['CCI-000162']
   tag nist: ['AU-9 a']
 
   get_system_root = command('Get-ChildItem Env: | Findstr SystemRoot').stdout.strip

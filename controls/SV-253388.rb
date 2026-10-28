@@ -14,7 +14,6 @@ Value: 0x000000ff (255)
 Note: If the value for NoDriveTypeAutorun is entered manually, it must be entered as "ff" when Hexadecimal is selected, or "255" with Decimal selected.  Using the policy value specified in the Fix section will enter it correctly.'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> AutoPlay Policies >> "Turn off AutoPlay" to "Enabled:All Drives".'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56841r829246_chk'
   tag severity: 'high'
   tag gid: 'V-253388'

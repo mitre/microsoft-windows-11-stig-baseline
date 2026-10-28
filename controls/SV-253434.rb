@@ -12,11 +12,10 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Accounts: Limit local account use of blank passwords to console logon only" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56887r829384_chk'
   tag severity: 'medium'
   tag gid: 'V-253434'
-  tag rid: 'SV-253434r991589_rule'
+  tag rid: 'SV-253434r1268251_rule'
   tag stig_id: 'WN11-SO-000015'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-56837r829385_fix'

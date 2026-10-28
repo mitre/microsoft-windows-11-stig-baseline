@@ -12,7 +12,6 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Microsoft network server: Digitally sign communications (always)" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56904r829435_chk'
   tag severity: 'medium'
   tag gid: 'V-253451'
@@ -22,8 +21,8 @@ Value: 1'
   tag fix_id: 'F-56854r829436_fix'
   tag 'documentable'
   tag legacy: ['SV-78209', 'V-63719']
-  tag cci: ['CCI-002418', 'CCI-002421']
-  tag nist: ['SC-8', 'SC-8 (1)']
+  tag cci: ['CCI-002418']
+  tag nist: ['SC-8']
 
   describe registry_key('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters') do
     it { should have_property 'RequireSecuritySignature' }

@@ -25,7 +25,6 @@ For domain-joined workstations, the Domain Admins group must be replaced by a do
 
 Remove any standard user accounts.'
   impact 0.7
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56722r828889_chk'
   tag severity: 'high'
   tag gid: 'V-253269'
@@ -35,8 +34,8 @@ Remove any standard user accounts.'
   tag fix_id: 'F-56672r828890_fix'
   tag 'documentable'
   tag legacy: ['SV-77851', 'V-63361']
-  tag cci: ['CCI-002235', 'CCI-002165']
-  tag nist: ['AC-6 (10)', 'AC-3 (4)']
+  tag cci: ['CCI-002165']
+  tag nist: ['AC-3 (4)']
 
   administrator_group = command("net localgroup Administrators | Format-List | Findstr /V 'Alias Name Comment Members - command'").stdout.strip.split("\r\n")
   administrator_group.each do |user|

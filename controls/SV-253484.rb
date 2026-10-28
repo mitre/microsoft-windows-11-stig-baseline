@@ -17,7 +17,6 @@ LOCAL SERVICE'
 Administrators
 LOCAL SERVICE'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56937r829534_chk'
   tag severity: 'medium'
   tag gid: 'V-253484'

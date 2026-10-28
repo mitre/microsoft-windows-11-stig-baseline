@@ -16,22 +16,30 @@ Value: 3 (or if the Value Name does not exist)'
 
 If this needs to be corrected, configure the policy value for Computer Configuration >> Administrative Templates >> Network >> Windows Connection Manager >> "Minimize the number of simultaneous connections to the Internet or a Windows Domain" to "Enabled".  Under "Options", set "Minimize Policy Options" to "3 = Prevent Wi-Fi When on Ethernet".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56817r890453_chk'
   tag severity: 'medium'
   tag gid: 'V-253364'
-  tag rid: 'SV-253364r958358_rule'
+  tag rid: 'SV-253364r1268254_rule'
   tag stig_id: 'WN11-CC-000055'
   tag gtitle: 'SRG-OS-000481-GPOS-00481'
   tag fix_id: 'F-56767r890454_fix'
   tag 'documentable'
   tag legacy: ['SV-78071', 'V-63581']
-  tag cci: ['CCI-000366', 'CCI-002418']
-  tag nist: ['CM-6 b', 'SC-8']
+  tag cci: ['CCI-002418']
+  tag nist: ['SC-8']
 
-  is_domain = command('wmic computersystem get domain | FINDSTR /V Domain').stdout.strip
+  join_type = inspec.powershell(<<~EOH).stdout.strip
+    $dsreg = & "$env:windir\\system32\\dsregcmd.exe" /status 2>$null
+    $azure = ($dsreg | Select-String -Pattern '^\\s*AzureAdJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
+    $domain = ($dsreg | Select-String -Pattern '^\\s*DomainJoined\\s*:\\s*').ToString().Split(':')[-1].Trim()
 
-  if is_domain == 'WORKGROUP'
+    if ($azure -eq 'YES' -and $domain -eq 'YES') { 'Hybrid' }
+    elseif ($azure -eq 'YES') { 'AzureAD' }
+    elseif ($domain -eq 'YES') { 'Domain' }
+    else { 'None' }
+    EOH
+
+  if join_type == 'None'
     impact 0.0
     describe 'The system is not a member of a domain, control is NA' do
       skip 'The system is not a member of a domain, control is NA'

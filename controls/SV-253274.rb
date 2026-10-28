@@ -101,7 +101,6 @@ APPLICATION PACKAGE AUTHORITY\\ALL RESTRICTED APPLICATION PACKAGES:(OI)(CI)(IO)(
 Successfully processed 1 files; Failed processing 0 files'
   desc 'fix', 'Maintain the default file system permissions and configure the Security Option: "Network access: Let everyone permissions apply to anonymous users" to "Disabled" (WN11-SO-000160).'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56727r1016661_chk'
   tag severity: 'medium'
   tag gid: 'V-253274'

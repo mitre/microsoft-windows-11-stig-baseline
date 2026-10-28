@@ -8,7 +8,6 @@ Locate the "Secondary Logon" service.
 If the "Startup Type" is not "Disabled" or the "Status" is "Running", this is a finding.'
   desc 'fix', 'Configure the "Secondary Logon" service "Startup Type" to "Disabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56742r828949_chk'
   tag severity: 'medium'
   tag gid: 'V-253289'

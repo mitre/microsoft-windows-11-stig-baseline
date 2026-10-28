@@ -12,11 +12,10 @@ Value Type: REG_DWORD
 Value: 1'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Remote Desktop Services >> Remote Desktop Session Host >> Security "Require secure RPC communication" to "Enabled".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56858r829297_chk'
   tag severity: 'medium'
   tag gid: 'V-253405'
-  tag rid: 'SV-253405r991554_rule'
+  tag rid: 'SV-253405r1268237_rule'
   tag stig_id: 'WN11-CC-000285'
   tag gtitle: 'SRG-OS-000250-GPOS-00093'
   tag fix_id: 'F-56808r829298_fix'

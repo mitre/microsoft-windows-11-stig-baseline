@@ -12,18 +12,17 @@ Value Type: REG_DWORD
 Value: 3'
   desc 'fix', 'Configure the policy value for Computer Configuration >> Administrative Templates >> Windows Components >> Remote Desktop Services >> Remote Desktop Session Host >> Security >> "Set client connection encryption level" to "Enabled" and "High Level".'
   impact 0.5
-  ref 'DPMS Target Microsoft Windows 11'
   tag check_id: 'C-56859r829300_chk'
   tag severity: 'medium'
   tag gid: 'V-253406'
-  tag rid: 'SV-253406r958408_rule'
+  tag rid: 'SV-253406r1268222_rule'
   tag stig_id: 'WN11-CC-000290'
   tag gtitle: 'SRG-OS-000033-GPOS-00014'
   tag fix_id: 'F-56809r829301_fix'
   tag 'documentable'
   tag legacy: ['V-63741', 'SV-78231']
-  tag cci: ['CCI-000068', 'CCI-002890']
-  tag nist: ['AC-17 (2)', 'MA-4 (6)']
+  tag cci: ['CCI-000068']
+  tag nist: ['AC-17 (2)']
 
   describe registry_key('HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services') do
     it { should have_property 'MinEncryptionLevel' }
