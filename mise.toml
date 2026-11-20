@@ -1,0 +1,14 @@
+[tools]
+ruby = "3.4.13"
+
+[tasks.setup]
+description = "Install the Ruby packages listed in Gemfile"
+run = "bundle install"
+
+[tasks.check]
+description = "Validate the InSpec profile"
+run = "bundle exec cinc-auditor check ."
+
+[tasks.scan]
+description = "Check this Windows computer and save results.json"
+run = "bundle exec cinc-auditor exec . --reporter cli json:results.json"
